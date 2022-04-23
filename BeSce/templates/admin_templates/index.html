@@ -1,0 +1,367 @@
+{% load static %}
+{% for ad in admin1 %}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from demo.interface.club/limitless/demo/Template/layout_1/LTR/material/full/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 28 Mar 2022 17:09:01 GMT -->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>BeSce - AdminDashboard</title>
+
+	<!-- Global stylesheets -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+	<link href="{% static 'assets/css/icons/icomoon/styles.min.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'assets/css/all.min.css' %}" rel="stylesheet" type="text/css">
+	<!-- /global stylesheets -->
+	
+
+	<!-- Core JS files -->
+	<script src="{% static 'assets/js/main/jquery.min.js' %}"></script>
+	<script src="{% static 'assets/js/main/bootstrap.bundle.min.js' %}"></script>
+	<!-- /core JS files -->
+
+	<!-- Theme JS files -->
+	<script src="{% static 'assets/js/plugins/visualization/d3/d3.min.js' %}"></script>
+	<script src="{% static 'assets/js/plugins/visualization/d3/d3_tooltip.js' %}"></script>
+	<script src="{% static 'assets/js/plugins/ui/moment/moment.min.js' %}"></script>
+	<script src="{% static 'assets/js/plugins/pickers/daterangepicker.js' %}"></script>
+
+	<script src="{% static 'assets/js/app.js' %}"></script>
+	<script src="{% static 'assets/js/demo_pages/dashboard.js' %}"></script>
+	<script src="{% static 'assets/js/demo_charts/pages/dashboard/light/streamgraph.js' %}"></script>
+	<script src="{% static 'assets/js/demo_charts/pages/dashboard/light/sparklines.js' %}"></script>
+	<script src="{% static 'assets/js/demo_charts/pages/dashboard/light/lines.js' %}"></script>	
+	<script src="{% static 'assets/js/demo_charts/pages/dashboard/light/areas.js' %}"></script>
+	<script src="{% static 'assets/js/demo_charts/pages/dashboard/light/donuts.js' %}"></script>
+	<script src="{% static 'assets/js/demo_charts/pages/dashboard/light/bars.js' %}"></script>
+	<script src="{% static 'assets/js/demo_charts/pages/dashboard/light/progress.js' %}"></script>
+	<script src="{% static 'assets/js/demo_charts/pages/dashboard/light/heatmaps.js' %}"></script>
+	<script src="{% static 'assets/js/demo_charts/pages/dashboard/light/pies.js' %}"></script>
+	<script src="{% static 'assets/js/demo_charts/pages/dashboard/light/bullets.js' %}"></script>
+	<!-- /theme JS files -->
+
+</head>
+
+<body>
+
+	<!-- Main navbar -->
+	<div class="navbar navbar-expand-lg navbar-dark bg-indigo navbar-static">
+		<div class="d-flex flex-1 d-lg-none">
+			<button class="navbar-toggler sidebar-mobile-main-toggle" type="button">
+				<i class="icon-paragraph-justify3"></i>
+			</button>
+
+			<button data-target="#navbar-search" type="button" class="navbar-toggler" data-toggle="collapse">
+				<i class="icon-search4"></i>
+			</button>
+		</div>
+
+		<div class="navbar-brand text-center text-lg-left">
+			<a href="index.html" class="d-inline-block">
+				<img src="{% static 'assets/images/logo_light.png' %}" class="d-none d-sm-block" alt="">
+				<img src="{% static 'assets/images/logo_icon_light.png' %}" class="d-sm-none" alt="">
+			</a>
+		</div>
+
+		<div class="navbar-collapse collapse flex-lg-1 mx-lg-3 order-2 order-lg-1" id="navbar-search">
+			<div class="navbar-search d-flex align-items-center py-2 py-lg-0">
+				<div class="form-group-feedback form-group-feedback-left flex-grow-1">
+					<input type="text" class="form-control" placeholder="Search">
+					<div class="form-control-feedback">
+						<i class="icon-search4 text-white opacity-50"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="d-flex justify-content-end align-items-center flex-1 flex-lg-0 order-1 order-lg-2">
+			<ul class="navbar-nav flex-row">
+				<li class="nav-item">
+					<a href="#" class="navbar-nav-link navbar-nav-link-toggler">
+						<i class="icon-switch2"></i>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /main navbar -->
+
+
+	<!-- Page content -->
+	<div class="page-content">
+
+		<!-- Main sidebar -->
+		<div class="sidebar sidebar-light sidebar-main sidebar-expand-lg">
+
+			<!-- Sidebar content -->
+			<div class="sidebar-content">
+
+				<!-- User menu -->
+				<div class="sidebar-section">
+					<div class="sidebar-user-material">
+						<div class="sidebar-section-body">
+							<div class="d-flex">
+								<div class="flex-1">
+								</div>
+								<a href="#" class="flex-1 text-center"><img src="{% static 'assets/images/demo/users/facenone.png' %}" class="img-fluid rounded-circle shadow-sm" width="80" height="80" alt=""></a>
+								<div class="flex-1 text-right">
+									<button type="button" class="btn btn-outline-light border-transparent btn-icon rounded-pill btn-sm sidebar-control sidebar-main-resize d-none d-lg-inline-flex">
+										<i class="icon-transmission"></i>
+									</button>
+
+									<button type="button" class="btn btn-outline-light border-transparent btn-icon rounded-pill btn-sm sidebar-mobile-main-toggle d-lg-none">
+										<i class="icon-cross2"></i>
+									</button>
+								</div>
+							</div>
+							<div class="text-center">
+								
+								<h6 class="mb-0 text-white text-shadow-dark mt-3"> {{ad.fname}} {{ad.lname}} </h6>
+								<span class="font-size-sm text-white text-shadow-dark"> IdNumber : {{ad.idnumber}} </span>
+								
+							</div>
+						</div>
+													
+						<div class="sidebar-user-material-footer">
+							<a href="#user-nav" class="d-flex justify-content-between align-items-center text-shadow-dark dropdown-toggle" data-toggle="collapse"><span>My account</span></a>
+						</div>
+					</div>
+
+					<div class="collapse border-bottom" id="user-nav">
+						<ul class="nav nav-sidebar">
+							<li class="nav-item">
+								<a href="#" class="nav-link">
+									<i class="icon-comment-discussion"></i>
+									<span>My Messages</span>
+									<span class="badge badge-teal badge-pill align-self-center ml-auto">58</span>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link">
+									<i class="icon-cog5"></i>
+									<span>Account settings</span>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="http://localhost:8000/login" class="nav-link">
+									<i class="icon-switch2"></i>
+									<span>Logout</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /user menu -->
+
+
+				<!-- Main navigation -->
+				<div class="sidebar-section">
+					<ul class="nav nav-sidebar" data-nav-type="accordion">
+
+						<!-- Main -->
+						<li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs mt-1">Main</div> <i class="icon-menu" title="Main"></i></li>
+						<li class="nav-item">
+							<form action="alladmins/" method="POST" id="users-form" autocomplete="off" role="main">
+								{% csrf_token %}
+								<input name="id" type="hidden" value="{{ad.id}}">
+							<button class="btn" type="submit"><li class="nav-item"><a class="nav-link active">Home</a></li></button>
+							</form>
+								<i class="icon-home4"></i>
+								<span>
+									Home
+								</span>
+							</a>
+						</li>
+						
+						<li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Informations</div> <i class="icon-menu" title="Infos"></i></li>
+						<li class="nav-item nav-item-submenu">
+							<a href="#" class="nav-link"><i class="icon-cube3"></i> <span>Shop</span></a>
+							<ul class="nav nav-group-sub" data-submenu-title="Shops page">
+								<form action="alladmins/" method="POST" id="users-form" autocomplete="off" role="main">
+									{% csrf_token %}
+									<input name="id" type="hidden" value="{{ad.id}}">
+								<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">All Products</a></li></button>
+								</form>
+								<form action="alladmins/" method="POST" id="users-form" autocomplete="off" role="main">
+									{% csrf_token %}
+									<input name="id" type="hidden" value="{{ad.id}}">
+								<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">Our Products</a></li></button>
+								</form>
+							</ul>
+						</li>
+						
+						<li class="nav-item nav-item-submenu">
+							<a href="#" class="nav-link"><i class="icon-copy"></i> <span>Documents</span></a>
+							<ul class="nav nav-group-sub" data-submenu-title="Authorizations page">
+								<form action="allauthorization/" method="POST" id="users-form" autocomplete="off" role="main">
+									{% csrf_token %}
+									<input name="id" type="hidden" value="{{ad.id}}">
+								<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">All Authorization</a></li></button>
+								</form>
+							</ul>
+						</li>
+						<li class="nav-item nav-item-submenu">
+							<a href="#" class="nav-link"><i class="icon-insert-template"></i> <span>Users</span></a>
+							<ul class="nav nav-group-sub" data-submenu-title="Users page">
+								<form action="/adminlist" method="POST" id="users-form" autocomplete="off" role="main">
+									{% csrf_token %}
+									<input name="id" type="hidden" value="{{ad.id}}">
+								<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">Administrators</a></li></button>
+								</form>
+								<form action="/clientlist" method="POST" id="users-form" autocomplete="off" role="main">
+									{% csrf_token %}
+									<input name="id" type="hidden" value="{{item.id}}">
+								<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">Clients</a></li></button>
+								</form>
+								<form action="/workerlist" method="POST" id="users-form" autocomplete="off" role="main">
+									{% csrf_token %}
+									<input name="id" type="hidden" value="{{item.id}}">
+								<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">Workers</a></li></button>
+								</form>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<!-- /main navigation -->
+
+			</div>
+			<!-- /sidebar content -->
+			
+		</div>
+		<!-- /main sidebar -->
+
+
+		<!-- Main content -->
+		<div class="content-wrapper">
+
+			<!-- Inner content -->
+			<div class="content-inner">
+
+				<!-- Page header -->
+				<div class="page-header page-header-light">
+					<div class="page-header-content header-elements-lg-inline">
+						<div class="page-title d-flex">
+							<h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Home</span> - AdminDashboard</h4>
+							<a href="#" class="header-elements-toggle text-body d-lg-none"><i class="icon-more"></i></a>
+						</div>
+					</div>
+
+					<div class="breadcrumb-line breadcrumb-line-light header-elements-lg-inline">
+						<div class="d-flex">
+							<div class="breadcrumb">
+								<a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+								<span class="breadcrumb-item active">AdminDashboard</span>
+							</div>
+
+							<a href="#" class="header-elements-toggle text-body d-lg-none"><i class="icon-more"></i></a>
+						</div>
+
+						<div class="header-elements d-none">
+							<div class="breadcrumb justify-content-center">
+								<a href="#" class="breadcrumb-elements-item dropdown-toggle" data-toggle="dropdown">
+									<i class="icon-comment-discussion mr-2"></i>
+									Support
+								</a>
+								<div class="dropdown-menu dropdown-menu-right">
+									<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Report a problem</a>
+									<div class="dropdown-divider"></div>
+									<a href="#" class="dropdown-item"><i class="icon-gear"></i> Ask for changes</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /page header -->
+
+
+				<!-- Content area -->
+				<div class="content">
+
+					<!-- Main charts -->
+					<div class="row">
+						<div class="col-xl-7">
+
+							<!-- Traffic sources -->
+							<div class="card">
+								<div class="card-header header-elements-inline">
+									<h6 class="card-title">Welcome to your Admin Dashboard</h6>
+								</div>
+
+								<div class="card-body py-0">
+									<div class="row">
+										<p>Here you can manage all the system.</p>
+										<p><-- Select your options.</p>
+									</div>
+								</div>
+
+								<div class="chart position-relative" id="traffic-sources"></div>
+							</div>
+							<!-- /traffic sources -->
+
+						</div>
+
+						<div class="col-xl-5">
+
+							<!-- Sales stats -->
+							<div class="card">
+								<p>Options:</p>
+								<p>- Show all Clients, workers ans administrators.</p>
+								<p>Change any informations from the database.</p>
+								<p>Add New products, users, authorizations</p>
+								<p>more...</p>
+							</div>
+							<!-- /sales stats -->
+
+						</div>
+					</div>
+					<!-- /main charts -->
+
+
+					<!-- Dashboard content -->
+					
+					<!-- /dashboard content -->
+
+				</div>
+				<!-- /content area -->
+
+
+				<!-- Footer -->
+				<div class="navbar navbar-expand-lg navbar-light">
+					<div class="text-center d-lg-none w-100">
+						<button type="button" class="navbar-toggler dropdown-toggle" data-toggle="collapse" data-target="#navbar-footer">
+							<i class="icon-unfold mr-2"></i>
+							Footer
+						</button>
+					</div>
+
+					<div class="navbar-collapse collapse" id="navbar-footer">
+						<span class="navbar-text">
+							&copy; 2022. <a href="#">BeSce Dashboard</a>
+						</span>
+					</div>
+				</div>
+				<!-- /footer -->
+
+			</div>
+			<!-- /inner content -->
+
+		</div>
+		<!-- /main content -->
+
+	</div>
+	<!-- /page content -->
+
+</body>
+</html>
+{% endfor %}
+
+
+<style>
+	.btn{
+		background-color: transparent;
+		border: none;
+		text-align: left;
+	}
+</style>

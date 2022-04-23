@@ -71,7 +71,7 @@ WSGI_APPLICATION = 'Root.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'besce_db',
+        'NAME': 'db_besce',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': '',
