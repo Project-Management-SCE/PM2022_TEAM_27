@@ -67,6 +67,8 @@ def pwsreset(request):
     return render(request, 'password_reset.html')
 
 
+
+
 # --- Basics Functions --- #
 
 def f_register(request):
