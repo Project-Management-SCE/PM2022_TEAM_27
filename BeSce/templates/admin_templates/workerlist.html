@@ -139,7 +139,7 @@
 								<a href="#" class="nav-link">
 									<i class="icon-comment-discussion"></i>
 									<span>My Messages</span>
-									<span class="badge badge-teal badge-pill align-self-center ml-auto">58</span>
+									<span class="badge badge-teal badge-pill align-self-center ml-auto">0</span>
 								</a>
 							</li>
 							<li class="nav-item">
@@ -149,7 +149,7 @@
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="http://localhost:8000/login" class="nav-link">
+								<a href="/login" class="nav-link">
 									<i class="icon-switch2"></i>
 									<span>Logout</span>
 								</a>
@@ -166,7 +166,7 @@
 						<!-- Main -->
 						<li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs mt-1">Main</div> <i class="icon-menu" title="Main"></i></li>
 						<li class="nav-item">
-							<form action="adindex/" method="POST" id="users-form" autocomplete="off" role="main">
+							<form action="/admin_index" method="POST" id="users-form" autocomplete="off" role="main">
 								{% csrf_token %}
 								<input name="id" type="hidden" value="{{ad.id}}">
 								<i class="icon-home4"></i>
@@ -181,15 +181,15 @@
 						<li class="nav-item nav-item-submenu">
 							<a href="#" class="nav-link"><i class="icon-cube3"></i> <span>Shop</span></a>
 							<ul class="nav nav-group-sub" data-submenu-title="Shops page">
-								<form action="adallproducts/" method="POST" id="users-form" autocomplete="off" role="main">
+								<form action="/productlist" method="POST" id="users-form" autocomplete="off" role="main">
 									{% csrf_token %}
 									<input name="id" type="hidden" value="{{ad.id}}">
-								<button class="btn1" type="submit"><li class="nav-item"><a class="nav-link">All Products</a></li></button>
+								<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">Products</a></li></button>
 								</form>
-								<form action="adproducts/" method="POST" id="users-form" autocomplete="off" role="main">
+								<form action="/orderlist" method="POST" id="users-form" autocomplete="off" role="main">
 									{% csrf_token %}
 									<input name="id" type="hidden" value="{{ad.id}}">
-								<button class="btn1" type="submit"><li class="nav-item"><a class="nav-link">Our Products</a></li></button>
+								<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">Orders</a></li></button>
 								</form>
 							</ul>
 						</li>
@@ -197,10 +197,10 @@
 						<li class="nav-item nav-item-submenu">
 							<a href="#" class="nav-link"><i class="icon-copy"></i> <span>Documents</span></a>
 							<ul class="nav nav-group-sub" data-submenu-title="Authorizations page">
-								<form action="allauthorization/" method="POST" id="users-form" autocomplete="off" role="main">
+								<form action="/prescriptionlist" method="POST" id="users-form" autocomplete="off" role="main">
 									{% csrf_token %}
 									<input name="id" type="hidden" value="{{ad.id}}">
-								<button class="btn1" type="submit"><li class="nav-item"><a class="nav-link">All Authorization</a></li></button>
+									<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">Prescriptions</a></li></button>
 								</form>
 							</ul>
 						</li>
@@ -284,58 +284,68 @@
 
 					<!-- Dashboard content -->
 					<div class="card">
-						<div class="card-header">
-							<h5 class="card-title">Workers List</h5>
-						</div>
-
-						<div class="card-body">
-							<p class="mb-4">Here you can manage all the worker table.</p>
-							<form action="/addworker" method="POST" id="users-form" autocomplete="off" role="main">
-								{% csrf_token %}
-								<fieldset class="mb-3">
-									<legend class="text-uppercase font-size-sm font-weight-bold border-bottom">Add a new worker here:</legend>
-									<input name="id" type="hidden" value="{{ad.id}}">
-									<div class="form-group form-group-floating row">
-										<label class="col-form-label col-lg-2">Idnumber (required)</label>
-										<div class="col-lg-10">
-											<div class="position-relative">
-												<input type="number" class="form-control form-control-outline" id="idnumber" name="idnumber" minlength="9" maxlength="9" placeholder="Placeholder" required>
-												<label class="label-floating">Idnumber</label>
-											</div>
-										</div>
-									</div>
-									<div class="form-group form-group-floating row">
-										<label class="col-form-label col-lg-2">Password (required)</label>
-										<div class="col-lg-10">
-											<div class="position-relative">
-												<input type="text" class="form-control form-control-outline" id="pass" name="pass" minlength="4" maxlength="24" placeholder="Placeholder" required>
-												<label class="label-floating">Password</label>
-											</div>
-										</div>
-									</div>
-									<div class="form-group form-group-floating row">
-										<label class="col-form-label col-lg-2">First name (required)</label>
-										<div class="col-lg-10">
-											<div class="position-relative">
-												<input type="text" class="form-control form-control-outline" id="fname" name="fname" placeholder="Placeholder" required>
-												<label class="label-floating">Firstname</label>
-											</div>
-										</div>
-									</div>
-									<div class="form-group form-group-floating row">
-										<label class="col-form-label col-lg-2">Last name (required)</label>
-										<div class="col-lg-10">
-											<div class="position-relative">
-												<input type="text" class="form-control form-control-outline" id="lname" name="lname" placeholder="Placeholder" required>
-												<label class="label-floating">Lastname</label>
-											</div>
-										</div>
-									</div>
-								</fieldset>
-								<div class="text-right">
-									<button type="submit" class="btn btn-primary">Add the new Worker <i class="icon-paperplane ml-2"></i></button>
+						<div class="card-header header-elements-inline">
+							<h6 class="card-title">
+								" Worker List"
+								<span class="text-primary d-block font-size-base">Add a new worker</span>
+							</h6>
+							<div class="header-elements">
+								<div class="list-icons">
+									<a class="list-icons-item" data-action="collapse"></a>
+									<a class="list-icons-item" data-action="reload"></a>
 								</div>
-							</form>
+							</div>
+						</div>
+						<div class="collapse show">
+							<div class="card-body">
+								<p class="mb-4">Here you can manage all the worker table.</p>
+								<form action="/addworker" method="POST" id="users-form" autocomplete="off" role="main">
+									{% csrf_token %}
+									<fieldset class="mb-3">
+										<legend class="text-uppercase font-size-sm font-weight-bold border-bottom">Add a new worker here:</legend>
+										<input name="id" type="hidden" value="{{ad.id}}">
+										<div class="form-group form-group-floating row">
+											<label class="col-form-label col-lg-2">Idnumber (required)</label>
+											<div class="col-lg-10">
+												<div class="position-relative">
+													<input type="number" class="form-control form-control-outline" id="idnumber" name="idnumber" minlength="9" maxlength="9" placeholder="Placeholder" required>
+													<label class="label-floating">Idnumber</label>
+												</div>
+											</div>
+										</div>
+										<div class="form-group form-group-floating row">
+											<label class="col-form-label col-lg-2">Password (required)</label>
+											<div class="col-lg-10">
+												<div class="position-relative">
+													<input type="text" class="form-control form-control-outline" id="pass" name="pass" minlength="4" maxlength="24" placeholder="Placeholder" required>
+													<label class="label-floating">Password</label>
+												</div>
+											</div>
+										</div>
+										<div class="form-group form-group-floating row">
+											<label class="col-form-label col-lg-2">First name (required)</label>
+											<div class="col-lg-10">
+												<div class="position-relative">
+													<input type="text" class="form-control form-control-outline" id="fname" name="fname" placeholder="Placeholder" required>
+													<label class="label-floating">Firstname</label>
+												</div>
+											</div>
+										</div>
+										<div class="form-group form-group-floating row">
+											<label class="col-form-label col-lg-2">Last name (required)</label>
+											<div class="col-lg-10">
+												<div class="position-relative">
+													<input type="text" class="form-control form-control-outline" id="lname" name="lname" placeholder="Placeholder" required>
+													<label class="label-floating">Lastname</label>
+												</div>
+											</div>
+										</div>
+									</fieldset>
+									<div class="text-right">
+										<button type="submit" class="btn btn-primary">Add the new Worker <i class="icon-paperplane ml-2"></i></button>
+									</div>
+								</form>
+							</div>
 						</div>
 						<legend class="text-uppercase font-size-sm font-weight-bold border-bottom">-    List of all workers:</legend>
 						<table class="table datatable-basic">

@@ -103,8 +103,16 @@
                                         <span class="d-xl-none ml-2">My Order</span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <p>Empty</p>
-                                        <a href="#" class="dropdown-item">Check the actual order</a>
+										{% for or in cl1order %}
+
+                                        		<p>{{or.pid}} | {{or.quantity}}</p>
+												
+										{% endfor %}
+										<form action="/myorder" method="POST" id="users-form" autocomplete="off" role="main">
+											{% csrf_token %}
+											<input name="id" type="hidden" value="{{cl.id}}">
+                                        	<button class="btn" type="submit"><a class="dropdown-item">My Actual Order</a></button>
+											</form>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown dropdown-user">
@@ -119,7 +127,7 @@
                                         <button class="btn" type="submit"><a class="dropdown-item">My Profil</a></button>
                                         </form>
                                         <a href="#" class="dropdown-item">My Orders</a>
-                                        <a href="http://localhost:8000/login" class="dropdown-item">Logout</a>
+                                        <a href="/login" class="dropdown-item">Logout</a>
                                     </div>
                                 </li>
                             </ul>
@@ -133,33 +141,37 @@
 				<div class="content">
 
 					<!-- List -->
+					{% for p in prdlist %}
+					<form action="/addtoorder" method="POST" id="users-del" autocomplete="off" role="main">
+						{% csrf_token %}
 					<div class="card card-body">
+						
 						<div class="media align-items-center align-items-lg-start text-center text-lg-left flex-column flex-lg-row">
 							<div class="mr-lg-3 mb-3 mb-lg-0">
-								<a href="{% static 'assets/images/products/product_none.png' %}" data-popup="lightbox">
-									<img src="{% static 'assets/images/products/product_none.png' %}" width="96" alt="">
+								<a href="static/assets/images/products/{{p.id}}.jpg" data-popup="lightbox">
+									<img src="static/assets/images/products/{{p.id}}.jpg" width="96" alt="">
 								</a>
 							</div>
 
 							<div class="media-body">
 								<h6 class="media-title font-weight-semibold">
-									<a href="#">Product name</a>
+									<a href="#">{{p.name}}</a>
 								</h6>
 
 								<ul class="list-inline list-inline-dotted mb-3 mb-lg-2">
-									<li class="list-inline-item"><a href="#" class="text-muted">Name</a></li>
-									<li class="list-inline-item"><a href="#" class="text-muted">Type</a></li>
+									<li class="list-inline-item"><a class="text-muted">{{p.type}}</a></li>
+									<li class="list-inline-item"><a class="text-muted">Prescription : {{p.prescription}}</a></li>
 								</ul>
 
-								<p class="mb-3">supplier here</p>
+								<p class="mb-3">{{p.supplier}}</p>
 
 								<ul class="list-inline list-inline-dotted mb-0">
-									<li class="list-inline-item">All items from <a href="#">BeSce</a></li>
+									<li class="list-inline-item">Stock :<a>{{p.stock}}</a></li>
 								</ul>
 							</div>
 
 							<div class="mt-3 mt-lg-0 ml-lg-3 text-center">
-								<h3 class="mb-0 font-weight-semibold">₪29.99</h3>
+								<h3 class="mb-0 font-weight-semibold">₪{{p.price}}</h3>
 
 								<div>
 									<i class="icon-star-full2 font-size-base text-warning"></i>
@@ -168,13 +180,24 @@
 									<i class="icon-star-full2 font-size-base text-warning"></i>
 									<i class="icon-star-full2 font-size-base text-warning"></i>
 								</div>
+								{% if p.stock <= 0 %}
+								<div class="text-danger">Empty stock</div>
+								<button class="btn-teal mt-3"><i class="icon-cart-add mr-2" disabled></i> Disabled</button>
+								{% else %}
+								<div class="text-success">In stock</div>
+								
+									<input name="id" type="hidden" value="{{cl.id}}" />	
+									<input name="did" type="hidden" value="{{p.id}}" />
+									<button type="submit" class="btn-teal mt-3"><i class="icon-cart-add mr-2"></i> Add to cart</button>
+								</form>
+								{% endif %}
 
-								<div class="text-muted">85 reviews</div>
-
-								<button type="button" class="btn-teal mt-3"><i class="icon-cart-add mr-2"></i> Add to cart</button>
+								
 							</div>
 						</div>
+						
 					</div>
+					{% endfor %}
 					<!-- /list -->
 
 

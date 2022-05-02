@@ -22,6 +22,7 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'fdadb',
     'BeSce',
     'django.contrib.admin',
     'django.contrib.auth',

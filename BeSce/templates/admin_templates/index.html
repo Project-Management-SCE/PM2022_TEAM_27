@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from demo.interface.club/limitless/demo/Template/layout_1/LTR/material/full/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 28 Mar 2022 17:09:01 GMT -->
+<!-- Admin index -->
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -59,7 +59,7 @@
 		</div>
 
 		<div class="navbar-brand text-center text-lg-left">
-			<a href="index.html" class="d-inline-block">
+			<a href="#" class="d-inline-block">
 				<img src="{% static 'assets/images/logo_light.png' %}" class="d-none d-sm-block" alt="">
 				<img src="{% static 'assets/images/logo_icon_light.png' %}" class="d-sm-none" alt="">
 			</a>
@@ -135,7 +135,7 @@
 								<a href="#" class="nav-link">
 									<i class="icon-comment-discussion"></i>
 									<span>My Messages</span>
-									<span class="badge badge-teal badge-pill align-self-center ml-auto">58</span>
+									<span class="badge badge-teal badge-pill align-self-center ml-auto">0</span>
 								</a>
 							</li>
 							<li class="nav-item">
@@ -145,7 +145,7 @@
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="http://localhost:8000/login" class="nav-link">
+								<a href="/login" class="nav-link">
 									<i class="icon-switch2"></i>
 									<span>Logout</span>
 								</a>
@@ -163,15 +163,12 @@
 						<!-- Main -->
 						<li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs mt-1">Main</div> <i class="icon-menu" title="Main"></i></li>
 						<li class="nav-item">
-							<form action="alladmins/" method="POST" id="users-form" autocomplete="off" role="main">
+							<form action="/admin_index" method="POST" id="users-form" autocomplete="off" role="main">
 								{% csrf_token %}
 								<input name="id" type="hidden" value="{{ad.id}}">
-							<button class="btn" type="submit"><li class="nav-item"><a class="nav-link active">Home</a></li></button>
-							</form>
 								<i class="icon-home4"></i>
-								<span>
-									Home
-								</span>
+							<button class="btn" type="submit"><li class="btn btn-light mr-2"><a class="nav-link active">Home</a></li></button>
+							</form>
 							</a>
 						</li>
 						
@@ -179,15 +176,15 @@
 						<li class="nav-item nav-item-submenu">
 							<a href="#" class="nav-link"><i class="icon-cube3"></i> <span>Shop</span></a>
 							<ul class="nav nav-group-sub" data-submenu-title="Shops page">
-								<form action="alladmins/" method="POST" id="users-form" autocomplete="off" role="main">
+								<form action="/productlist" method="POST" id="users-form" autocomplete="off" role="main">
 									{% csrf_token %}
 									<input name="id" type="hidden" value="{{ad.id}}">
-								<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">All Products</a></li></button>
+								<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">Products</a></li></button>
 								</form>
-								<form action="alladmins/" method="POST" id="users-form" autocomplete="off" role="main">
+								<form action="/orderlist" method="POST" id="users-form" autocomplete="off" role="main">
 									{% csrf_token %}
 									<input name="id" type="hidden" value="{{ad.id}}">
-								<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">Our Products</a></li></button>
+								<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">Orders</a></li></button>
 								</form>
 							</ul>
 						</li>
@@ -195,10 +192,10 @@
 						<li class="nav-item nav-item-submenu">
 							<a href="#" class="nav-link"><i class="icon-copy"></i> <span>Documents</span></a>
 							<ul class="nav nav-group-sub" data-submenu-title="Authorizations page">
-								<form action="allauthorization/" method="POST" id="users-form" autocomplete="off" role="main">
+								<form action="/prescriptionlist" method="POST" id="users-form" autocomplete="off" role="main">
 									{% csrf_token %}
 									<input name="id" type="hidden" value="{{ad.id}}">
-								<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">All Authorization</a></li></button>
+									<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">Prescriptions</a></li></button>
 								</form>
 							</ul>
 						</li>
@@ -212,12 +209,12 @@
 								</form>
 								<form action="/clientlist" method="POST" id="users-form" autocomplete="off" role="main">
 									{% csrf_token %}
-									<input name="id" type="hidden" value="{{item.id}}">
+									<input name="id" type="hidden" value="{{ad.id}}">
 								<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">Clients</a></li></button>
 								</form>
 								<form action="/workerlist" method="POST" id="users-form" autocomplete="off" role="main">
 									{% csrf_token %}
-									<input name="id" type="hidden" value="{{item.id}}">
+									<input name="id" type="hidden" value="{{ad.id}}">
 								<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">Workers</a></li></button>
 								</form>
 							</ul>
@@ -251,7 +248,7 @@
 					<div class="breadcrumb-line breadcrumb-line-light header-elements-lg-inline">
 						<div class="d-flex">
 							<div class="breadcrumb">
-								<a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+								<a href="#" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
 								<span class="breadcrumb-item active">AdminDashboard</span>
 							</div>
 

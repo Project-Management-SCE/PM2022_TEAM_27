@@ -352,6 +352,25 @@ var SweetAlert = function () {
         // Input types
         //
 
+        // FillStock
+        $('#fill_stock').on('click', function() {
+            swalInit.fire({
+                title: 'How many to fill?',
+                input: 'number',
+                inputPlaceholder: 'Only numbers',
+                showCancelButton: true,
+                inputValidator: function(value) {
+                    return !value && 'Invalide number!'
+                }
+            }).then(function(result) {
+                if(result.value) {
+                    swalInit.fire({
+                        icon: 'success',
+                        html: 'You fill the stock with : ' + result.value + 'products.'
+                    });
+                }
+            });
+        });
         // Text type
         $('#sweet_text').on('click', function() {
             swalInit.fire({

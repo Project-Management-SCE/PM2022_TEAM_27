@@ -10,6 +10,7 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 
+# ============== USERS MODELS ============== #
 
 class Admin(models.Model):
     id = models.IntegerField(db_column='id',primary_key=True)
@@ -42,19 +43,6 @@ class Client(models.Model):
         db_table = 'client'
 
 
-class Product(models.Model):
-    id = models.IntegerField(db_column='id',primary_key=True)
-    name = models.TextField(db_column='name',)
-    supplier = models.TextField(db_column='supplier',)
-    picture = models.TextField(db_column='picture',)
-    price = models.DecimalField(db_column='price',max_digits=10, decimal_places=2)
-    stock = models.IntegerField(db_column='stock')
-
-    class Meta:
-        managed = False
-        db_table = 'product'
-
-
 class Worker(models.Model):
     id = models.IntegerField(db_column='id',primary_key=True)
     idnumber = models.CharField(db_column='idnumber',max_length=11)
@@ -65,3 +53,56 @@ class Worker(models.Model):
     class Meta:
         managed = False
         db_table = 'worker'
+
+# ============== USERS MODELS ============== #
+
+class Product(models.Model):
+    id = models.IntegerField(db_column='id',primary_key=True)
+    name = models.TextField(db_column='name',)
+    supplier = models.TextField(db_column='supplier',)
+    type = models.TextField(db_column='type',)
+    price = models.DecimalField(db_column='price',max_digits=10, decimal_places=2)
+    stock = models.IntegerField(db_column='stock')
+    prescription = models.TextField(db_column='prescription')
+
+    class Meta:
+        managed = False
+        db_table = 'product'
+
+
+class Ordershop(models.Model):
+    id = models.IntegerField(db_column='id',primary_key=True)
+    cid = models.IntegerField(db_column='cid')
+    pid = models.TextField(db_column='pid')
+    quantity = models.IntegerField(db_column='quantity')
+
+    class Meta:
+        managed = False
+        db_table = 'ordershop'
+
+
+class Ordered(models.Model):
+    id = models.IntegerField(db_column='id',primary_key=True)
+    cid = models.IntegerField()
+    pid = models.ForeignKey('Product', models.DO_NOTHING, db_column='pid')
+    quantity = models.ForeignKey('self', models.DO_NOTHING, db_column='quantity')
+    wid = models.IntegerField(db_column='wid', blank=True, null=True)
+    total = models.DecimalField(db_column='total', max_digits=10, decimal_places=2)
+    status = models.TextField(db_column='status')
+
+    class Meta:
+        managed = False
+        db_table = 'ordered'
+
+
+class Prescription(models.Model):
+    id = models.IntegerField(db_column='id',primary_key=True)
+    cid = models.ForeignKey(Client, models.DO_NOTHING, db_column='cid', blank=True, null=True)
+    pid = models.IntegerField(db_column='pid')
+    informations = models.TextField(db_column='informations')
+
+    class Meta:
+        managed = False
+        db_table = 'prescription'
+
+

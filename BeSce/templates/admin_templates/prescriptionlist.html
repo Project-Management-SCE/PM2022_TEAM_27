@@ -1,4 +1,5 @@
 {% load static %}
+{% for ad in admin1 %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +9,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>BeSce - AdminDashboard</title>
+	{% if messages %}
+	{% for message in messages %}<script>alert("{% for message in messages %}{{ message }}\n{% endfor %}");</script>
+	{% endfor %}
+	{% endif %}
 
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
@@ -58,7 +63,7 @@
 		</div>
 
 		<div class="navbar-brand text-center text-lg-left">
-			<a href="index.html" class="d-inline-block">
+			<a href="#" class="d-inline-block">
 				<img src="{% static 'assets/images/logo_light.png' %}" class="d-none d-sm-block" alt="">
 				<img src="{% static 'assets/images/logo_icon_light.png' %}" class="d-sm-none" alt="">
 			</a>
@@ -99,12 +104,12 @@
 
 				<!-- User menu -->
 				<div class="sidebar-section">
-					<div class="sidebar-user-material">
+					<div class="sidebar-user-material" styles="background: url({% static 'assets/images/backgrounds/user_bg4.jpg' %});">
 						<div class="sidebar-section-body">
 							<div class="d-flex">
 								<div class="flex-1">
 								</div>
-								<a href="#" class="flex-1 text-center"><img src="{% static 'assets/images/demo/users/facenone.png' %}" class="img-fluid rounded-circle shadow-sm" width="80" height="80" alt=""></a>
+								<a class="flex-1 text-center"><img src="{% static 'assets/images/demo/users/facenone.png' %}" class="img-fluid rounded-circle shadow-sm" width="80" height="80" alt=""></a>
 								<div class="flex-1 text-right">
 									<button type="button" class="btn btn-outline-light border-transparent btn-icon rounded-pill btn-sm sidebar-control sidebar-main-resize d-none d-lg-inline-flex">
 										<i class="icon-transmission"></i>
@@ -116,10 +121,10 @@
 								</div>
 							</div>
 							<div class="text-center">
-								{% for ad in admincheck %}
+								
 								<h6 class="mb-0 text-white text-shadow-dark mt-3"> {{ad.fname}} {{ad.lname}} </h6>
 								<span class="font-size-sm text-white text-shadow-dark"> IdNumber : {{ad.idnumber}} </span>
-								{% endfor %}
+								
 							</div>
 						</div>
 													
@@ -134,7 +139,7 @@
 								<a href="#" class="nav-link">
 									<i class="icon-comment-discussion"></i>
 									<span>My Messages</span>
-									<span class="badge badge-teal badge-pill align-self-center ml-auto">58</span>
+									<span class="badge badge-teal badge-pill align-self-center ml-auto">0</span>
 								</a>
 							</li>
 							<li class="nav-item">
@@ -144,7 +149,7 @@
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="#" class="nav-link">
+								<a href="/login" class="nav-link">
 									<i class="icon-switch2"></i>
 									<span>Logout</span>
 								</a>
@@ -154,7 +159,6 @@
 				</div>
 				<!-- /user menu -->
 
-
 				<!-- Main navigation -->
 				<div class="sidebar-section">
 					<ul class="nav nav-sidebar" data-nav-type="accordion">
@@ -162,45 +166,62 @@
 						<!-- Main -->
 						<li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs mt-1">Main</div> <i class="icon-menu" title="Main"></i></li>
 						<li class="nav-item">
-							<a href="http://localhost:8000/admin_templates/index.html" class="nav-link">
+							<form action="/admin_index" method="POST" id="users-form" autocomplete="off" role="main">
+								{% csrf_token %}
+								<input name="id" type="hidden" value="{{ad.id}}">
 								<i class="icon-home4"></i>
-								<span>
-									Home
-								</span>
+								<button class="btn1" type="submit"><li class="nav-item"><a class="nav-link">Home</a></li></button>
+							
+							</form>
+								
 							</a>
 						</li>
 						
-						<li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Informations</div> <i class="icon-menu" title="Infos"></i></li>
+						<li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Management</div> <i class="icon-menu" title="Infos"></i></li>
 						<li class="nav-item nav-item-submenu">
-							<a href="#" class="nav-link"><i class="icon-cube3"></i> <span>Products</span></a>
-							<ul class="nav nav-group-sub" data-submenu-title="Product pages">
-								<li class="nav-item nav-item-submenu">
-									<a href="#" class="nav-link">All Products</a>
-								</li>
+							<a href="#" class="nav-link"><i class="icon-cube3"></i> <span>Shop</span></a>
+							<ul class="nav nav-group-sub" data-submenu-title="Shops page">
+								<form action="/productlist" method="POST" id="users-form" autocomplete="off" role="main">
+									{% csrf_token %}
+									<input name="id" type="hidden" value="{{ad.id}}">
+								<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">Products</a></li></button>
+								</form>
+								<form action="/orderlist" method="POST" id="users-form" autocomplete="off" role="main">
+									{% csrf_token %}
+									<input name="id" type="hidden" value="{{ad.id}}">
+								<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">Orders</a></li></button>
+								</form>
 							</ul>
 						</li>
+						
 						<li class="nav-item nav-item-submenu">
-							<a href="#" class="nav-link"><i class="icon-people"></i> <span>Pharmacians</span></a>
-							<ul class="nav nav-group-sub" data-submenu-title="Pharmacians pages">
-								<li class="nav-item"><a href="user_pages_list.html" class="nav-link active">All Pharmacians</a></li>
-							</ul>
-						</li>
-						<li class="nav-item nav-item-submenu">
-							<a href="#" class="nav-link"><i class="icon-copy"></i> <span>Authorizations</span></a>
+							<a href="#" class="nav-link"><i class="icon-copy"></i> <span>Documents</span></a>
 							<ul class="nav nav-group-sub" data-submenu-title="Authorizations page">
-								<li class="nav-item"><a href="user_pages_list.html" class="nav-link">All Authorizations</a></li>
+								<form action="/prescriptionlist" method="POST" id="users-form" autocomplete="off" role="main">
+									{% csrf_token %}
+									<input name="id" type="hidden" value="{{ad.id}}">
+									<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">Prescriptions</a></li></button>
+								</form>
 							</ul>
 						</li>
 						<li class="nav-item nav-item-submenu">
-							<a href="#" class="nav-link"><i class="icon-upload"></i> <span>Stocks</span></a>
-							<ul class="nav nav-group-sub" data-submenu-title="Stocks page">
-								<li class="nav-item"><a href="uploader_plupload.html" class="nav-link">All Stocks</a></li>
-							</ul>
-						</li>
-						<li class="nav-item nav-item-submenu">
-							<a href="#" class="nav-link"><i class="icon-insert-template"></i> <span>Clients</span></a>
-							<ul class="nav nav-group-sub" data-submenu-title="Clients page">
-								<li class="nav-item"><a href="form_layout_vertical.html" class="nav-link">All Clients</a></li>
+							<a href="#" class="nav-link"><i class="icon-insert-template"></i> <span>Users</span></a>
+							<ul class="nav nav-group-sub" data-submenu-title="Users page">
+								<form action="/adminlist" method="POST" id="users-form" autocomplete="off" role="main">
+									{% csrf_token %}
+									<input name="id" type="hidden" value="{{ad.id}}">
+								<button class="btn1" type="submit"><li class="nav-item"><a class="nav-link active">Administrators</a></li></button>
+								</form>
+								<form action="/clientlist" method="POST" id="users-form" autocomplete="off" role="main">
+									{% csrf_token %}
+									<input name="id" type="hidden" value="{{ad.id}}">
+								<button class="btn1" type="submit"><li class="nav-item"><a class="nav-link">Clients</a></li></button>
+								</form>
+								<form action="/workerlist" method="POST" id="users-form" autocomplete="off" role="main">
+									{% csrf_token %}
+									<input name="id" type="hidden" value="{{ad.id}}">
+								<button class="btn1" type="submit"><li class="nav-item"><a class="nav-link">Workers</a></li></button>
+								</form>
 							</ul>
 						</li>
 					</ul>
@@ -224,7 +245,7 @@
 				<div class="page-header page-header-light">
 					<div class="page-header-content header-elements-lg-inline">
 						<div class="page-title d-flex">
-							<h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Home</span> - AdminDashboard</h4>
+							<h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Home</span> - AdminDashboard - AdminList</h4>
 							<a href="#" class="header-elements-toggle text-body d-lg-none"><i class="icon-more"></i></a>
 						</div>
 					</div>
@@ -258,100 +279,103 @@
 
 
 				<!-- Content area -->
+				<!-- Content area -->
 				<div class="content">
-
-					<!-- Main charts -->
-					<div class="row">
-						<div class="col-xl-7">
-
-							<!-- Traffic sources -->
-							<div class="card">
-								<div class="card-header header-elements-inline">
-									<h6 class="card-title">Welcome to your Admin Dashboard</h6>
-								</div>
-
-								<div class="card-body py-0">
-									<div class="row">
-										<p>Here you can manage all the system.</p>
-									</div>
-								</div>
-
-								<div class="chart position-relative" id="traffic-sources"></div>
-							</div>
-							<!-- /traffic sources -->
-
-						</div>
-
-						<div class="col-xl-5">
-
-							<!-- Sales stats -->
-							<div class="card">
-								<p>Options:</p>
-							</div>
-							<!-- /sales stats -->
-
-						</div>
-					</div>
-					<!-- /main charts -->
-
 
 					<!-- Dashboard content -->
 					<div class="card">
-						<div class="card-header">
-							<h5 class="card-title">Default style</h5>
+						<div class="card-header header-elements-inline">
+							<h6 class="card-title">
+								" Prescription List"
+								<span class="text-primary d-block font-size-base">Add a new prescription</span>
+							</h6>
+							<div class="header-elements">
+								<div class="list-icons">
+									<a class="list-icons-item" data-action="collapse"></a>
+									<a class="list-icons-item" data-action="reload"></a>
+								</div>
+							</div>
 						</div>
+						<div class="collapse show">
+							<div class="card-body">
+								<div class="card-body">
+									<p class="mb-4">Here you can manage all the prescription table.</p>
+									<form action="/addprescription" method="POST" id="users-form" autocomplete="off" role="main">
+										{% csrf_token %}
+										<fieldset class="mb-3">
+											<legend class="text-uppercase font-size-sm font-weight-bold border-bottom">Add a new prescription here:</legend>
+											<input name="id" type="hidden" value="{{ad.id}}">
+											<div class="form-group row">
+                                                <label class="col-lg-4 col-form-label">Product<span class="text-danger">*</span></label>
+                                                <div class="col-lg-8">
+                                                    <select class="form-control form-control-select2"name="pid">
+                                                        <optgroup label="Genenal">
+                                                            <p>for (p in prdlist) puis if (p.prescription == "Yes" and p.type == "General")</p>
+                                                            <option value="{{p.id}}">p.name</option>
+                                                            <p>fin de if puis for</p>
+                                                        </optgroup>
+                                                    </select>
+                                                </div>
+                                            </div>
 
-						<div class="card-body">
-							The <code>DataTables</code> is a highly flexible tool, based upon the foundations of progressive enhancement, and will add advanced interaction controls to any HTML table. DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function. Searching, ordering, paging etc goodness will be immediately added to the table, as shown in this example. <strong>Datatables support all available table styling.</strong>
+											<div class="form-group form-group-floating row">
+                                                <label class="col-form-label col-lg-2">Informations<span class="text-danger">*</span></label>
+                                                <div class="col-lg-10">
+                                                    <div class="position-relative">
+                                                        <textarea rows="5" cols="5" class="form-control" placeholder="information" name="informations"></textarea>
+                                                        <label class="label-floating">Informations</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+										</fieldset>
+										<div class="text-right">
+											<button type="submit" class="btn btn-primary">Add the new Prescription <i class="icon-paperplane ml-2"></i></button>
+										</div>
+									</form>
+								</div>
+							</div>
 						</div>
-
+						
+						<legend class="text-uppercase font-size-sm font-weight-bold border-bottom">-    List of all prescriptions:</legend>
 						<table class="table datatable-basic">
 							<thead>
 								<tr>
-									<th>Id Number</th>
-									<th>Email</th>
-									<th>Password</th>
-									<th>First Name</th>
-									<th>Last Name</th>
-									<th>Birthday</th>
-									<th>Gender</th>
-									<th>Address</th>
-									<th>City</th>
-									<th>Country</th>
-									<th>Phone</th>
+									<th>Product Name</th>
+									<th>Client Name</th>
+									<th>Informations</th>
 									<th class="text-center">Actions</th>
 								</tr>
 							</thead>
 							<tbody>
-								{% for item in workerchecker %}
+								{% for pr in prplist %}
 								<tr>
-									<td>{{item.idnumber}}</td>
-									<td>{{item.email}}</td>
-									<td>{{item.password}}</td>
-									<td>{{item.fname}}</td>
-									<td>{{item.lname}}</td>
-									<td>{{item.bday}}</td>
-									<td>{{item.gender}}</td>
-									<td>{{item.address}}</td>
-									<td>{{item.city}}</td>
-									<td>{{item.country}}</td>
-									<td>{{item.phone}}</td>
-									<td class="text-center">
-										<div class="list-icons">
-											<div class="dropdown">
-												<a href="#" class="list-icons-item" data-toggle="dropdown">
-													<i class="icon-menu9"></i>
-												</a>
-
-												<div class="dropdown-menu dropdown-menu-right">
-													<a href="#" class="dropdown-item"><i class="icon-file-pdf"></i> Modify</a>
-													<a href="#" class="dropdown-item"><i class="icon-file-excel"></i> Delete</a>
-													<a href="#" class="dropdown-item"><i class="icon-file-word"></i> Export to Client</a>
-													<a href="#" class="dropdown-item"><i class="icon-file-word"></i> Export to Admin</a>
+									{% csrf_token %}
+										<td>{{pr.pid}}</td>
+										<td>{{pr.cid}}</td>
+										<td>{{pr.informations}}</td>
+										<td class="text-center">
+											<div class="list-icons">
+												<div class="dropdown">
+													<a class="list-icons-item" data-toggle="dropdown">
+														<i class="icon-menu9"></i>
+													</a>
+													<div class="dropdown-menu dropdown-menu-right">	
+                                                        <form action="/prescriptionaddclient" method="POST" id="users-form" autocomplete="off" role="main"></form>
+															<input name="id" type="hidden" value="{{ad.id}}" />	
+															<input name="did" type="hidden" value="{{t.id}}" />
+															<button class="btn btn-outline-primary" type="submit">Add a client</button>
+														</form>
+														<form action="/prescriptiondelete" method="POST" id="users-del" autocomplete="off" role="main">
+															{% csrf_token %}
+															<input name="id" type="hidden" value="{{ad.id}}">
+															<input name="did" type="hidden" value="{{t.id}}">
+															<button class="btn btn-outline-danger" type="submit">Delete</button>
+														</form>
+													</div>
 												</div>
 											</div>
-										</div>
-									</td>
+										</td>
 								</tr>
 								{% endfor %}
 							</tbody>
@@ -360,6 +384,8 @@
 					<!-- /dashboard content -->
 
 				</div>
+				<!-- /content area -->
+
 				<!-- /content area -->
 
 
@@ -391,3 +417,13 @@
 
 </body>
 </html>
+{% endfor %}
+
+
+<style>
+	.btn1{
+		background-color: transparent;
+		border: none;
+		text-align: left;
+	}
+</style>
