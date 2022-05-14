@@ -98,6 +98,23 @@ def  appointment_mes(request):
     
         
 
+    
+def appointment_mes(request):
+    if request.method=='POST':
+        mes= Appointment()
+        mes.fname=request.POST.get('name')
+        mes.mail=request.POST.get('mail')
+        mes.messege=request.POST.get('messege')
+        mes.phone=request.POST.get('phone')
+        mes.health_type=request.POST.get('health_type')
+        mes.date_b=request.POST.get('date_b')
+        mes.save()
+        messages.success(request, 'Thank you for your registration!')
+        return index(request)
+    else:
+        return index(request)
+
+
 #@unautheticated_user
 def f_login(request):
     if request.method=='POST':
@@ -328,7 +345,6 @@ def f_workerdelete(request):
                 return render(request, 'admin_templates/workerlist.html', {"admin1":admin1, "wrklist":wrklist})
 
 # --- [clientlist] --- #
-
 def f_clientlist(request):
     if request.method == 'POST':
         ID= request.POST.get('id')
@@ -337,6 +353,15 @@ def f_clientlist(request):
         cltlist=Client.objects.all()
         if admin1:
             return render(request, 'admin_templates/clientlist.html', {"admin1":admin1, "cltlist":cltlist})
+
+def f_appointmentlist(request):
+    if request.method == 'POST':
+        ID= request.POST.get('id')
+        print(ID)
+        admin1 = Admin.objects.filter(id=ID)
+        applist=Appointment.objects.all()
+        if admin1:
+            return render(request, 'admin_templates/appointmentlist.html', {"admin1":admin1, "applist":applist})
 
 def f_clientadd(request):
     if request.method == 'POST':

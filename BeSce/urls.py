@@ -13,6 +13,7 @@ urlpatterns = [
     path('f_register', views.f_register),
     path('index', views.ClientIndex),
     path('f_login', views.f_login),
+    path('appointment_mes', views.appointment_mes),
     path('clientDashboard/', views.ClientDashboard, name='clientDashboard'),
     path('pswreset', views.pwsreset, name='clientDashboard'),
 
@@ -35,6 +36,9 @@ urlpatterns = [
     path('addclient', views.f_clientadd),
     path('clientchange', views.f_clientchange),
     #path('ClientProfil', views.ClientProfil),
+
+    # --- [Admin - Appointment] --- #
+    path('appointmentlist', views.f_appointmentlist ,name='appointmentlist'),
 
     # --- [Admin - product] --- #
     path('productlist', views.f_productlist),
