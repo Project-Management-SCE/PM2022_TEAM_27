@@ -20,8 +20,8 @@ class TestUrls(unittest.TestCase):
         #url5=reverse('productlist')
         #url6=reverse('orderlist')
         #url7=reverse('nav_shop')
-        #url9=reverse('nav_profil')
-        #url10=reverse('myorder')
+        #url8=reverse('nav_profil')
+        #url9=reverse('myorder')
         print(resolve(url))
         print(resolve(url1))
         print(resolve(url2))
@@ -30,8 +30,8 @@ class TestUrls(unittest.TestCase):
        #print(resolve(url5))
        #print(resolve(url6))
        #print(resolve(url7))
+       #print(resolve(url8))
        #print(resolve(url9))
-       #print(resolve(url10))
 
 class workerstest(TestCase):
 

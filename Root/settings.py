@@ -127,6 +127,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     '/Users/liron/Desktop/Projets/BeSce/Root/BeSce/templates/static',
+    '/Users/udi/Documents/PM2022_TEAM_27/BeSce/templates/static',
+    '/Users/dinab/Documents/GitHub/PM2022_TEAM_27/BeSce/templates/static',
 ]
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
