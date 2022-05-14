@@ -250,7 +250,7 @@
 				<div class="page-header page-header-light">
 					<div class="page-header-content header-elements-lg-inline">
 						<div class="page-title d-flex">
-							<h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Home</span> - AdminDashboard - ClientList</h4>
+							<h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Home</span> - AdminDashboard - Appointmen tlist</h4>
 							<a href="#" class="header-elements-toggle text-body d-lg-none"><i class="icon-more"></i></a>
 						</div>
 					</div>
@@ -289,193 +289,38 @@
 
 					<!-- Dashboard content -->
 					<div class="card">
-						<div class="card-header header-elements-inline">
-							<h6 class="card-title">
-								" Client List"
-								<span class="text-primary d-block font-size-base">Add a new client</span>
-							</h6>
-							<div class="header-elements">
-								<div class="list-icons">
-									<a class="list-icons-item" data-action="collapse"></a>
-									<a class="list-icons-item" data-action="reload"></a>
-								</div>
-							</div>
-						</div>
+						
 						<div class="collapse show">
 							<div class="card-body">
 								<p class="mb-4">Here you can manage all the client table.</p>
-								<form action="/addclient" method="POST" id="users-form" autocomplete="off" role="main">
-									{% csrf_token %}
-									<fieldset class="mb-3">
-										<legend class="text-uppercase font-size-sm font-weight-bold border-bottom">Add a new client here:</legend>
-										<input name="id" type="hidden" value="{{ad.id}}">
-										<div class="form-group form-group-floating row">
-											<label class="col-form-label col-lg-2">Idnumber (required)</label>
-											<div class="col-lg-10">
-												<div class="position-relative">
-													<input type="number" class="form-control form-control-outline" name="idnumber" minlength="9" maxlength="9" placeholder="Placeholder" required>
-													<label class="label-floating">Idnumber</label>
-												</div>
-											</div>
-										</div>
-										<div class="form-group form-group-floating row">
-											<label class="col-form-label col-lg-2">Password (required)</label>
-											<div class="col-lg-10">
-												<div class="position-relative">
-													<input type="text" class="form-control form-control-outline" name="pass" minlength="4" maxlength="24" placeholder="Placeholder" required>
-													<label class="label-floating">Password</label>
-												</div>
-											</div>
-										</div>
-										<div class="form-group form-group-floating row">
-											<label class="col-form-label col-lg-2">First name (required)</label>
-											<div class="col-lg-10">
-												<div class="position-relative">
-													<input type="text" class="form-control form-control-outline" name="fname" placeholder="Placeholder" required>
-													<label class="label-floating">Firstname</label>
-												</div>
-											</div>
-										</div>
-										<div class="form-group form-group-floating row">
-											<label class="col-form-label col-lg-2">Last name (required)</label>
-											<div class="col-lg-10">
-												<div class="position-relative">
-													<input type="text" class="form-control form-control-outline" name="lname" placeholder="Placeholder" required>
-													<label class="label-floating">Lastname</label>
-												</div>
-											</div>
-										</div>
-										<div class="form-group form-group-floating row">
-											<label class="col-form-label col-lg-2">Birthday (required)</label>
-											<div class="col-lg-10">
-												<div class="position-relative">
-													<input class="form-control form-control-filled" type="date" name="bday" placeholder="Placeholder" required>
-													<label class="label-floating">Birthday</label>
-												</div>
-											</div>
-										</div>
-										<div class="form-group form-group-floating row">
-											<label class="col-form-label col-lg-2">Gender (required)</label>
-											<div class="col-lg-10">
-												<div class="form-check-horizontal">
-													<label class="custom-control custom-radio custom-control-inline">
-														<input type="radio" class="custom-control-input" name="gender" checked placeholder="Placeholder" value="Male">
-														<span class="custom-control-label">Male</span>
-													</label>
-
-													<label class="custom-control custom-radio custom-control-inline">
-														<input type="radio" class="custom-control-input" name="gender" placeholder="Placeholder" value="Female">
-														<span class="custom-control-label">Female</span>
-													</label>
-												</div>
-											</div>
-										</div>
-										<div class="form-group form-group-floating row">
-											<label class="col-form-label col-lg-2">Address (required)</label>
-											<div class="col-lg-10">
-												<div class="position-relative">
-													<input type="text" class="form-control form-control-outline" name="address" placeholder="Placeholder" required>
-													<label class="label-floating">Address</label>
-												</div>
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-lg-4 col-form-label">City</label>
-											<div class="col-lg-8">
-												<select class="form-control form-control-select2"name="city">
-													<optgroup label="South">
-														<option value="Beersheva">Beer Sheva</option>
-													</optgroup>
-												</select>
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-lg-4 col-form-label">Country</label>
-											<div class="col-lg-8">
-												<select class="form-control form-control-select2" name="country">
-													<option value="Israel">Israel</option>
-												</select>
-											</div>
-										</div>
-										<div class="form-group form-group-floating row">
-											<label class="col-form-label col-lg-2">Phone (required)</label>
-											<div class="col-lg-10">
-												<div class="position-relative">
-													<input type="text" class="form-control form-control-outline" name="phone" placeholder="Placeholder" required>
-													<label class="label-floating">Phone number</label>
-												</div>
-											</div>
-										</div>
-										<div class="form-group form-group-floating row">
-											<label class="col-form-label col-lg-2">Email (required)</label>
-											<div class="col-lg-10">
-												<div class="position-relative">
-													<input type="email" class="form-control form-control-outline" name="email" placeholder="Placeholder" required>
-													<label class="label-floating">Email</label>
-												</div>
-											</div>
-										</div>
-									</fieldset>
-									<div class="text-right">
-										<button type="submit" class="btn btn-primary">Add the new Client <i class="icon-paperplane ml-2"></i></button>
-									</div>
-								</form>
+								
 							</div>
 						</div>
 						<legend class="text-uppercase font-size-sm font-weight-bold border-bottom">-    List of all Clients:</legend>
 						<table class="table datatable-basic">
 							<thead>
 								<tr>
-									<th>Id Number</th>
+									<th>Full name</th>
                                     <th>Email</th>
-									<th>Password</th>
-									<th>First Name</th>
-									<th>Last Name</th>
-                                    <th>Birthday</th>
-                                    <th>Gender</th>
-                                    <th>Address</th>
-                                    <th>City</th>
-                                    <th>Country</th>
-                                    <th>Phone</th>
+									<th>Birthday</th>
+									<th>Phone</th>
+                                    <th>Health Care</th>
+                                    <th>Message</th>
 									<th class="text-center">Actions</th>
 								</tr>
 							</thead>
 							<tbody>
-								{% for t in cltlist %}
+								{% for a in applist %}
 								<tr>
-									<form action="/clientchange" method="POST" id="users-form" autocomplete="off" role="main">
-									{% csrf_token %}
-										<td><input  name="idnumber" type="text" class="form-control col-lg-12" placeholder="{{t.idnumber}}" value="{{t.idnumber}}" ></td>
-                                        <td><input  name="email" type="text" class="form-control col-lg-12" placeholder="{{t.email}}" value="{{t.email}}" ></td>
-										<td><input  name="password" type="text" class="form-control col-lg-12" placeholder="{{t.password}}" value="{{t.password}}"></td>
-										<td><input  name="fname" type="text" class="form-control col-lg-12" placeholder="{{t.fname}}" value="{{t.fname}}"></td>
-										<td><input  name="lname" type="text" class="form-control col-lg-12" placeholder="{{t.lname}}" value="{{t.lname}}"></td>
-                                        <td><input  name="bday" type="text" class="form-control col-lg-12" placeholder="{{t.bday}}" value="{{t.bday}}" ></td>
-                                        <td><input  name="gender" type="text" class="form-control col-lg-12" placeholder="{{t.gender}}" value="{{t.gender}}" ></td>
-                                        <td><input  name="address" type="text" class="form-control col-lg-12" placeholder="{{t.address}}" value="{{t.address}}" ></td>
-                                        <td><input  name="city" type="text" class="form-control col-lg-12" placeholder="{{t.city}}" value="{{t.city}}" ></td>
-                                        <td><input  name="country" type="text" class="form-control col-lg-12" placeholder="{{t.country}}" value="{{t.country}}" ></td>
-                                        <td><input  name="phone" type="text" class="form-control col-lg-12" placeholder="{{t.phone}}" value="{{t.phone}}" ></td>
+										<td><input  name="name" type="text" class="form-control col-lg-12"  value="{{a.name}}" ></td>
+                                        <td><input  name="email" type="text" class="form-control col-lg-12"  value="{{a.mail}}" ></td>
+										<td><input  name="date_b" type="text" class="form-control col-lg-12"  value="{{a.date_b}}"></td>
+										<td><input  name="phone" type="text" class="form-control col-lg-12"  value="{{a.phone}}"></td>
+										<td><input  name="health_type" type="text" class="form-control col-lg-12" value="{{a.health_type}}"></td>
+                                        <td><input  name="Messege" type="text" class="form-control col-lg-12"  value="{{a.messege}}" ></td>
 										<td class="text-center">
 											<div class="list-icons">
-												<div class="dropdown">
-													<a class="list-icons-item" data-toggle="dropdown">
-														<i class="icon-menu9"></i>
-													</a>
-													<div class="dropdown-menu dropdown-menu-right">	
-															<input name="id" type="hidden" value="{{ad.id}}" />	
-															<input name="did" type="hidden" value="{{t.id}}" />
-															<button class="btn btn-outline-primary" type="submit">Save changes</button>
-														</form>
-														<form action="/clientdelete" method="POST" id="users-del" autocomplete="off" role="main">
-															{% csrf_token %}
-															<input name="id" type="hidden" value="{{ad.id}}">
-															<input name="did" type="hidden" value="{{t.id}}">
-															<button class="btn btn-outline-danger" type="submit">Delete</button>
-														</form>
-													</div>
-												</div>
-											</div>
+											
 										</td>
 								</tr>
 								{% endfor %}

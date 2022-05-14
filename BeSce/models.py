@@ -104,5 +104,18 @@ class Prescription(models.Model):
     class Meta:
         managed = False
         db_table = 'prescription'
+        
+class Appointment(models.Model):
+    id = models.IntegerField(db_column='id',primary_key=True)
+    name = models.TextField(db_column='name')
+    mail = models.TextField(db_column='mail')
+    date_b = models.DateField(db_column='date_b')
+    date_t = models.DateField(db_column='date_t')
+    phone = models.TextField(db_column='phone')
+    messege = models.TextField(db_column='messege')
+    health_type = models.TextField(db_column='health_type')
+    class Meta:
+        managed = False
+        db_table = 'appointment'
 
 
