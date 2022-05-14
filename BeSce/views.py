@@ -7,6 +7,7 @@ import mysql.connector
 import requests
 from BeSce.models import Client, Worker, Admin
 from BeSce.models import Product, Ordershop
+from BeSce.models import Appointment
 # Create your views here.
 
 db_connection = mysql.connector.connect(
@@ -86,6 +87,16 @@ def f_register(request):
         return login(request)
     else:
         return login(request)
+    
+def  appointment_mes(request):
+    if request.method=='POST':
+        mes= Appointment()
+        mes.fname=request.POST.get('name')
+        mes.mail=request.POST.get('mail')
+        mes.messege=request.POST.get('messege')
+        mes.save()
+    
+        
 
 #@unautheticated_user
 def f_login(request):
@@ -479,7 +490,12 @@ def f_feelstock(request):
                 return render(request, 'admin_templates/productlist.html', {"admin1":admin1, "prdlist":prdlist})
 
 # ========================= WorkerDashboard Functions ========================= #
-
+def f_workerindex(request):
+    if request.method == 'POST':
+        ID= request.POST.get('id')
+        worker1 = Worker.objects.filter(id=ID)
+        if worker1:
+            return render(request, 'worker_templates/index.html', {"admin1":worker1})
 
 # ========================= ClientDashboard Functions ========================= #
 
@@ -551,6 +567,9 @@ def f_nav_profil(request):
         client1 = Client.objects.filter(id=DID)
         if client1:
             return render(request, 'client_templates/profil.html', {"client1":client1})
+
+
+
 
 # --- [client navigation] --- #
 
