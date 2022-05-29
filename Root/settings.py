@@ -1,6 +1,8 @@
 from pathlib import Path
 import os
 from django.core.cache import cache 
+import django_heroku
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -15,7 +17,7 @@ SECRET_KEY = 'sg-id2erbtus538om@h509-=fxm#!zj^igrust8li)-1f$vv#-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
+ALLOWED_HOSTS = ['https://besce.herokuapp.com/','127.0.0.1'
 ]
 
 
@@ -124,17 +126,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-    '/Users/liron/Desktop/Projets/BeSce/Root/BeSce/templates/static',
-]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'BeSce/static/')]
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+django_heroku.settings(locals())
 #EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 #EMAIL_HOST='smtp.gmail.com'
 #EMAIL_PORT= 587
