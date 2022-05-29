@@ -70,7 +70,7 @@ WSGI_APPLICATION = 'Root.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -87,7 +87,21 @@ DATABASES = {
         }
     }
 }
+'''
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'db_besce',
+        'USER': 'admin',
+        'PASSWORD': 'okoklol123',
+        'HOST': 'database-1.c4joaqwcqrpg.eu-central-1.rds.amazonaws.com',
+        'PORT': '3306',
+        'test':{
+            'NAME': 'test_db_besce'
+        }
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators

@@ -1,6 +1,6 @@
 from django import urls
 from django.db.models.fields import AutoField
-from django.test import TestCase,SimpleTestCase
+from django.test import TestCase,SimpleTestCase,Client,LiveServerTestCase
 from django.urls import resolve, reverse
 from BeSce.views import *
 from BeSce.models import *
@@ -33,43 +33,42 @@ class TestUrls(unittest.TestCase):
        #print(resolve(url8))
        #print(resolve(url9))
 
-class workerstest(TestCase):
+class workerstest(unittest.TestCase):
 
-    def test_workers(self):
-       item=Worker()
-       item.id=10
-       item.fname='udi'
-       item.idnumber='123456789'
-       item.password='123456'
-       item.lname='Konrad'
-       item.save()
-       record= Worker.objects.get()
-       print("WORKERSS")
-       self.assertEqual(record,item)
+   def worker_exist(self):
+        db_connection = mysql.connector.connect(
+        host="database-1.c4joaqwcqrpg.eu-central-1.rds.amazonaws.com",
+        user="admin",
+        password="okoklol123",
+        database="db_besce")
+        cursor = db_connection.cursor()
+        cursor.execute("SELECT fname FROM worker")
+        result = cursor.fetchall()
+        wfnames =  ["Snir",
+                "Anthony",
+                ]   
+        for i in range(len(wfnames)):
+            self.assertEqual(wfnames[i],result[i][0])
+        cursor.close()
 
-    def test_workerslug(self):
-       item=Worker()
-       item.id=10
-       item.fname='udi'
-       item.idnumber='123456789'
-       item.password='123456'
-       item.lname='Konrad'
-       item.save()
-       self.assertNotEqual(item.fname, 'udit')
+class adminstest(unittest.TestCase):
 
-class adminstest(TestCase):
-
-    def test_admins(self):
-       item=Admin()
-       item.id=10
-       item.fname='udi'
-       item.idnumber='123456789'
-       item.password='123456'
-       item.lname='Konrad'
-       item.save()
-       record= Admin.objects.get()
-       print("ADMINSS")
-       self.assertEqual(record,item)
+    def admin_exist(self):
+        db_connection = mysql.connector.connect(
+        host="database-1.c4joaqwcqrpg.eu-central-1.rds.amazonaws.com",
+        user="admin",
+        password="okoklol123",
+        database="db_besce")
+        cursor = db_connection.cursor()
+        cursor.execute("SELECT fname FROM admin")
+        result = cursor.fetchall()
+        wfnames =  ["Liron",
+                "Kevyn",
+                "Udi",
+                ]   
+        for i in range(len(wfnames)):
+            self.assertEqual(wfnames[i],result[i][0])
+        cursor.close()
 
     def test_adminslug(self):
        item=Admin()
@@ -81,20 +80,29 @@ class adminstest(TestCase):
        item.save()
        self.assertNotEqual(item.fname, 'udti')
 
-class registertest(TestCase):
-
+class registertest(unittest.TestCase):
+   '''
     def test_register(self):
        item=Client()
        item.id=11
        item.email='judith@gmail.com'
        item.idnumber='123456789'
        item.password='123456'
+       item.fname = 'judith'
+       item.lname = 'mars'
+       item.bday = '20/07/1995'
+       item.gender = 'Male'
+       item.address = '29 okok'
+       item.city = 'beer sheva'
+       item.country = 'israel'
+       item.phone = '0584545454'
        item.save()
        record= Client.objects.get()
        print("NewClient")
-       self.assertEqual(record,item)
+       self.assertEqual(record,item) 
+   '''
 
-    def test_registerslug(self):
+   def test_registerslug(self):
        item=Client()
        item.id=11
        item.email='judith@gmail.com'

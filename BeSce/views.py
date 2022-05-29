@@ -8,12 +8,18 @@ import requests
 from BeSce.models import Client, Ordered, Prescription, Worker, Admin
 from BeSce.models import Product, Ordershop
 # Create your views here.
-
+'''
 db_connection = mysql.connector.connect(
   host="localhost",
   user="root",
   database="db_besce")
-
+'''
+db_connection = mysql.connector.connect(
+  host="database-1.c4joaqwcqrpg.eu-central-1.rds.amazonaws.com",
+  user="admin",
+  password="okoklol123",
+  database="db_besce")
+  
 cursor = db_connection.cursor()
 print(db_connection)
 
