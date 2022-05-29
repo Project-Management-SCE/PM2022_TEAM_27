@@ -1,18 +1,14 @@
 {% load static %}
-{% for ad in admin1 %}
+{% for wk in worker1 %}
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from demo.interface.club/limitless/demo/Template/layout_1/LTR/material/full/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 28 Mar 2022 17:09:01 GMT -->
+<!-- Worker index -->
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>BeSce - AdminDashboard</title>
-	{% if messages %}
-	{% for message in messages %}<script>alert("{% for message in messages %}{{ message }}\n{% endfor %}");</script>
-	{% endfor %}
-	{% endif %}
+	<title>BeSce - WorkerDashboard</title>
 
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
@@ -104,12 +100,12 @@
 
 				<!-- User menu -->
 				<div class="sidebar-section">
-					<div class="sidebar-user-material" styles="background: url({% static 'assets/images/backgrounds/user_bg4.jpg' %});">
+					<div class="sidebar-user-material">
 						<div class="sidebar-section-body">
 							<div class="d-flex">
 								<div class="flex-1">
 								</div>
-								<a class="flex-1 text-center"><img src="{% static 'assets/images/demo/users/facenone.png' %}" class="img-fluid rounded-circle shadow-sm" width="80" height="80" alt=""></a>
+								<a href="#" class="flex-1 text-center"><img src="{% static 'assets/images/demo/users/facenone.png' %}" class="img-fluid rounded-circle shadow-sm" width="80" height="80" alt=""></a>
 								<div class="flex-1 text-right">
 									<button type="button" class="btn btn-outline-light border-transparent btn-icon rounded-pill btn-sm sidebar-control sidebar-main-resize d-none d-lg-inline-flex">
 										<i class="icon-transmission"></i>
@@ -122,8 +118,8 @@
 							</div>
 							<div class="text-center">
 								
-								<h6 class="mb-0 text-white text-shadow-dark mt-3"> {{ad.fname}} {{ad.lname}} </h6>
-								<span class="font-size-sm text-white text-shadow-dark"> IdNumber : {{ad.idnumber}} </span>
+								<h6 class="mb-0 text-white text-shadow-dark mt-3"> {{wk.fname}} {{wk.lname}} </h6>
+								<span class="font-size-sm text-white text-shadow-dark"> IdNumber : {{wk.idnumber}} </span>
 								
 							</div>
 						</div>
@@ -159,6 +155,7 @@
 				</div>
 				<!-- /user menu -->
 
+
 				<!-- Main navigation -->
 				<div class="sidebar-section">
 					<ul class="nav nav-sidebar" data-nav-type="accordion">
@@ -166,30 +163,28 @@
 						<!-- Main -->
 						<li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs mt-1">Main</div> <i class="icon-menu" title="Main"></i></li>
 						<li class="nav-item">
-							<form action="/admin_index" method="POST" id="users-form" autocomplete="off" role="main">
+							<form action="/workerindex" method="POST" id="users-form" autocomplete="off" role="main">
 								{% csrf_token %}
-								<input name="id" type="hidden" value="{{ad.id}}">
+								<input name="id" type="hidden" value="{{wk.id}}">
 								<i class="icon-home4"></i>
-								<button class="btn1" type="submit"><li class="nav-item"><a class="nav-link">Home</a></li></button>
-							
+							<button class="btn" type="submit"><li class="btn btn-light mr-2"><a class="nav-link active">Home</a></li></button>
 							</form>
-								
 							</a>
 						</li>
 						
-						<li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Management</div> <i class="icon-menu" title="Infos"></i></li>
+						<li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Informations</div> <i class="icon-menu" title="Infos"></i></li>
 						<li class="nav-item nav-item-submenu">
-							<a href="#" class="nav-link"><i class="icon-cube3"></i> <span>Shop</span></a>
+							<a href="#" class="nav-link"><i class="icon-cube3"></i> <span>Orders</span></a>
 							<ul class="nav nav-group-sub" data-submenu-title="Shops page">
-								<form action="/productlist" method="POST" id="users-form" autocomplete="off" role="main">
+								<form action="/wkneworder" method="POST" id="users-form" autocomplete="off" role="main">
 									{% csrf_token %}
-									<input name="id" type="hidden" value="{{ad.id}}">
-								<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">Products</a></li></button>
+									<input name="id" type="hidden" value="{{wk.id}}">
+								<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">New</a></li></button>
 								</form>
-								<form action="/orderlist" method="POST" id="users-form" autocomplete="off" role="main">
+								<form action="/wkorder" method="POST" id="users-form" autocomplete="off" role="main">
 									{% csrf_token %}
-									<input name="id" type="hidden" value="{{ad.id}}">
-								<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">Orders</a></li></button>
+									<input name="id" type="hidden" value="{{wk.id}}">
+								<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">My Orders</a></li></button>
 								</form>
 							</ul>
 						</li>
@@ -197,30 +192,10 @@
 						<li class="nav-item nav-item-submenu">
 							<a href="#" class="nav-link"><i class="icon-copy"></i> <span>Documents</span></a>
 							<ul class="nav nav-group-sub" data-submenu-title="Authorizations page">
-								<form action="/prescriptionlist" method="POST" id="users-form" autocomplete="off" role="main">
+								<form action="/wkprlist" method="POST" id="users-form" autocomplete="off" role="main">
 									{% csrf_token %}
-									<input name="id" type="hidden" value="{{ad.id}}">
+									<input name="id" type="hidden" value="{{wk.id}}">
 									<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">Prescriptions</a></li></button>
-								</form>
-							</ul>
-						</li>
-						<li class="nav-item nav-item-submenu">
-							<a href="#" class="nav-link"><i class="icon-insert-template"></i> <span>Users</span></a>
-							<ul class="nav nav-group-sub" data-submenu-title="Users page">
-								<form action="/adminlist" method="POST" id="users-form" autocomplete="off" role="main">
-									{% csrf_token %}
-									<input name="id" type="hidden" value="{{ad.id}}">
-								<button class="btn1" type="submit"><li class="nav-item"><a class="nav-link active">Administrators</a></li></button>
-								</form>
-								<form action="/clientlist" method="POST" id="users-form" autocomplete="off" role="main">
-									{% csrf_token %}
-									<input name="id" type="hidden" value="{{ad.id}}">
-								<button class="btn1" type="submit"><li class="nav-item"><a class="nav-link">Clients</a></li></button>
-								</form>
-								<form action="/workerlist" method="POST" id="users-form" autocomplete="off" role="main">
-									{% csrf_token %}
-									<input name="id" type="hidden" value="{{ad.id}}">
-								<button class="btn1" type="submit"><li class="nav-item"><a class="nav-link">Workers</a></li></button>
 								</form>
 							</ul>
 						</li>
@@ -245,7 +220,7 @@
 				<div class="page-header page-header-light">
 					<div class="page-header-content header-elements-lg-inline">
 						<div class="page-title d-flex">
-							<h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Home</span> - AdminDashboard - AdminList</h4>
+							<h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Home</span> - WorkerDashboard</h4>
 							<a href="#" class="header-elements-toggle text-body d-lg-none"><i class="icon-more"></i></a>
 						</div>
 					</div>
@@ -253,8 +228,8 @@
 					<div class="breadcrumb-line breadcrumb-line-light header-elements-lg-inline">
 						<div class="d-flex">
 							<div class="breadcrumb">
-								<a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-								<span class="breadcrumb-item active">AdminDashboard</span>
+								<a href="#" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+								<span class="breadcrumb-item active">WorkerDashboard</span>
 							</div>
 
 							<a href="#" class="header-elements-toggle text-body d-lg-none"><i class="icon-more"></i></a>
@@ -279,116 +254,53 @@
 
 
 				<!-- Content area -->
-				<!-- Content area -->
 				<div class="content">
 
-					<!-- Dashboard content -->
-					<div class="card">
-						<div class="card-header header-elements-inline">
-							<h6 class="card-title">
-								" Prescription List"
-								<span class="text-primary d-block font-size-base">Add a new prescription</span>
-							</h6>
-							<div class="header-elements">
-								<div class="list-icons">
-									<a class="list-icons-item" data-action="collapse"></a>
-									<a class="list-icons-item" data-action="reload"></a>
-								</div>
-							</div>
-						</div>
-						<div class="collapse show">
-							<div class="card-body">
-								<div class="card-body">
-									<p class="mb-4">Here you can manage all the prescription table.</p>
-									<form action="/addprescription" method="POST" id="users-form" autocomplete="off" role="main">
-										{% csrf_token %}
-										<fieldset class="mb-3">
-											<legend class="text-uppercase font-size-sm font-weight-bold border-bottom">Add a new prescription here:</legend>
-											<input name="id" type="hidden" value="{{ad.id}}">
-											<div class="form-group row">
-                                                <label class="col-lg-4 col-form-label">Product<span class="text-danger">*</span></label>
-                                                <div class="col-lg-8">
-                                                    <select class="form-control form-control-select2"name="pid">
-                                                        <optgroup label="With prescription">
-															{% for p in prdlst %}
-															{% if p.prescription == "Yes" %}
-                                                            <option value="{{p.id}}">{{p.name}}</option>
-                                                            {% endif %}
-															{% endfor %}
-                                                        </optgroup>
-                                                    </select>
-                                                </div>
-                                            </div>
+					<!-- Main charts -->
+					<div class="row">
+						<div class="col-xl-7">
 
-											<div class="form-group form-group-floating row">
-                                                <label class="col-form-label col-lg-2">Informations<span class="text-danger">*</span></label>
-                                                <div class="col-lg-10">
-                                                    <div class="position-relative">
-                                                        <textarea rows="5" cols="5" class="form-control" placeholder="information" name="informations"></textarea>
-                                                        <label class="label-floating">Informations</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-										</fieldset>
-										<div class="text-right">
-											<button type="submit" class="btn btn-primary">Add the new Prescription <i class="icon-paperplane ml-2"></i></button>
-										</div>
-									</form>
+							<!-- Traffic sources -->
+							<div class="card">
+								<div class="card-header header-elements-inline">
+									<h6 class="card-title">Welcome to your Worker Dashboard</h6>
 								</div>
+
+								<div class="card-body py-0">
+									<div class="row">
+										<p>Here you can manage all the system.</p>
+										<p><-- Select your options.</p>
+									</div>
+								</div>
+
+								<div class="chart position-relative" id="traffic-sources"></div>
 							</div>
+							<!-- /traffic sources -->
+
 						</div>
-						
-						<legend class="text-uppercase font-size-sm font-weight-bold border-bottom">-    List of all prescriptions:</legend>
-						<table class="table datatable-basic">
-							<thead>
-								<tr>
-									<th>Product Id</th>
-									<th>Client Id</th>
-									<th>Informations</th>
-									<th class="text-center">Actions</th>
-								</tr>
-							</thead>
-							<tbody>
-								{% for pr in prlst %}
-								<tr>
-									<form action="/praddclient" method="POST" id="users-form" autocomplete="off" role="main">
-									{% csrf_token %}
-										<td>{{pr.pid}}</td>
-										<td><input name="cid" type="text" class="form-control col-lg-6" placeholder="{{pr.cid}}" value="{{pr.cid}}" ></td>
-										<td>{{pr.informations}}</td>
-										<td class="text-center">
-											<div class="list-icons">
-												<div class="dropdown">
-													<a class="list-icons-item" data-toggle="dropdown">
-														<i class="icon-menu9"></i>
-													</a>
-													<div class="dropdown-menu dropdown-menu-right">	
-                                                        
-															<input name="id" type="hidden" value="{{ad.id}}" />	
-															<input name="did" type="hidden" value="{{pr.id}}" />
-															<button class="btn btn-outline-primary" type="submit">Add a client</button>
-														</form>
-														<form action="/prescriptiondelete" method="POST" id="users-del" autocomplete="off" role="main">
-															{% csrf_token %}
-															<input name="id" type="hidden" value="{{ad.id}}">
-															<input name="did" type="hidden" value="{{pr.id}}">
-															<button class="btn btn-outline-danger" type="submit">Delete</button>
-														</form>
-													</div>
-												</div>
-											</div>
-										</td>
-								</tr>
-								{% endfor %}
-							</tbody>
-						</table>
+
+						<div class="col-xl-5">
+
+							<!-- Sales stats -->
+							<div class="card">
+								<p>Options:</p>
+								<p>- Take new orders.</p>
+								<p>- Validate Orders.</p>
+								<p>Add New Prescriptions</p>
+								<p>more...</p>
+							</div>
+							<!-- /sales stats -->
+
+						</div>
 					</div>
+					<!-- /main charts -->
+
+
+					<!-- Dashboard content -->
+					
 					<!-- /dashboard content -->
 
 				</div>
-				<!-- /content area -->
-
 				<!-- /content area -->
 
 
@@ -424,7 +336,7 @@
 
 
 <style>
-	.btn1{
+	.btn{
 		background-color: transparent;
 		border: none;
 		text-align: left;

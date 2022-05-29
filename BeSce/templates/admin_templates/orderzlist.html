@@ -9,10 +9,6 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>BeSce - AdminDashboard</title>
-	{% if messages %}
-	{% for message in messages %}<script>alert("{% for message in messages %}{{ message }}\n{% endfor %}");</script>
-	{% endfor %}
-	{% endif %}
 
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
@@ -104,7 +100,7 @@
 
 				<!-- User menu -->
 				<div class="sidebar-section">
-					<div class="sidebar-user-material" styles="background: url({% static 'assets/images/backgrounds/user_bg4.jpg' %});">
+					<div class="sidebar-user-material" styles="background-image: url(static/assets/images/backgrounds/user_bg4.jpg);">
 						<div class="sidebar-section-body">
 							<div class="d-flex">
 								<div class="flex-1">
@@ -189,7 +185,7 @@
 								<form action="/orderlist" method="POST" id="users-form" autocomplete="off" role="main">
 									{% csrf_token %}
 									<input name="id" type="hidden" value="{{ad.id}}">
-								<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">Orders</a></li></button>
+								<button class="btn" type="submit"><li class="nav-item"><a class="nav-link active">Orders</a></li></button>
 								</form>
 							</ul>
 						</li>
@@ -210,7 +206,7 @@
 								<form action="/adminlist" method="POST" id="users-form" autocomplete="off" role="main">
 									{% csrf_token %}
 									<input name="id" type="hidden" value="{{ad.id}}">
-								<button class="btn1" type="submit"><li class="nav-item"><a class="nav-link active">Administrators</a></li></button>
+								<button class="btn1" type="submit"><li class="nav-item"><a class="nav-link">Administrators</a></li></button>
 								</form>
 								<form action="/clientlist" method="POST" id="users-form" autocomplete="off" role="main">
 									{% csrf_token %}
@@ -245,7 +241,7 @@
 				<div class="page-header page-header-light">
 					<div class="page-header-content header-elements-lg-inline">
 						<div class="page-title d-flex">
-							<h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Home</span> - AdminDashboard - AdminList</h4>
+							<h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Home</span> - AdminDashboard - OrderList</h4>
 							<a href="#" class="header-elements-toggle text-body d-lg-none"><i class="icon-more"></i></a>
 						</div>
 					</div>
@@ -284,105 +280,159 @@
 
 					<!-- Dashboard content -->
 					<div class="card">
-						<div class="card-header header-elements-inline">
-							<h6 class="card-title">
-								" Prescription List"
-								<span class="text-primary d-block font-size-base">Add a new prescription</span>
-							</h6>
-							<div class="header-elements">
-								<div class="list-icons">
-									<a class="list-icons-item" data-action="collapse"></a>
-									<a class="list-icons-item" data-action="reload"></a>
-								</div>
-							</div>
+						<div class="card-header bg-transparent header-elements-inline">
+							<h6 class="card-title">Orders History (static table)</h6>
 						</div>
-						<div class="collapse show">
-							<div class="card-body">
-								<div class="card-body">
-									<p class="mb-4">Here you can manage all the prescription table.</p>
-									<form action="/addprescription" method="POST" id="users-form" autocomplete="off" role="main">
-										{% csrf_token %}
-										<fieldset class="mb-3">
-											<legend class="text-uppercase font-size-sm font-weight-bold border-bottom">Add a new prescription here:</legend>
-											<input name="id" type="hidden" value="{{ad.id}}">
-											<div class="form-group row">
-                                                <label class="col-lg-4 col-form-label">Product<span class="text-danger">*</span></label>
-                                                <div class="col-lg-8">
-                                                    <select class="form-control form-control-select2"name="pid">
-                                                        <optgroup label="With prescription">
-															{% for p in prdlst %}
-															{% if p.prescription == "Yes" %}
-                                                            <option value="{{p.id}}">{{p.name}}</option>
-                                                            {% endif %}
-															{% endfor %}
-                                                        </optgroup>
-                                                    </select>
-                                                </div>
-                                            </div>
 
-											<div class="form-group form-group-floating row">
-                                                <label class="col-form-label col-lg-2">Informations<span class="text-danger">*</span></label>
-                                                <div class="col-lg-10">
-                                                    <div class="position-relative">
-                                                        <textarea rows="5" cols="5" class="form-control" placeholder="information" name="informations"></textarea>
-                                                        <label class="label-floating">Informations</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-										</fieldset>
-										<div class="text-right">
-											<button type="submit" class="btn btn-primary">Add the new Prescription <i class="icon-paperplane ml-2"></i></button>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-						
-						<legend class="text-uppercase font-size-sm font-weight-bold border-bottom">-    List of all prescriptions:</legend>
-						<table class="table datatable-basic">
-							<thead>
-								<tr>
-									<th>Product Id</th>
-									<th>Client Id</th>
-									<th>Informations</th>
-									<th class="text-center">Actions</th>
-								</tr>
-							</thead>
-							<tbody>
-								{% for pr in prlst %}
-								<tr>
-									<form action="/praddclient" method="POST" id="users-form" autocomplete="off" role="main">
-									{% csrf_token %}
-										<td>{{pr.pid}}</td>
-										<td><input name="cid" type="text" class="form-control col-lg-6" placeholder="{{pr.cid}}" value="{{pr.cid}}" ></td>
-										<td>{{pr.informations}}</td>
+						<div class="table-responsive">
+							<table class="table text-nowrap">
+								<thead>
+									<tr>
+										<th colspan="2">Client Id</th>
+										<th>Products Id</th>
+										<th>Quantity</th>
+										<th>Worker Id</th>
+										<th>Total to Pay</th>
+										<th>Actual Status</th>
+										<th class="text-center" style="width: 20px;"><i class="icon-arrow-down12"></i></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="table-active">
+										<td colspan="7" class="font-weight-semibold">Waiting</td>
+										<td class="text-right">
+											<span class="badge badge-secondary badge-pill">No Worker</span>
+										</td>
+									</tr>
+									{% for ord in ordlst1 %}
+                                    {% if ord.status == "Waiting" %}
+									<tr>
+										<td class="pr-0">
+											<a href="#">
+												<img src="{% static 'assets/images/demo/users/facenone.png' %}" height="60" alt="">
+											</a>
+										</td>
+										<td>
+											<a href="#" class="font-weight-semibold">{{ord.cid}}</a>
+											<div class="text-muted font-size-sm">
+												<span class="badge badge-mark bg-success border-success mr-1"></span>
+												Waiting
+											</div>
+										</td>
+										<td>{{ord.pid}}</td>
+										<td>{{ord.quantity}}</td>
+										<td>{{ord.wid}}</td>
+										<td>
+											<h6 class="mb-0 font-weight-semibold">₪ {{ord.total}}</h6>
+										</td>
 										<td class="text-center">
 											<div class="list-icons">
 												<div class="dropdown">
-													<a class="list-icons-item" data-toggle="dropdown">
-														<i class="icon-menu9"></i>
-													</a>
-													<div class="dropdown-menu dropdown-menu-right">	
-                                                        
-															<input name="id" type="hidden" value="{{ad.id}}" />	
-															<input name="did" type="hidden" value="{{pr.id}}" />
-															<button class="btn btn-outline-primary" type="submit">Add a client</button>
-														</form>
-														<form action="/prescriptiondelete" method="POST" id="users-del" autocomplete="off" role="main">
-															{% csrf_token %}
-															<input name="id" type="hidden" value="{{ad.id}}">
-															<input name="did" type="hidden" value="{{pr.id}}">
-															<button class="btn btn-outline-danger" type="submit">Delete</button>
-														</form>
+													<a href="#" class="list-icons-item" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+													<div class="dropdown-menu dropdown-menu-right">
+														<a href="#" class="dropdown-item"><i class="icon-truck"></i> Track parcel</a>
+														<a href="#" class="dropdown-item"><i class="icon-file-download"></i> Download invoice</a>
+														<a href="#" class="dropdown-item"><i class="icon-wallet"></i> Payment details</a>
+														<div class="dropdown-divider"></div>
+														<a href="#" class="dropdown-item"><i class="icon-warning2"></i> Report problem</a>
 													</div>
 												</div>
 											</div>
 										</td>
-								</tr>
-								{% endfor %}
-							</tbody>
-						</table>
+									</tr>
+									{% endif %}
+									{% endfor %}
+                                    <tr class="table-active">
+										<td colspan="7" class="font-weight-semibold">Shipped orders</td>
+										<td class="text-right">
+											<span class="badge badge-success badge-pill">With Worker</span>
+										</td>
+									</tr>
+									{% for ord in ordlst1 %}
+									{% if ord.status == "Completed" %}
+									<tr>
+										<td class="pr-0">
+											<a href="#">
+												<img src="{% static 'assets/images/demo/users/facenone.png' %}" height="60" alt="">
+											</a>
+										</td>
+										<td>
+											<a href="#" class="font-weight-semibold">{{ord.cid}}</a>
+											<div class="text-muted font-size-sm">
+												<span class="badge badge-mark bg-success border-success mr-1"></span>
+												Completed
+											</div>
+										</td>
+										<td>{{ord.pid}}</td>
+										<td>{{ord.quantity}}</td>
+										<td>{{ord.wid}}</td>
+										<td>
+											<h6 class="mb-0 font-weight-semibold">₪ {{ord.total}}</h6>
+										</td>
+										<td class="text-center">
+											<div class="list-icons">
+												<div class="dropdown">
+													<a href="#" class="list-icons-item" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+													<div class="dropdown-menu dropdown-menu-right">
+														<a href="#" class="dropdown-item"><i class="icon-truck"></i> Track parcel</a>
+														<a href="#" class="dropdown-item"><i class="icon-file-download"></i> Download invoice</a>
+														<a href="#" class="dropdown-item"><i class="icon-wallet"></i> Payment details</a>
+														<div class="dropdown-divider"></div>
+														<a href="#" class="dropdown-item"><i class="icon-warning2"></i> Report problem</a>
+													</div>
+												</div>
+											</div>
+										</td>
+									</tr>
+									{% endif %}
+									{% endfor %}
+                                    <tr class="table-active">
+										<td colspan="7" class="font-weight-semibold">Cancelled orders</td>
+										<td class="text-right">
+											<span class="badge badge-danger badge-pill">With Problem</span>
+										</td>
+									</tr>
+									{% for ord in ordlst1 %}
+									{% if ord.status == "Cancelled" %}
+									<tr>
+										<td class="pr-0">
+											<a href="#">
+												<img src="{% static 'assets/images/demo/users/facenone.png' %}" height="60" alt="">
+											</a>
+										</td>
+										<td>
+											<a href="#" class="font-weight-semibold">{{ord.cid}}</a>
+											<div class="text-muted font-size-sm">
+												<span class="badge badge-mark bg-success border-success mr-1"></span>
+												Cancelled
+											</div>
+										</td>
+										<td>{{ord.pid}}</td>
+										<td>{{ord.quantity}}</td>
+										<td>{{ord.wid}}</td>
+										<td>
+											<h6 class="mb-0 font-weight-semibold">₪ {{ord.total}}</h6>
+										</td>
+										<td class="text-center">
+											<div class="list-icons">
+												<div class="dropdown">
+													<a href="#" class="list-icons-item" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+													<div class="dropdown-menu dropdown-menu-right">
+														<a href="#" class="dropdown-item"><i class="icon-truck"></i> Track parcel</a>
+														<a href="#" class="dropdown-item"><i class="icon-file-download"></i> Download invoice</a>
+														<a href="#" class="dropdown-item"><i class="icon-wallet"></i> Payment details</a>
+														<div class="dropdown-divider"></div>
+														<a href="#" class="dropdown-item"><i class="icon-warning2"></i> Report problem</a>
+													</div>
+												</div>
+											</div>
+										</td>
+									</tr>
+									{% endif %}
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
 					</div>
 					<!-- /dashboard content -->
 

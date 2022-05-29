@@ -61,7 +61,7 @@ class Product(models.Model):
     name = models.TextField(db_column='name',)
     supplier = models.TextField(db_column='supplier',)
     type = models.TextField(db_column='type',)
-    price = models.DecimalField(db_column='price',max_digits=10, decimal_places=2)
+    price = models.IntegerField(db_column='price')
     stock = models.IntegerField(db_column='stock')
     prescription = models.TextField(db_column='prescription')
 
@@ -83,9 +83,9 @@ class Ordershop(models.Model):
 
 class Ordered(models.Model):
     id = models.IntegerField(db_column='id',primary_key=True)
-    cid = models.IntegerField()
-    pid = models.ForeignKey('Product', models.DO_NOTHING, db_column='pid')
-    quantity = models.ForeignKey('self', models.DO_NOTHING, db_column='quantity')
+    cid = models.IntegerField(db_column='cid')
+    pid = models.TextField(db_column='pid')
+    quantity = models.TextField(db_column='quantity')
     wid = models.IntegerField(db_column='wid', blank=True, null=True)
     total = models.DecimalField(db_column='total', max_digits=10, decimal_places=2)
     status = models.TextField(db_column='status')
@@ -97,9 +97,10 @@ class Ordered(models.Model):
 
 class Prescription(models.Model):
     id = models.IntegerField(db_column='id',primary_key=True)
-    cid = models.ForeignKey(Client, models.DO_NOTHING, db_column='cid', blank=True, null=True)
+    cid = models.IntegerField(db_column='cid', blank=True, null=True)
     pid = models.IntegerField(db_column='pid')
     informations = models.TextField(db_column='informations')
+
 
     class Meta:
         managed = False

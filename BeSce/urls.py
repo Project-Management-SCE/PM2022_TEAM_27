@@ -45,6 +45,10 @@ urlpatterns = [
     # --- [Admin - order] --- #
     path('orderlist', views.f_nav_order_admin),
 
+    # --- [Admin - prescriptions] --- #
+    path('prescriptionlist', views.f_prescriptionlist),
+    path('addprescription', views.f_prescriptionadd),
+    path('praddclient', views.f_praddclient),
 
     # --- [Client - Profil] --- #
     path('clientinfo1', views.f_clientinfo1),
@@ -56,5 +60,18 @@ urlpatterns = [
 
     # --- [Client - OrderShop] --- #
     path('addtoorder', views.f_addactualorder),
+    path('deltoorder', views.f_delactualorder),
     path('myorder', views.f_nav_ordershop),
+    path('payment', views.f_payment),
+    path('paymentok', views.f_paymentok),
+
+    # --- [Worker - navfunc] --- #
+    path('workerindex', views.f_workerindex),
+    path('wkneworder', views.f_wkneworder),
+    path('takeorder', views.f_takeorder),
+    path('wkorder', views.f_wkmyorder),
+    path('finishorder', views.f_finishorder),
+    path('cancelorder', views.f_cancelorder),
+    path('praddnewclient', views.f_praddnewclient),
+    path('wkprlist', views.f_wkprlist),
     ]

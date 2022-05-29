@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from django.contrib import messages
 import mysql.connector
 import requests
-from BeSce.models import Client, Worker, Admin
+from BeSce.models import Client, Ordered, Prescription, Worker, Admin
 from BeSce.models import Product, Ordershop
 # Create your views here.
 
@@ -117,6 +117,52 @@ def check_client_idnumber(idnum):
 
 # ========================= AdminDashboard Functions ========================= #
 
+def f_prescriptionlist(request):
+    if request.method == 'POST':
+        ID= request.POST.get('id')
+        print(ID)
+        admin1 = Admin.objects.filter(id=ID)
+        prlist=Prescription.objects.all()
+        prdlist=Product.objects.all()
+        if admin1:
+            return render(request, 'admin_templates/prescriptionlist.html', {"admin1":admin1, "prlst":prlist, "prdlst":prdlist})
+
+def f_prescriptionadd(request):
+    if request.method == 'POST':
+        ID= request.POST.get('id')
+        admin1 = Admin.objects.filter(id=ID)
+        prdlist=Product.objects.all()
+        save_record=Prescription()
+        save_record.pid=request.POST.get('pid')
+        save_record.informations=request.POST.get('informations')
+        if admin1:
+            save_record.save()
+            messages.success(request, 'Prescription registered successful!')
+            prlist2=Product.objects.all()
+            return render(request, 'admin_templates/prescriptionlist.html', {"admin1":admin1, "prdlst":prdlist, "prlst":prlist2})
+    else:
+        return login(request)
+
+def f_praddclient(request):
+    if request.method == 'POST':
+        ID= request.POST.get('id')
+        DID= request.POST.get('did')
+        print(DID)
+        admin1 = Admin.objects.filter(id=ID)
+        prdlist=Product.objects.all()
+        CL = request.POST.get('cid')
+        if admin1:
+            print('=================================================================')
+            Prescription.objects.filter(id = DID).update(cid=CL)
+            print("Update  ok")
+            messages.success(request, 'Client changed successful!')
+            prlist2=Prescription.objects.all()
+            return render(request, 'admin_templates/prescriptionlist.html', {"admin1":admin1, "prlst":prlist2, "prdlst":prdlist})
+        else:
+            print("Not exist")
+            messages.error(request,'Error!')
+            return login(request)
+
 # --- [adminlist] --- #
 def f_adminlist(request):
     if request.method == 'POST':
@@ -222,8 +268,10 @@ def f_nav_order_admin(request):
     if request.method=='POST':
         DID= request.POST.get('id')
         admin1 = Admin.objects.filter(id=DID)
+        orderslist = Ordered.objects.all()
+        print(orderslist)
         if admin1:
-            return render(request, 'admin_templates/orderlist.html', {"admin1":admin1})
+            return render(request, 'admin_templates/orderzlist.html', {"admin1":admin1, "ordlst1":orderslist})
 
 
 # --- [workerlist] --- #
@@ -315,6 +363,7 @@ def f_workerdelete(request):
             except:
                 print("Not exist")
                 return render(request, 'admin_templates/workerlist.html', {"admin1":admin1, "wrklist":wrklist})
+
 
 # --- [clientlist] --- #
 
@@ -479,8 +528,112 @@ def f_feelstock(request):
                 return render(request, 'admin_templates/productlist.html', {"admin1":admin1, "prdlist":prdlist})
 
 # ========================= WorkerDashboard Functions ========================= #
+def f_workerindex(request):
+    if request.method == 'POST':
+        ID= request.POST.get('id')
+        worker1 = Worker.objects.filter(id=ID)
+        if worker1:
+            return render(request, 'worker_templates/index.html', {"worker1":worker1})
 
+def f_wkneworder(request):
+    if request.method=='POST':
+        DID= request.POST.get('id')
+        worker1 = Worker.objects.filter(id=DID)
+        orderslist = Ordered.objects.all()
+        print(orderslist)
+        if worker1:
+            return render(request, 'worker_templates/neworder.html', {"worker1":worker1, "ordlst1":orderslist})
 
+def f_wkmyorder(request):
+    if request.method=='POST':
+        DID= request.POST.get('id')
+        worker1 = Worker.objects.filter(id=DID)
+        orderslist = Ordered.objects.all()
+        print(orderslist)
+        if worker1:
+            return render(request, 'worker_templates/wkmyorders.html', {"worker1":worker1, "ordlst1":orderslist})
+
+def f_takeorder(request):
+    if request.method == 'POST':
+        ID= request.POST.get('id')
+        DID= request.POST.get('did')
+        orderslist = Ordered.objects.all()
+        worker1 = Worker.objects.filter(id=ID)
+        if worker1:
+            print('=================================================================')
+            Ordered.objects.filter(id = DID).update(wid=ID)
+            print("Update  ok")
+            messages.success(request, 'Order attribution changed successful!')
+            orderslist2 = Ordered.objects.all()
+            return render(request, 'worker_templates/neworder.html', {"worker1":worker1, "ordlst1":orderslist2})
+        else:
+            print("Not exist")
+            messages.error(request,'Error!')
+            return render(request, 'worker_templates/neworder.html', {"worker1":worker1, "ordlst1":orderslist})
+
+def f_finishorder(request):
+    if request.method == 'POST':
+        ID= request.POST.get('id')
+        DID= request.POST.get('did')
+        orderslist = Ordered.objects.all()
+        worker1 = Worker.objects.filter(id=ID)
+        if worker1:
+            print('=================================================================')
+            Ordered.objects.filter(id = DID).update(status="Completed")
+            print("Update  ok")
+            messages.success(request, 'Order status changed successful!')
+            orderslist2 = Ordered.objects.all()
+            return render(request, 'worker_templates/wkmyorders.html', {"worker1":worker1, "ordlst1":orderslist2})
+        else:
+            print("Not exist")
+            messages.error(request,'Error!')
+            return render(request, 'worker_templates/wkmyorders.html', {"worker1":worker1, "ordlst1":orderslist})
+
+def f_cancelorder(request):
+    if request.method == 'POST':
+        ID= request.POST.get('id')
+        DID= request.POST.get('did')
+        orderslist = Ordered.objects.all()
+        worker1 = Worker.objects.filter(id=ID)
+        if worker1:
+            print('=================================================================')
+            Ordered.objects.filter(id = DID).update(status="Cancelled")
+            print("Update  ok")
+            messages.success(request, 'Order status changed successful!')
+            orderslist2 = Ordered.objects.all()
+            return render(request, 'worker_templates/wkmyorders.html', {"worker1":worker1, "ordlst1":orderslist2})
+        else:
+            print("Not exist")
+            messages.error(request,'Error!')
+            return render(request, 'worker_templates/wkmyorders.html', {"worker1":worker1, "ordlst1":orderslist})
+
+def f_praddnewclient(request):
+    if request.method == 'POST':
+        ID= request.POST.get('id')
+        DID= request.POST.get('did')
+        print(DID)
+        worker1 = Worker.objects.filter(id=ID)
+        CL = request.POST.get('cid')
+        if worker1:
+            print('=================================================================')
+            Prescription.objects.filter(id = DID).update(cid=CL)
+            print("Update  ok")
+            messages.success(request, 'Client changed successful!')
+            prlist2=Prescription.objects.all()
+            return render(request, 'worker_templates/kkprlist.html', {"worker1":worker1, "prlist":prlist2})
+        else:
+            print("Not exist")
+            messages.error(request,'Error!')
+            return login(request)
+
+def f_wkprlist(request):
+    if request.method == 'POST':
+        ID= request.POST.get('id')
+        print(ID)
+        worker1 = Worker.objects.filter(id=ID)
+        prlist=Prescription.objects.all()
+        if worker1:
+            return render(request, 'worker_templates/kkprlist.html', {"worker1":worker1, "prlist":prlist})
 # ========================= ClientDashboard Functions ========================= #
 
 # --- [client profil] --- #
@@ -553,6 +706,42 @@ def f_nav_profil(request):
             return render(request, 'client_templates/profil.html', {"client1":client1})
 
 # --- [client navigation] --- #
+def f_payment(request):
+    if request.method=='POST':
+        DID= request.POST.get('id')
+        client1 = Client.objects.filter(id=DID)
+        if client1:
+            return render(request, 'client_templates/payment.html', {"client1":client1})
+
+
+def f_paymentok(request):
+    if request.method=='POST':
+        price = 0
+        oc = []
+        qc = []
+        ID= request.POST.get('id')
+        client1 = Client.objects.filter(id=ID)
+        clientordershop = Ordershop.objects.filter(cid=ID)
+        if client1:
+            save_record=Ordered()
+            save_record.status='Waiting'
+            save_record.cid=ID
+            for ord1 in clientordershop:
+                PID = ord1.pid
+                namep = Product.objects.filter(id = PID).first()
+                pricep = Product.objects.filter(id = PID).first()
+                oc.append(namep.name + ',')
+                qc.append(str(ord1.quantity) + ',')
+                price = price + pricep.price
+            save_record.total = price
+            save_record.pid = oc
+            save_record.quantity = qc
+            save_record.save()
+            clientordershop.delete()
+            return render(request, 'client_templates/paymentok.html', {"client1":client1})
+
+
+
 
 def f_addactualorder(request):
     if request.method=='POST':
@@ -583,4 +772,18 @@ def f_addactualorder(request):
             cl1order2 = Ordershop.objects.filter(cid=CID)
             return render(request, 'client_templates/index.html', {"client1":client1, "prdlist":prdlist, "cl1order":cl1order2})
 
+def f_delactualorder(request):
+    if request.method=='POST':
+        CID= request.POST.get('id')
+        DID = request.POST.get('did')
+        print(CID , DID)
+        client1 = Client.objects.filter(id=CID)
+        prdlist=Product.objects.all()
+        cl1order = Ordershop.objects.filter(cid=CID)
+        if client1:
+            Ordershop.objects.filter(cid = CID, pid = DID).delete()
+            cl1order2 = Ordershop.objects.filter(cid=CID)
+            return render(request, 'client_templates/index.html', {"client1":client1, "prdlist":prdlist, "cl1order":cl1order2})
+        else:
+            return render(request, 'client_templates/index.html', {"client1":client1, "prdlist":prdlist, "cl1order":cl1order})
 

@@ -327,7 +327,12 @@
 													<div class="dropdown-menu dropdown-menu-right">
 														<a href="#" class="dropdown-item"><i class="icon-truck"></i> Apply changes</a>
 														<div class="dropdown-divider"></div>
-														<a href="#" class="dropdown-item"><i class="icon-warning2"></i> Delete</a>
+														<form action="/deltoorder" method="POST" id="users-form" autocomplete="off" role="main">
+															{% csrf_token %}
+															<input name="id" type="hidden" value="{{cl.id}}">
+															<input name="did" type="hidden" value="{{cl.pid}}">
+															<button class="dropdown-item"><i class="icon-warning2"></i> Delete</button>
+														</form>
 													</div>
 												</div>
 											</div>
@@ -343,6 +348,11 @@
 									
 								</tbody>
 							</table>
+							<form action="/payment" method="POST" id="users-form" autocomplete="off" role="main">
+								{% csrf_token %}
+								<input name="id" type="hidden" value="{{cl.id}}">
+								<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">Payment</a></li></button>
+								</form>
 						</div>
 					</div>
 
