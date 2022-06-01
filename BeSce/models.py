@@ -73,7 +73,7 @@ class Product(models.Model):
 class Ordershop(models.Model):
     id = models.IntegerField(db_column='id',primary_key=True)
     cid = models.IntegerField(db_column='cid')
-    pid = models.TextField(db_column='pid')
+    pid = models.IntegerField(db_column='pid')
     quantity = models.IntegerField(db_column='quantity')
 
     class Meta:

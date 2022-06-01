@@ -4,7 +4,11 @@
 <html>
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
-<title>BeSce - Payment</title>
+  {% if messages %}
+	{% for message in messages %}<script>alert("{% for message in messages %}{{ message }}\n{% endfor %}");</script>
+	{% endfor %}
+	{% endif %}
+<title>BeSce - Payment OK</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);

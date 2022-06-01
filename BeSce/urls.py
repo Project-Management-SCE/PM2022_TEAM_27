@@ -11,7 +11,6 @@ urlpatterns = [
     path('FirstTimePage/', views.FirstTimePage, name='FirstTimePage'),
     path('client_registration/', views.client_registration, name='client_registration'),
     path('f_register', views.f_register),
-    path('index', views.ClientIndex),
     path('f_login', views.f_login),
     path('clientDashboard/', views.ClientDashboard, name='clientDashboard'),
     path('pswreset', views.pwsreset, name='clientDashboard'),
@@ -34,7 +33,6 @@ urlpatterns = [
     path('clientdelete', views.f_clientdelete),
     path('addclient', views.f_clientadd),
     path('clientchange', views.f_clientchange),
-    #path('ClientProfil', views.ClientProfil),
 
     # --- [Admin - product] --- #
     path('productlist', views.f_productlist),

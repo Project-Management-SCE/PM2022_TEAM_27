@@ -1,18 +1,18 @@
 {% load static %}
-{% for wk in worker1 %}
+{% for ad in admin1 %}
 <!DOCTYPE html>
 <html lang="en">
 
 <!-- Mirrored from demo.interface.club/limitless/demo/Template/layout_1/LTR/material/full/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 28 Mar 2022 17:09:01 GMT -->
 <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>BeSce - AdminDashboard</title>
 	{% if messages %}
 	{% for message in messages %}<script>alert("{% for message in messages %}{{ message }}\n{% endfor %}");</script>
 	{% endfor %}
 	{% endif %}
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>BeSce - WorkerDashboard</title>
 
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
@@ -104,12 +104,12 @@
 
 				<!-- User menu -->
 				<div class="sidebar-section">
-					<div class="sidebar-user-material">
+					<div class="sidebar-user-material" styles="background-image: url(static/assets/images/backgrounds/user_bg4.jpg);">
 						<div class="sidebar-section-body">
 							<div class="d-flex">
 								<div class="flex-1">
 								</div>
-								<a href="#" class="flex-1 text-center"><img src="{% static 'assets/images/demo/users/facenone.png' %}" class="img-fluid rounded-circle shadow-sm" width="80" height="80" alt=""></a>
+								<a class="flex-1 text-center"><img src="{% static 'assets/images/demo/users/facenone.png' %}" class="img-fluid rounded-circle shadow-sm" width="80" height="80" alt=""></a>
 								<div class="flex-1 text-right">
 									<button type="button" class="btn btn-outline-light border-transparent btn-icon rounded-pill btn-sm sidebar-control sidebar-main-resize d-none d-lg-inline-flex">
 										<i class="icon-transmission"></i>
@@ -122,8 +122,8 @@
 							</div>
 							<div class="text-center">
 								
-								<h6 class="mb-0 text-white text-shadow-dark mt-3"> {{wk.fname}} {{wk.lname}} </h6>
-								<span class="font-size-sm text-white text-shadow-dark"> IdNumber : {{wk.idnumber}} </span>
+								<h6 class="mb-0 text-white text-shadow-dark mt-3"> {{ad.fname}} {{ad.lname}} </h6>
+								<span class="font-size-sm text-white text-shadow-dark"> IdNumber : {{ad.idnumber}} </span>
 								
 							</div>
 						</div>
@@ -166,28 +166,30 @@
 						<!-- Main -->
 						<li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs mt-1">Main</div> <i class="icon-menu" title="Main"></i></li>
 						<li class="nav-item">
-							<form action="/workerindex" method="POST" id="users-form" autocomplete="off" role="main">
+							<form action="/admin_index" method="POST" id="users-form" autocomplete="off" role="main">
 								{% csrf_token %}
-								<input name="id" type="hidden" value="{{wk.id}}">
+								<input name="id" type="hidden" value="{{ad.id}}">
 								<i class="icon-home4"></i>
-							<button class="btn" type="submit"><li class="btn btn-light mr-2"><a class="nav-link active">Home</a></li></button>
+								<button class="btn1" type="submit"><li class="nav-item"><a class="nav-link">Home</a></li></button>
+							
 							</form>
+								
 							</a>
 						</li>
 						
-						<li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Informations</div> <i class="icon-menu" title="Infos"></i></li>
+						<li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Management</div> <i class="icon-menu" title="Infos"></i></li>
 						<li class="nav-item nav-item-submenu">
-							<a href="#" class="nav-link"><i class="icon-cube3"></i> <span>Orders</span></a>
+							<a href="#" class="nav-link"><i class="icon-cube3"></i> <span>Shop</span></a>
 							<ul class="nav nav-group-sub" data-submenu-title="Shops page">
-								<form action="/wkneworder" method="POST" id="users-form" autocomplete="off" role="main">
+								<form action="/productlist" method="POST" id="users-form" autocomplete="off" role="main">
 									{% csrf_token %}
-									<input name="id" type="hidden" value="{{wk.id}}">
-								<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">New</a></li></button>
+									<input name="id" type="hidden" value="{{ad.id}}">
+								<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">Products</a></li></button>
 								</form>
-								<form action="/wkorder" method="POST" id="users-form" autocomplete="off" role="main">
+								<form action="/orderlist" method="POST" id="users-form" autocomplete="off" role="main">
 									{% csrf_token %}
-									<input name="id" type="hidden" value="{{wk.id}}">
-								<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">My Orders</a></li></button>
+									<input name="id" type="hidden" value="{{ad.id}}">
+								<button class="btn" type="submit"><li class="nav-item"><a class="nav-link active">Orders</a></li></button>
 								</form>
 							</ul>
 						</li>
@@ -195,10 +197,30 @@
 						<li class="nav-item nav-item-submenu">
 							<a href="#" class="nav-link"><i class="icon-copy"></i> <span>Documents</span></a>
 							<ul class="nav nav-group-sub" data-submenu-title="Authorizations page">
-								<form action="/wkprlist" method="POST" id="users-form" autocomplete="off" role="main">
+								<form action="/prescriptionlist" method="POST" id="users-form" autocomplete="off" role="main">
 									{% csrf_token %}
-									<input name="id" type="hidden" value="{{wk.id}}">
+									<input name="id" type="hidden" value="{{ad.id}}">
 									<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">Prescriptions</a></li></button>
+								</form>
+							</ul>
+						</li>
+						<li class="nav-item nav-item-submenu">
+							<a href="#" class="nav-link"><i class="icon-insert-template"></i> <span>Users</span></a>
+							<ul class="nav nav-group-sub" data-submenu-title="Users page">
+								<form action="/adminlist" method="POST" id="users-form" autocomplete="off" role="main">
+									{% csrf_token %}
+									<input name="id" type="hidden" value="{{ad.id}}">
+								<button class="btn1" type="submit"><li class="nav-item"><a class="nav-link">Administrators</a></li></button>
+								</form>
+								<form action="/clientlist" method="POST" id="users-form" autocomplete="off" role="main">
+									{% csrf_token %}
+									<input name="id" type="hidden" value="{{ad.id}}">
+								<button class="btn1" type="submit"><li class="nav-item"><a class="nav-link">Clients</a></li></button>
+								</form>
+								<form action="/workerlist" method="POST" id="users-form" autocomplete="off" role="main">
+									{% csrf_token %}
+									<input name="id" type="hidden" value="{{ad.id}}">
+								<button class="btn1" type="submit"><li class="nav-item"><a class="nav-link">Workers</a></li></button>
 								</form>
 							</ul>
 						</li>
@@ -223,7 +245,7 @@
 				<div class="page-header page-header-light">
 					<div class="page-header-content header-elements-lg-inline">
 						<div class="page-title d-flex">
-							<h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Home</span> - WorkerDashboard - OrderList</h4>
+							<h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Home</span> - AdminDashboard - OrderList</h4>
 							<a href="#" class="header-elements-toggle text-body d-lg-none"><i class="icon-more"></i></a>
 						</div>
 					</div>
@@ -232,7 +254,7 @@
 						<div class="d-flex">
 							<div class="breadcrumb">
 								<a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-								<span class="breadcrumb-item active">WorkerDashboard</span>
+								<span class="breadcrumb-item active">AdminDashboard</span>
 							</div>
 
 							<a href="#" class="header-elements-toggle text-body d-lg-none"><i class="icon-more"></i></a>
@@ -270,61 +292,150 @@
 							<table class="table text-nowrap">
 								<thead>
 									<tr>
-										<th colspan="2">Product Id</th>
-										<th>Client Id</th>
-										<th>Description</th>
+										<th colspan="2">Client Id</th>
+										<th>Products Id</th>
+										<th>Quantity</th>
+										<th>Worker Id</th>
+										<th>Total to Pay</th>
+										<th>Actual Status</th>
 										<th class="text-center" style="width: 20px;"><i class="icon-arrow-down12"></i></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr class="table-active">
-										<td colspan="7" class="font-weight-semibold">Waiting for a Client</td>
+										<td colspan="7" class="font-weight-semibold">New orders</td>
 										<td class="text-right">
-											<span class="badge badge-secondary badge-pill">No Client</span>
+											<span class="badge badge-secondary badge-pill">0</span>
 										</td>
 									</tr>
-									{% for pr in prlist %}
-                                    {% if pr.cid is None %}
+
 									<tr>
-										
-										<form action="/praddnewclient" method="POST" id="users-form" autocomplete="off" role="main">
-											{% csrf_token %}
-												<td>{{pr.pid}}</td>
-												<td><input name="cid" type="text" class="form-control col-lg-6" placeholder="{{pr.cid}}" value="{{pr.cid}}" ></td>
-												<td>{{pr.informations}}</td>
+										<td class="pr-0" style="width: 45px;">
+											<a href="#">
+												<img src="{% static 'assets/images/demo/users/facenone.png' %}" height="60" alt="">
+											</a>
+										</td>
+										<td>
+											<a href="#" class="font-weight-semibold">Anthony</a>
+											<div class="text-muted font-size-sm">
+												<span class="badge badge-mark bg-secondary border-dark mr-1"></span>
+												Processing
+											</div>
+										</td>
+										<td>Acamol</td>
+										<td>2</td>
+										<td>
+											<a href="#">2</a>
+										</td>
+										<td>1</td>
+										<td>
+											<h6 class="mb-0 font-weight-semibold">₪ 79.00</h6>
+										</td>
 										<td class="text-center">
 											<div class="list-icons">
 												<div class="dropdown">
 													<a href="#" class="list-icons-item" data-toggle="dropdown"><i class="icon-menu7"></i></a>
 													<div class="dropdown-menu dropdown-menu-right">
-															<input name="id" type="hidden" value="{{wk.id}}">
-															<input name="did" type="hidden" value="{{pr.id}}">
-															<button  type="submit" class="dropdown-item"><i class="icon-truck"></i> Add Client Id </button>
-														</form>
+														<a href="#" class="dropdown-item"><i class="icon-truck"></i> Track parcel</a>
+														<a href="#" class="dropdown-item"><i class="icon-file-download"></i> Download invoice</a>
+														<a href="#" class="dropdown-item"><i class="icon-wallet"></i> Payment details</a>
+														<div class="dropdown-divider"></div>
+														<a href="#" class="dropdown-item"><i class="icon-warning2"></i> Report problem</a>
 													</div>
 												</div>
 											</div>
 										</td>
 									</tr>
-									{% endif %}
-									{% endfor %}
+                                    
                                     <tr class="table-active">
-										<td colspan="7" class="font-weight-semibold">List of all Prescriptions</td>
+										<td colspan="7" class="font-weight-semibold">Shipped orders</td>
 										<td class="text-right">
-											<span class="badge badge-secondary badge-pill">Client OK</span>
+											<span class="badge badge-success badge-pill">0</span>
 										</td>
 									</tr>
-									{% for pr in prlist %}
-                                    {% if pr.cid is not None %}
+
 									<tr>
-												<td>{{pr.pid}}</td>
-												<td>{{pr.cid}}</td>
-												<td>{{pr.informations}}</td>
+										<td class="pr-0">
+											<a href="#">
+												<img src="{% static 'assets/images/demo/users/facenone.png' %}" height="60" alt="">
+											</a>
+										</td>
+										<td>
+											<a href="#" class="font-weight-semibold">Eva</a>
+											<div class="text-muted font-size-sm">
+												<span class="badge badge-mark bg-success border-success mr-1"></span>
+												Shipped
+											</div>
+										</td>
+										<td>Acamol</td>
+										<td>5</td>
+										<td>
+											<a href="#">1</a>
+										</td>
+										<td>1</td>
+										<td>
+											<h6 class="mb-0 font-weight-semibold">₪ 210.00</h6>
+										</td>
 										<td class="text-center">
+											<div class="list-icons">
+												<div class="dropdown">
+													<a href="#" class="list-icons-item" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+													<div class="dropdown-menu dropdown-menu-right">
+														<a href="#" class="dropdown-item"><i class="icon-truck"></i> Track parcel</a>
+														<a href="#" class="dropdown-item"><i class="icon-file-download"></i> Download invoice</a>
+														<a href="#" class="dropdown-item"><i class="icon-wallet"></i> Payment details</a>
+														<div class="dropdown-divider"></div>
+														<a href="#" class="dropdown-item"><i class="icon-warning2"></i> Report problem</a>
+													</div>
+												</div>
+											</div>
 										</td>
 									</tr>
-									{% endif %}
-									{% endfor %}
+
+                                    <tr class="table-active">
+										<td colspan="7" class="font-weight-semibold">Cancelled orders</td>
+										<td class="text-right">
+											<span class="badge badge-danger badge-pill">0</span>
+										</td>
+									</tr>
+
+									<tr>
+										<td class="pr-0">
+											<a href="#">
+												<img src="{% static 'assets/images/demo/users/facenone.png' %}" height="60" alt="">
+											</a>
+										</td>
+										<td>
+											<a href="#" class="font-weight-semibold">Anthony</a>
+											<div class="text-muted font-size-sm">
+												<span class="badge badge-mark bg-danger border-danger mr-1"></span>
+												Cancelled
+											</div>
+										</td>
+										<td>Acamol</td>
+										<td>4</td>
+										<td>
+											<a href="#">1</a>
+										</td>
+										<td>1</td>
+										<td>
+											<h6 class="mb-0 font-weight-semibold">₪ 130.00</h6>
+										</td>
+										<td class="text-center">
+											<div class="list-icons">
+												<div class="dropdown">
+													<a href="#" class="list-icons-item" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+													<div class="dropdown-menu dropdown-menu-right">
+														<a href="#" class="dropdown-item"><i class="icon-truck"></i> Track parcel</a>
+														<a href="#" class="dropdown-item"><i class="icon-file-download"></i> Download invoice</a>
+														<a href="#" class="dropdown-item"><i class="icon-wallet"></i> Payment details</a>
+														<div class="dropdown-divider"></div>
+														<a href="#" class="dropdown-item"><i class="icon-warning2"></i> Report problem</a>
+													</div>
+												</div>
+											</div>
+										</td>
+									</tr>
 								</tbody>
 							</table>
 						</div>

@@ -8,18 +8,20 @@ import requests
 from BeSce.models import Client, Ordered, Prescription, Worker, Admin
 from BeSce.models import Product, Ordershop
 # Create your views here.
-'''
+
 db_connection = mysql.connector.connect(
   host="localhost",
   user="root",
   database="db_besce")
+
 '''
 db_connection = mysql.connector.connect(
   host="database-1.c4joaqwcqrpg.eu-central-1.rds.amazonaws.com",
   user="admin",
   password="okoklol123",
   database="db_besce")
-  
+'''
+
 cursor = db_connection.cursor()
 print(db_connection)
 
@@ -60,14 +62,6 @@ def FirstTimePage(request):
 def ClientDashboard(request):
     return render(request, 'client_templates/clientdashboard.html')
 
-def ClientIndex(request):
-    return render(request, 'client_templates/index.html')
-
-def WorkerDashboard(request):
-    return render(request, 'worker_templates/index.html')
-
-def AdminDashboard(request):
-    return render(request, 'admin_templates/index.html')
 
 def pwsreset(request):
     return render(request, 'password_reset.html')
@@ -121,7 +115,9 @@ def check_client_idnumber(idnum):
             return True
     return False
 
-# ========================= AdminDashboard Functions ========================= #
+# ============================================================================================================================================================= #
+# ================================================================= AdminDashboard Functions ================================================================= #
+# ============================================================================================================================================================= #
 
 def f_prescriptionlist(request):
     if request.method == 'POST':
@@ -533,7 +529,10 @@ def f_feelstock(request):
                 print("Not exist")
                 return render(request, 'admin_templates/productlist.html', {"admin1":admin1, "prdlist":prdlist})
 
-# ========================= WorkerDashboard Functions ========================= #
+# ============================================================================================================================================================= #
+# ================================================================= WorkerDashboard Functions ================================================================= #
+# ============================================================================================================================================================= #
+
 def f_workerindex(request):
     if request.method == 'POST':
         ID= request.POST.get('id')
@@ -546,6 +545,7 @@ def f_wkneworder(request):
         DID= request.POST.get('id')
         worker1 = Worker.objects.filter(id=DID)
         orderslist = Ordered.objects.all()
+        prdlist=Product.objects.all()
         print(orderslist)
         if worker1:
             return render(request, 'worker_templates/neworder.html', {"worker1":worker1, "ordlst1":orderslist})
@@ -555,6 +555,7 @@ def f_wkmyorder(request):
         DID= request.POST.get('id')
         worker1 = Worker.objects.filter(id=DID)
         orderslist = Ordered.objects.all()
+        prdlist=Product.objects.all()
         print(orderslist)
         if worker1:
             return render(request, 'worker_templates/wkmyorders.html', {"worker1":worker1, "ordlst1":orderslist})
@@ -640,7 +641,10 @@ def f_wkprlist(request):
         prlist=Prescription.objects.all()
         if worker1:
             return render(request, 'worker_templates/kkprlist.html', {"worker1":worker1, "prlist":prlist})
-# ========================= ClientDashboard Functions ========================= #
+
+# ============================================================================================================================================================= #
+# ================================================================= ClientDashboard Functions ================================================================= #
+# ============================================================================================================================================================= #
 
 # --- [client profil] --- #
 
@@ -708,8 +712,10 @@ def f_nav_profil(request):
     if request.method=='POST':
         DID= request.POST.get('id')
         client1 = Client.objects.filter(id=DID)
+        orderslist1 = Ordered.objects.all()
+        prdlist = Product.objects.all()
         if client1:
-            return render(request, 'client_templates/profil.html', {"client1":client1})
+            return render(request, 'client_templates/profil.html', {"client1":client1, "ordlst1":orderslist1, "prdlist":prdlist})
 
 # --- [client navigation] --- #
 def f_payment(request):
@@ -728,17 +734,30 @@ def f_paymentok(request):
         ID= request.POST.get('id')
         client1 = Client.objects.filter(id=ID)
         clientordershop = Ordershop.objects.filter(cid=ID)
+        cl1order = Ordershop.objects.filter(cid=ID)
+        prdlist = Product.objects.all()
         if client1:
             save_record=Ordered()
             save_record.status='Waiting'
             save_record.cid=ID
             for ord1 in clientordershop:
                 PID = ord1.pid
-                namep = Product.objects.filter(id = PID).first()
-                pricep = Product.objects.filter(id = PID).first()
-                oc.append(namep.name + ',')
-                qc.append(str(ord1.quantity) + ',')
-                price = price + pricep.price
+                actualprod = Product.objects.filter(id = PID).first()
+                if oc is None:
+                    oc.append(actualprod.name)
+                else:
+                    oc.append('/' + actualprod.name)
+                if qc is None:
+                    qc.append(str(ord1.quantity))
+                else:
+                    qc.append('/' + str(ord1.quantity))    
+                price = price + actualprod.price
+                stk = actualprod.stock - ord1.quantity
+                if stk < 0:
+                    messages.error(request, 'Empty stock for the product ' + actualprod.name)
+                    Ordershop.objects.filter(cid = ID, pid = PID).delete()
+                    return render(request, 'client_templates/index.html', {"client1":client1, "prdlist":prdlist, "cl1order":cl1order})
+                Product.objects.filter(id = PID).update(stock=stk)
             save_record.total = price
             save_record.pid = oc
             save_record.quantity = qc
@@ -789,7 +808,7 @@ def f_delactualorder(request):
         if client1:
             Ordershop.objects.filter(cid = CID, pid = DID).delete()
             cl1order2 = Ordershop.objects.filter(cid=CID)
-            return render(request, 'client_templates/index.html', {"client1":client1, "prdlist":prdlist, "cl1order":cl1order2})
+            return render(request, 'client_templates/myorder.html', {"client1":client1, "prdlist":prdlist, "cl1order":cl1order2})
         else:
-            return render(request, 'client_templates/index.html', {"client1":client1, "prdlist":prdlist, "cl1order":cl1order})
+            return render(request, 'client_templates/myorder.html', {"client1":client1, "prdlist":prdlist, "cl1order":cl1order})
 

@@ -2,6 +2,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  {% if messages %}
+	{% for message in messages %}<script>alert("{% for message in messages %}{{ message }}\n{% endfor %}");</script>
+	{% endfor %}
+	{% endif %}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 

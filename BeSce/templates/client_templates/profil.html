@@ -5,10 +5,14 @@
 
 <!-- Mirrored from demo.interface.club/limitless/demo/Template/layout_1/LTR/material/full/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 28 Mar 2022 17:09:01 GMT -->
 <head>
+	{% if messages %}
+	{% for message in messages %}<script>alert("{% for message in messages %}{{ message }}\n{% endfor %}");</script>
+	{% endfor %}
+	{% endif %}
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>BeSce - AdminDashboard</title>
+	<title>BeSce - ClientDashboard</title>
 
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
@@ -596,182 +600,44 @@
 										<table class="table text-nowrap">
 											<thead>
 												<tr>
-													<th colspan="2">Product name</th>
-													<th>Supplier</th>
-													<th>Type</th>
-													<th>Unique Price</th>
+													<th colspan="2">Client Id</th>
+													<th>Products Id</th>
 													<th>Quantity</th>
-													<th>Total Price</th>
-													<th class="text-center" style="width: 20px;"><i class="icon-arrow-down12"></i></th>
+													<th>Worker Id</th>
+													<th>Total to Pay</th>
+													<th>Actual Status</th>
+													
 												</tr>
 											</thead>
 											<tbody>
 												<tr class="table-active">
-													<td colspan="7" class="font-weight-semibold">New orders</td>
+													<td colspan="7" class="font-weight-semibold">My Orders</td>
 													<td class="text-right">
-														<span class="badge badge-secondary badge-pill">1</span>
+														<span class="badge badge-secondary badge-pill">x</span>
 													</td>
 												</tr>
-
-												<tr>
-													<td class="pr-0" style="width: 45px;">
-														<a href="#">
-															<img src="{% static 'assets/images/products/product_none.png' %}" height="60" alt="">
-														</a>
-													</td>
-													<td>
-														<a href="#" class="font-weight-semibold">Product name</a>
-														<div class="text-muted font-size-sm">
-															<span class="badge badge-mark bg-secondary border-dark mr-1"></span>
-															Processing
-														</div>
-													</td>
-													<td>Description here</td>
-													<td>Type here</td>
-													<td>
-														₪25.99
-													</td>
-													<td>1</td>
-													<td>
-														<h6 class="mb-0 font-weight-semibold">₪ 79.00</h6>
-													</td>
-													<td class="text-center">
-														<div class="list-icons">
-															<div class="dropdown">
-																<a href="#" class="list-icons-item" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-																<div class="dropdown-menu dropdown-menu-right">
-																	<a href="#" class="dropdown-item"><i class="icon-truck"></i> Product info</a>
-																	<a href="#" class="dropdown-item"><i class="icon-wallet"></i> Payment details</a>
-																	<div class="dropdown-divider"></div>
-																	<a href="#" class="dropdown-item"><i class="icon-warning2"></i> Report problem</a>
-																</div>
-															</div>
-														</div>
-													</td>
-												</tr>
-
-												<tr class="table-active">
-													<td colspan="7" class="font-weight-semibold">Shipped orders</td>
-													<td class="text-right">
-														<span class="badge badge-success badge-pill">1</span>
-													</td>
-												</tr>
-
+												{% for ord in ordlst1 %}
+												{% if ord.cid == cl.id %}
 												<tr>
 													<td class="pr-0">
 														<a href="#">
-															<img src="{% static 'assets/images/products/product_none.png' %}" height="60" alt="">
+															<img src="{% static 'assets/images/demo/users/facenone.png' %}" height="60" alt="">
 														</a>
 													</td>
 													<td>
-														<a href="#" class="font-weight-semibold">Product name</a>
-														<div class="text-muted font-size-sm">
-															<span class="badge badge-mark bg-success border-success mr-1"></span>
-															Shipped
-														</div>
+														<a href="#" class="font-weight-semibold">{{ord.cid}}</a>
 													</td>
-													<td>Description here</td>
-													<td>Type here</td>
+													<td>{{ord.pid}}</td>
+													<td>{{ord.quantity}}</td>
+													<td>{{ord.wid}}</td>
 													<td>
-														<a href="#">₪25.99</a>
+														<h6 class="mb-0 font-weight-semibold">₪ {{ord.total}}</h6>
 													</td>
-													<td>1</td>
-													<td>
-														<h6 class="mb-0 font-weight-semibold">₪ 25.99</h6>
-													</td>
-													<td class="text-center">
-														<div class="list-icons">
-															<div class="dropdown">
-																<a href="#" class="list-icons-item" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-																<div class="dropdown-menu dropdown-menu-right">
-																	<a href="#" class="dropdown-item"><i class="icon-truck"></i> Product information</a>
-																	<a href="#" class="dropdown-item"><i class="icon-wallet"></i> Payment details</a>
-																	<div class="dropdown-divider"></div>
-																	<a href="#" class="dropdown-item"><i class="icon-warning2"></i> Report problem</a>
-																</div>
-															</div>
-														</div>
-													</td>
+													<td>{{ord.status}}</td>
 												</tr>
-
-												<tr class="table-active">
-													<td colspan="7" class="font-weight-semibold">Cancelled orders</td>
-													<td class="text-right">
-														<span class="badge badge-danger badge-pill">2</span>
-													</td>
-												</tr>
-												<tr>
-													<td class="pr-0">
-														<a href="#">
-															<img src="{% static 'assets/images/products/product_none.png' %}" height="60" alt="">
-														</a>
-													</td>
-													<td>
-														<a href="#" class="font-weight-semibold">Product name</a>
-														<div class="text-muted font-size-sm">
-															<span class="badge badge-mark bg-danger border-danger mr-1"></span>
-															Cancelled
-														</div>
-													</td>
-													<td>Description here</td>
-													<td>Type here</td>
-													<td>
-														₪25.99
-													</td>
-													<td>1</td>
-													<td>
-														<h6 class="mb-0 font-weight-semibold">₪25.99</h6>
-													</td>
-													<td class="text-center">
-														<div class="list-icons">
-															<div class="dropdown">
-																<a href="#" class="list-icons-item" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-																<div class="dropdown-menu dropdown-menu-right">
-																	<a href="#" class="dropdown-item"><i class="icon-truck"></i> Product information</a>
-																	<a href="#" class="dropdown-item"><i class="icon-wallet"></i> Payment details</a>
-																	<div class="dropdown-divider"></div>
-																	<a href="#" class="dropdown-item"><i class="icon-warning2"></i> Report problem</a>
-																</div>
-															</div>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td class="pr-0">
-														<a href="#">
-															<img src="{% static 'assets/images/products/product_none.png' %}" height="60" alt="">
-														</a>
-													</td>
-													<td>
-														<a href="#" class="font-weight-semibold">Product name</a>
-														<div class="text-muted font-size-sm">
-															<span class="badge badge-mark bg-danger border-danger mr-1"></span>
-															Cancelled
-														</div>
-													</td>
-													<td>Description here</td>
-													<td>Type here</td>
-													<td>
-														₪25.99
-													</td>
-													<td>1</td>
-													<td>
-														<h6 class="mb-0 font-weight-semibold">₪25.99</h6>
-													</td>
-													<td class="text-center">
-														<div class="list-icons">
-															<div class="dropdown">
-																<a href="#" class="list-icons-item" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-																<div class="dropdown-menu dropdown-menu-right">
-																	<a href="#" class="dropdown-item"><i class="icon-truck"></i> Product information</a>
-																	<a href="#" class="dropdown-item"><i class="icon-wallet"></i> Payment details</a>
-																	<div class="dropdown-divider"></div>
-																	<a href="#" class="dropdown-item"><i class="icon-warning2"></i> Report problem</a>
-																</div>
-															</div>
-														</div>
-													</td>
-												</tr>
+												{% endif %}
+												{% endfor %}
+												
 											</tbody>
 										</table>
 									</div>
