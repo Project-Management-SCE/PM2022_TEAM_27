@@ -63,10 +63,56 @@ def ClientDashboard(request):
     return render(request, 'client_templates/clientdashboard.html')
 
 
-def pwsreset(request):
-    return render(request, 'password_reset.html')
+def clin(request):
+    return render(request, 'client_templates/index.html')
 
+def clmyor(request):
+    return render(request,'client_templates/myorder.html')
 
+def clpay(request):
+    return render(request,'client_templates/payment.html')
+
+def clpayok(request):
+    return render(request,'client_templates/paymentok.html')
+
+def clpro(request):
+    return render(request,'client_templates/profil.html')
+
+def wkin(request):
+    return render(request,'worker_templates/index.html')
+
+def wkkkpr(request):
+    return render(request,'worker_templates/kkprlist.html')
+
+def wkneor(request):
+    return render(request,'worker_templates/neworder.html')
+
+def wkmyor(request):
+    return render(request,'worker_templates/wkmyorders.html')
+
+def adin(request):
+    return render(request,'admin_templates/index.html')
+
+def adadlt(request):
+    return render(request,'admin_templates/adminlist.html')
+
+def adcllt(request):
+    return render(request,'admin_templates/clientlist.html')
+
+def adorlt(request):
+    return render(request,'admin_templates/orderlist.html')
+
+def adorzlt(request):
+    return render(request,'admin_templates/orderzlist.html')
+
+def adprlt(request):
+    return render(request,'admin_templates/prescriptionlist.html')
+
+def adprdlt(request):
+    return render(request,'admin_templates/productlist.html')
+
+def adwklt(request):
+    return render(request,'admin_templates/workerlist.html')
 
 
 # --- Basics Functions --- #

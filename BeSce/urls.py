@@ -13,7 +13,6 @@ urlpatterns = [
     path('f_register', views.f_register),
     path('f_login', views.f_login),
     path('clientDashboard/', views.ClientDashboard, name='clientDashboard'),
-    path('pswreset', views.pwsreset, name='clientDashboard'),
 
     # --- [Admin - admin] --- #
     path('adminlist', views.f_adminlist, name='adminlist'),
@@ -72,4 +71,26 @@ urlpatterns = [
     path('cancelorder', views.f_cancelorder),
     path('praddnewclient', views.f_praddnewclient),
     path('wkprlist', views.f_wkprlist),
+
+    # --- [TEST URLS] --- #
+    path('clin', views.clin, name='clin'),
+    path('clmyor', views.clmyor, name='clmyor'),
+    path('clpay', views.clpay, name='clpay'),
+    path('clpayok', views.clpayok, name='clpayok'),
+    path('clpro', views.clpro, name='clpro'),
+
+    path('wkin', views.wkin, name='wkin'),
+    path('wkkkpr', views.wkkkpr, name='wkkkpr'),
+    path('wkneor', views.wkneor, name='wkneor'),
+    path('wkmyor', views.wkmyor, name='wkmyor'),
+
+    path('adin', views.adin, name='adin'),
+    path('adadlt', views.adadlt, name='adadlt'),
+    path('adcllt', views.adcllt, name='adcllt'),
+    path('adorlt', views.adorlt, name='adorlt'),
+    path('adorzlt', views.adorzlt, name='adorzlt'),
+    path('adprdlt', views.adprdlt, name='adprdlt'),
+    path('adwklt', views.adwklt, name='adwklt'),
+    path('adprlt', views.adprlt, name='adprlt'),
+
     ]
