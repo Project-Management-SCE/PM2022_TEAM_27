@@ -317,9 +317,10 @@ def f_nav_order_admin(request):
         DID= request.POST.get('id')
         admin1 = Admin.objects.filter(id=DID)
         orderslist = Ordered.objects.all()
+        clt = Client.objects.all()
         print(orderslist)
         if admin1:
-            return render(request, 'admin_templates/orderzlist.html', {"admin1":admin1, "ordlst1":orderslist})
+            return render(request, 'admin_templates/orderzlist.html', {"admin1":admin1, "ordlst1":orderslist, "clt":clt})
 
 
 # --- [workerlist] --- #

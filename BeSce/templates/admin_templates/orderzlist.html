@@ -317,7 +317,11 @@
 											</a>
 										</td>
 										<td>
-											<a href="#" class="font-weight-semibold">{{ord.cid}}</a>
+											{% for c in clt %}
+											{% if c.id == ord.cid %}
+											<a href="#" class="font-weight-semibold">{{c.fname}} {{c.lname}}</a>
+											{% endif %}
+											{% endfor %}
 											<div class="text-muted font-size-sm">
 												<span class="badge badge-mark bg-success border-success mr-1"></span>
 												Waiting
@@ -361,7 +365,11 @@
 											</a>
 										</td>
 										<td>
-											<a href="#" class="font-weight-semibold">{{ord.cid}}</a>
+											{% for c in clt %}
+											{% if c.id == ord.cid %}
+											<a href="#" class="font-weight-semibold">{{c.fname}} {{c.lname}}</a>
+											{% endif %}
+											{% endfor %}
 											<div class="text-muted font-size-sm">
 												<span class="badge badge-mark bg-success border-success mr-1"></span>
 												Completed
@@ -405,7 +413,11 @@
 											</a>
 										</td>
 										<td>
-											<a href="#" class="font-weight-semibold">{{ord.cid}}</a>
+											{% for c in clt %}
+											{% if c.id == ord.cid %}
+											<a href="#" class="font-weight-semibold">{{c.fname}} {{c.lname}}</a>
+											{% endif %}
+											{% endfor %}
 											<div class="text-muted font-size-sm">
 												<span class="badge badge-mark bg-success border-success mr-1"></span>
 												Cancelled
