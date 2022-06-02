@@ -44,7 +44,8 @@
 			<span>or use your account</span>
 			<input id="idnumber" name="idnumber" type="text" placeholder="Id Number" required/>
 			<input id="pass" name="pass" type="password" placeholder="Password" required/>
-			<a href="#">Forgot your password?</a>
+			<a href="http://localhost:8000/pswreset">Forgot your password?</a>
+			
 			<button>Sign In</button>
 		</form>
 	</div>
@@ -64,7 +65,14 @@
 	</div>
 	
 </div>
-<footer><a class="container" href="http://localhost:8000/index">Return to home</a></footer>
+
+
+<footer>
+	<form action="/" method="POST" id="users-form" autocomplete="off" role="main">
+		{% csrf_token %}
+	<button class="btn" type="submit">Return to home</button>
+</form>
+</footer>
 
 </body>
 </html>

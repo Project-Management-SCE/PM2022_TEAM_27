@@ -1,0 +1,478 @@
+{% load static %}
+{% for ad in admin1 %}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from demo.interface.club/limitless/demo/Template/layout_1/LTR/material/full/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 28 Mar 2022 17:09:01 GMT -->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>BeSce - AdminDashboard</title>
+	{% if messages %}
+	{% for message in messages %}<script>alert("{% for message in messages %}{{ message }}\n{% endfor %}");</script>
+	{% endfor %}
+	{% endif %}
+
+	<!-- Global stylesheets -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+	<link href="{% static 'assets/css/icons/icomoon/styles.min.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'assets/css/all.min.css' %}" rel="stylesheet" type="text/css">
+	<!-- /global stylesheets -->
+	
+
+	<!-- Core JS files -->
+	<script src="{% static 'assets/js/main/jquery.min.js' %}"></script>
+	<script src="{% static 'assets/js/main/bootstrap.bundle.min.js' %}"></script>
+	<!-- /core JS files -->
+
+	<!-- Theme JS files -->
+	<script src="{% static 'assets/js/plugins/visualization/d3/d3.min.js' %}"></script>
+	<script src="{% static 'assets/js/plugins/visualization/d3/d3_tooltip.js' %}"></script>
+	<script src="{% static 'assets/js/plugins/ui/moment/moment.min.js' %}"></script>
+	<script src="{% static 'assets/js/plugins/pickers/daterangepicker.js' %}"></script>
+
+	<script src="{% static 'assets/js/app.js' %}"></script>
+	<script src="{% static 'assets/js/demo_pages/dashboard.js' %}"></script>
+	<script src="{% static 'assets/js/demo_charts/pages/dashboard/light/streamgraph.js' %}"></script>
+	<script src="{% static 'assets/js/demo_charts/pages/dashboard/light/sparklines.js' %}"></script>
+	<script src="{% static 'assets/js/demo_charts/pages/dashboard/light/lines.js' %}"></script>	
+	<script src="{% static 'assets/js/demo_charts/pages/dashboard/light/areas.js' %}"></script>
+	<script src="{% static 'assets/js/demo_charts/pages/dashboard/light/donuts.js' %}"></script>
+	<script src="{% static 'assets/js/demo_charts/pages/dashboard/light/bars.js' %}"></script>
+	<script src="{% static 'assets/js/demo_charts/pages/dashboard/light/progress.js' %}"></script>
+	<script src="{% static 'assets/js/demo_charts/pages/dashboard/light/heatmaps.js' %}"></script>
+	<script src="{% static 'assets/js/demo_charts/pages/dashboard/light/pies.js' %}"></script>
+	<script src="{% static 'assets/js/demo_charts/pages/dashboard/light/bullets.js' %}"></script>
+	<!-- /theme JS files -->
+
+</head>
+
+<body>
+
+	<!-- Main navbar -->
+	<div class="navbar navbar-expand-lg navbar-dark bg-indigo navbar-static">
+		<div class="d-flex flex-1 d-lg-none">
+			<button class="navbar-toggler sidebar-mobile-main-toggle" type="button">
+				<i class="icon-paragraph-justify3"></i>
+			</button>
+
+			<button data-target="#navbar-search" type="button" class="navbar-toggler" data-toggle="collapse">
+				<i class="icon-search4"></i>
+			</button>
+		</div>
+
+		<div class="navbar-brand text-center text-lg-left">
+			<a href="#" class="d-inline-block">
+				<img src="{% static 'assets/images/logo_light.png' %}" class="d-none d-sm-block" alt="">
+				<img src="{% static 'assets/images/logo_icon_light.png' %}" class="d-sm-none" alt="">
+			</a>
+		</div>
+
+		<div class="navbar-collapse collapse flex-lg-1 mx-lg-3 order-2 order-lg-1" id="navbar-search">
+			<div class="navbar-search d-flex align-items-center py-2 py-lg-0">
+				<div class="form-group-feedback form-group-feedback-left flex-grow-1">
+					<input type="text" class="form-control" placeholder="Search">
+					<div class="form-control-feedback">
+						<i class="icon-search4 text-white opacity-50"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="d-flex justify-content-end align-items-center flex-1 flex-lg-0 order-1 order-lg-2">
+			<ul class="navbar-nav flex-row">
+				<li class="nav-item">
+					<a href="#" class="navbar-nav-link navbar-nav-link-toggler">
+						<i class="icon-switch2"></i>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /main navbar -->
+
+
+	<!-- Page content -->
+	<div class="page-content">
+
+		<!-- Main sidebar -->
+		<div class="sidebar sidebar-light sidebar-main sidebar-expand-lg">
+
+			<!-- Sidebar content -->
+			<div class="sidebar-content">
+
+				<!-- User menu -->
+				<div class="sidebar-section">
+					<div class="sidebar-user-material" styles="background-image: url(static/assets/images/backgrounds/user_bg4.jpg);">
+						<div class="sidebar-section-body">
+							<div class="d-flex">
+								<div class="flex-1">
+								</div>
+								<a class="flex-1 text-center"><img src="{% static 'assets/images/demo/users/facenone.png' %}" class="img-fluid rounded-circle shadow-sm" width="80" height="80" alt=""></a>
+								<div class="flex-1 text-right">
+									<button type="button" class="btn btn-outline-light border-transparent btn-icon rounded-pill btn-sm sidebar-control sidebar-main-resize d-none d-lg-inline-flex">
+										<i class="icon-transmission"></i>
+									</button>
+
+									<button type="button" class="btn btn-outline-light border-transparent btn-icon rounded-pill btn-sm sidebar-mobile-main-toggle d-lg-none">
+										<i class="icon-cross2"></i>
+									</button>
+								</div>
+							</div>
+							<div class="text-center">
+								
+								<h6 class="mb-0 text-white text-shadow-dark mt-3"> {{ad.fname}} {{ad.lname}} </h6>
+								<span class="font-size-sm text-white text-shadow-dark"> IdNumber : {{ad.idnumber}} </span>
+								
+							</div>
+						</div>
+													
+						<div class="sidebar-user-material-footer">
+							<a href="#user-nav" class="d-flex justify-content-between align-items-center text-shadow-dark dropdown-toggle" data-toggle="collapse"><span>My account</span></a>
+						</div>
+					</div>
+
+					<div class="collapse border-bottom" id="user-nav">
+						<ul class="nav nav-sidebar">
+							<li class="nav-item">
+								<a href="#" class="nav-link">
+									<i class="icon-comment-discussion"></i>
+									<span>My Messages</span>
+									<span class="badge badge-teal badge-pill align-self-center ml-auto">0</span>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link">
+									<i class="icon-cog5"></i>
+									<span>Account settings</span>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="/login" class="nav-link">
+									<i class="icon-switch2"></i>
+									<span>Logout</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /user menu -->
+
+				<!-- Main navigation -->
+				<div class="sidebar-section">
+					<ul class="nav nav-sidebar" data-nav-type="accordion">
+
+						<!-- Main -->
+						<li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs mt-1">Main</div> <i class="icon-menu" title="Main"></i></li>
+						<li class="nav-item">
+							<form action="/admin_index" method="POST" id="users-form" autocomplete="off" role="main">
+								{% csrf_token %}
+								<input name="id" type="hidden" value="{{ad.id}}">
+								<i class="icon-home4"></i>
+								<button class="btn1" type="submit"><li class="nav-item"><a class="nav-link">Home</a></li></button>
+							
+							</form>
+								
+							</a>
+						</li>
+						
+						<li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Management</div> <i class="icon-menu" title="Infos"></i></li>
+						<li class="nav-item nav-item-submenu">
+							<a href="#" class="nav-link"><i class="icon-cube3"></i> <span>Shop</span></a>
+							<ul class="nav nav-group-sub" data-submenu-title="Shops page">
+								<form action="/productlist" method="POST" id="users-form" autocomplete="off" role="main">
+									{% csrf_token %}
+									<input name="id" type="hidden" value="{{ad.id}}">
+								<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">Products</a></li></button>
+								</form>
+								<form action="/orderlist" method="POST" id="users-form" autocomplete="off" role="main">
+									{% csrf_token %}
+									<input name="id" type="hidden" value="{{ad.id}}">
+								<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">Orders</a></li></button>
+								</form>
+							</ul>
+						</li>
+						
+						<li class="nav-item nav-item-submenu">
+							<a href="#" class="nav-link"><i class="icon-copy"></i> <span>Documents</span></a>
+							<ul class="nav nav-group-sub" data-submenu-title="Authorizations page">
+								<form action="/prescriptionlist" method="POST" id="users-form" autocomplete="off" role="main">
+									{% csrf_token %}
+									<input name="id" type="hidden" value="{{ad.id}}">
+									<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">Prescriptions</a></li></button>
+								</form>
+							</ul>
+						</li>
+						<li class="nav-item nav-item-submenu">
+							<a href="#" class="nav-link"><i class="icon-insert-template"></i> <span>Users</span></a>
+							<ul class="nav nav-group-sub" data-submenu-title="Users page">
+								<form action="/adminlist" method="POST" id="users-form" autocomplete="off" role="main">
+									{% csrf_token %}
+									<input name="id" type="hidden" value="{{ad.id}}">
+								<button class="btn1" type="submit"><li class="nav-item"><a class="nav-link">Administrators</a></li></button>
+								</form>
+								<form action="/clientlist" method="POST" id="users-form" autocomplete="off" role="main">
+									{% csrf_token %}
+									<input name="id" type="hidden" value="{{ad.id}}">
+								<button class="btn1" type="submit"><li class="nav-item"><a class="nav-link">Clients</a></li></button>
+								</form>
+								<form action="/workerlist" method="POST" id="users-form" autocomplete="off" role="main">
+									{% csrf_token %}
+									<input name="id" type="hidden" value="{{ad.id}}">
+								<button class="btn1" type="submit"><li class="nav-item"><a class="nav-link active">Workers</a></li></button>
+								</form>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<!-- /main navigation -->
+
+			</div>
+			<!-- /sidebar content -->
+			
+		</div>
+		<!-- /main sidebar -->
+
+
+		<!-- Main content -->
+		<div class="content-wrapper">
+
+			<!-- Inner content -->
+			<div class="content-inner">
+
+				<!-- Page header -->
+				<div class="page-header page-header-light">
+					<div class="page-header-content header-elements-lg-inline">
+						<div class="page-title d-flex">
+							<h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Home</span> - AdminDashboard - ProductList</h4>
+							<a href="#" class="header-elements-toggle text-body d-lg-none"><i class="icon-more"></i></a>
+						</div>
+					</div>
+
+					<div class="breadcrumb-line breadcrumb-line-light header-elements-lg-inline">
+						<div class="d-flex">
+							<div class="breadcrumb">
+								<a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+								<span class="breadcrumb-item active">AdminDashboard</span>
+							</div>
+
+							<a href="#" class="header-elements-toggle text-body d-lg-none"><i class="icon-more"></i></a>
+						</div>
+
+						<div class="header-elements d-none">
+							<div class="breadcrumb justify-content-center">
+								<a href="#" class="breadcrumb-elements-item dropdown-toggle" data-toggle="dropdown">
+									<i class="icon-comment-discussion mr-2"></i>
+									Support
+								</a>
+								<div class="dropdown-menu dropdown-menu-right">
+									<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Report a problem</a>
+									<div class="dropdown-divider"></div>
+									<a href="#" class="dropdown-item"><i class="icon-gear"></i> Ask for changes</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /page header -->
+
+
+				<!-- Content area -->
+				<!-- Content area -->
+				<div class="content">
+
+					<!-- Dashboard content -->
+					<div class="card">
+						<div class="card-header header-elements-inline">
+							<h6 class="card-title">
+								" Products List"
+								<span class="text-primary d-block font-size-base">Add a new Product</span>
+							</h6>
+							<div class="header-elements">
+								<div class="list-icons">
+									<a class="list-icons-item" data-action="collapse"></a>
+									<a class="list-icons-item" data-action="reload"></a>
+								</div>
+							</div>
+						</div>
+						<div class="collapse show">
+							<div class="card-body">
+								<p class="mb-4">Here you can manage all the products table.</p>
+								<form action="/addproduct" method="POST" id="users-form" autocomplete="off" role="main">
+									{% csrf_token %}
+									<fieldset class="mb-3">
+										<legend class="text-uppercase font-size-sm font-weight-bold border-bottom">Add a new Product here:</legend>
+										<input name="id" type="hidden" value="{{ad.id}}">
+										<div class="form-group form-group-floating row">
+											<label class="col-form-label col-lg-2">Name<span class="text-danger">*</span></label>
+											<div class="col-lg-10">
+												<div class="position-relative">
+													<input type="text" class="form-control form-control-outline" name="name" placeholder="Placeholder" required>
+													<label class="label-floating">Product's name</label>
+												</div>
+											</div>
+										</div>
+										<div class="form-group form-group-floating row">
+											<label class="col-form-label col-lg-2">Supplier<span class="text-danger">*</span></label>
+											<div class="col-lg-10">
+												<div class="position-relative">
+													<textarea rows="5" cols="5" class="form-control" placeholder="Supplier" name="supplier"></textarea>
+													<label class="label-floating">Supplier</label>
+												</div>
+											</div>
+										</div>
+                                        <div class="form-group row">
+											<label class="col-lg-4 col-form-label">Type<span class="text-danger">*</span></label>
+											<div class="col-lg-8">
+												<select class="form-control form-control-select2"name="type">
+													<optgroup label="Drugs type">
+														<option value="General">General</option>
+														<option value="Biosimilar">Biosimilar</option>
+														<option value="Biologic Drug">Biologic</option>
+														<option value="Essential Drug">Essential</option>
+														<option value="Herbal">Herbal</option>
+														<option value="Narcotic Drug">Narcotic</option>
+														<option value="Orphan Drug">Orphan</option>
+													</optgroup>
+												</select>
+											</div>
+										</div>
+										<div class="form-group form-group-floating row">
+											<label class="col-form-label col-lg-2">Price<span class="text-danger">*</span></label>
+											<div class="col-lg-10">
+												<div class="position-relative">
+													<input type="text" class="form-control form-control-outline" name="price" placeholder="Placeholder" required>
+													<label class="label-floating">Price</label>
+												</div>
+											</div>
+										</div>
+										<div class="form-group form-group-floating row">
+											<label class="col-form-label col-lg-2">Need a prescription ?</label>
+											<div class="col-lg-10">
+												<div class="form-check-horizontal">
+													<label class="custom-control custom-radio custom-control-inline">
+														<input type="radio" class="custom-control-input" name="prescription" checked placeholder="Placeholder" value="No">
+														<span class="custom-control-label">No</span>
+													</label>
+
+													<label class="custom-control custom-radio custom-control-inline">
+														<input type="radio" class="custom-control-input" name="prescription" placeholder="Placeholder" value="Yes">
+														<span class="custom-control-label">Yes</span>
+													</label>
+												</div>
+											</div>
+										</div>
+                                        <div class="form-group form-group-floating row">
+                                            <label class="col-form-label col-lg-3">Picture <span class="text-danger">*</span></label>
+                                            <div class="col-lg-9">
+												<input type="file" name="unstyled_file" class="form-control h-auto" required="" aria-invalid="false">
+                                            </div>
+                                        </div>
+										
+									</fieldset>
+									<div class="text-right">
+										<button type="submit" class="btn btn-primary">Add the new Product <i class="icon-paperplane ml-2"></i></button>
+									</div>
+								</form>
+							</div>
+						</div>
+						<legend class="text-uppercase font-size-sm font-weight-bold border-bottom">-    List of all Products:</legend>
+						<table class="table datatable-basic">
+							<thead>
+								<tr>
+									<th>Name</th>
+                                    <th>Supplier</th>
+									<th>Type</th>
+									<th>Price</th>
+									<th>Stock</th>
+                                    <th>Need Prescription</th>
+                                    <th>Picture</th>
+									<th class="text-center">Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for p in prdlist %}
+								<tr>
+										<td>{{p.name}}</td>
+                                        <td>{{p.supplier}}</td>
+										<td>{{p.type}}</td>
+										<td>₪ {{p.price}}</td>
+										<td>{{p.stock}}</td>
+                                        <td>{{p.prescription}}</td>
+                                        <td><a class="flex-1 text-center"><img src="static/assets/images/products/{{p.id}}.jpg" class="img-fluid rounded-circle shadow-sm" width="80" height="80" alt=""></a></td>
+										<td class="text-center">
+											<div class="list-icons">
+												<div class="dropdown">
+													<a class="list-icons-item" data-toggle="dropdown">
+														<i class="icon-menu9"></i>
+													</a>
+													<div class="dropdown-menu dropdown-menu-right">	
+														<form action="/feelstock" method="POST" id="users-del" autocomplete="off" role="main">
+															{% csrf_token %}
+															<input name="id" type="hidden" value="{{ad.id}}" />	
+															<input name="did" type="hidden" value="{{p.id}}" />
+															<input class="col-lg-2" name="stock" type="number" value="{{p.stock}}" />
+															<button class="btn btn-outline-primary" type="submit">Change stock</button>
+														</form>
+														<form action="/deleteproduct" method="POST" id="users-del" autocomplete="off" role="main">
+															{% csrf_token %}
+															<input name="id" type="hidden" value="{{ad.id}}">
+															<input name="did" type="hidden" value="{{p.id}}">
+															<button class="btn btn-outline-danger" type="submit">Delete</button>
+														</form>
+													</div>
+												</div>
+											</div>
+										</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+					<!-- /dashboard content -->
+
+				</div>
+				<!-- /content area -->
+
+				<!-- /content area -->
+
+
+				<!-- Footer -->
+				<div class="navbar navbar-expand-lg navbar-light">
+					<div class="text-center d-lg-none w-100">
+						<button type="button" class="navbar-toggler dropdown-toggle" data-toggle="collapse" data-target="#navbar-footer">
+							<i class="icon-unfold mr-2"></i>
+							Footer
+						</button>
+					</div>
+
+					<div class="navbar-collapse collapse" id="navbar-footer">
+						<span class="navbar-text">
+							&copy; 2022. <a href="#">BeSce Dashboard</a>
+						</span>
+					</div>
+				</div>
+				<!-- /footer -->
+
+			</div>
+			<!-- /inner content -->
+
+		</div>
+		<!-- /main content -->
+
+	</div>
+	<!-- /page content -->
+
+</body>
+</html>
+{% endfor %}
+
+
+<style>
+	.btn1{
+		background-color: transparent;
+		border: none;
+		text-align: left;
+	}
+</style>

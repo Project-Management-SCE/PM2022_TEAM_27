@@ -1,410 +1,431 @@
 {% load static %}
+{% for cl in client1 %}
 <!DOCTYPE html>
 <html lang="en">
+
+<!-- Mirrored from demo.interface.club/limitless/demo/Template/layout_1/LTR/material/full/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 28 Mar 2022 17:09:01 GMT -->
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	{% if messages %}
+	{% for message in messages %}<script>alert("{% for message in messages %}{{ message }}\n{% endfor %}");</script>
+	{% endfor %}
+	{% endif %}
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>BeSce - Shop Index</title>
 
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<!-- Global stylesheets -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+	<link href="{% static 'assets/css/icons/icomoon/styles.min.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'assets/css/all.min.css' %}" rel="stylesheet" type="text/css">
+	<!-- /global stylesheets -->
+	
 
-  <title>BeSce - PharmaCenter In Israel</title>
+	<!-- Core JS files -->
+	<script src="{% static 'assets/js/main/jquery.min.js' %}"></script>
+	<script src="{% static 'assets/js/main/bootstrap.bundle.min.js' %}"></script>
+	<!-- /core JS files -->
 
-  <link rel="stylesheet" href="{% static 'assets/css/maicons.css' %}">
+	<!-- Theme JS files -->
+	<script src="{% static 'assets/js/plugins/visualization/d3/d3.min.js' %}"></script>
+	<script src="{% static 'assets/js/plugins/visualization/d3/d3_tooltip.js' %}"></script>
+	<script src="{% static 'assets/js/plugins/ui/moment/moment.min.js' %}"></script>
+	<script src="{% static 'assets/js/plugins/pickers/daterangepicker.js' %}"></script>
 
-  <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}">
+	<script src="{% static 'assets/js/app.js' %}"></script>
+	<script src="{% static 'assets/js/demo_pages/dashboard.js' %}"></script>
+	<script src="{% static 'assets/js/demo_charts/pages/dashboard/light/streamgraph.js' %}"></script>
+	<script src="{% static 'assets/js/demo_charts/pages/dashboard/light/sparklines.js' %}"></script>
+	<script src="{% static 'assets/js/demo_charts/pages/dashboard/light/lines.js' %}"></script>	
+	<script src="{% static 'assets/js/demo_charts/pages/dashboard/light/areas.js' %}"></script>
+	<script src="{% static 'assets/js/demo_charts/pages/dashboard/light/donuts.js' %}"></script>
+	<script src="{% static 'assets/js/demo_charts/pages/dashboard/light/bars.js' %}"></script>
+	<script src="{% static 'assets/js/demo_charts/pages/dashboard/light/progress.js' %}"></script>
+	<script src="{% static 'assets/js/demo_charts/pages/dashboard/light/heatmaps.js' %}"></script>
+	<script src="{% static 'assets/js/demo_charts/pages/dashboard/light/pies.js' %}"></script>
+	<script src="{% static 'assets/js/demo_charts/pages/dashboard/light/bullets.js' %}"></script>
+	<!-- /theme JS files -->
 
-  <link rel="stylesheet" href="{% static 'assets/vendor/owl-carousel/css/owl.carousel.css' %}">
-
-  <link rel="stylesheet" href="{% static 'assets/vendor/animate/animate.css' %}">
-
-  <link rel="stylesheet" href="{% static 'assets/css/theme.css' %}">
 </head>
+
 <body>
 
-  <!-- Back to top button -->
-  <div class="back-to-top"></div>
-
-  <header>
-    <div class="topbar">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-8 text-sm">
-            <div class="site-info">
-              <a href="#"><span class="mai-call text-primary"></span> +972 7999 9999</a>
-              <span class="divider">|</span>
-              <a href="#"><span class="mai-mail text-primary"></span> support@BeSce.com</a>
-            </div>
-          </div>
-          <div class="col-sm-4 text-right text-sm">
-            <div class="social-mini-button">
-              <a href="#"><span class="mai-logo-facebook-f"></span></a>
-              <a href="#"><span class="mai-logo-twitter"></span></a>
-              <a href="#"><span class="mai-logo-dribbble"></span></a>
-              <a href="#"><span class="mai-logo-instagram"></span></a>
-            </div>
-          </div>
-        </div> <!-- .row -->
-      </div> <!-- .container -->
-    </div> <!-- .topbar -->
-
-    <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
-      <div class="container">
-        <img src="{% static 'assets/img/bescelogo.png' %}" alt="">
-        <a class="navbar-brand" href="#"><span class="text-primary">Be</span>Sce</a>
-
-        
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupport" aria-controls="navbarSupport" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupport">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="http://localhost:8000/BeSce/index">Home</a>
-            </li>
-            
-            <li class="nav-item">
-              <a class="nav-link" href="#doctorpage">Doctors</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#latestpage">Products</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#contactpage">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="btn btn-primary ml-lg-3" href="http://localhost:8000/BeSce/login">Logout</a>
-            </li>
-          </ul>
-        </div> <!-- .navbar-collapse -->
-      </div> <!-- .container -->
-    </nav>
-  </header>
-
-  <div class="page-hero bg-image overlay-dark" style="background-image: url(https://wallpaperbat.com/img/417900-pharmacist-wallpaper.jpg);">
-    <div class="hero-section">
-      <div class="container text-center wow zoomIn">
-        <span class="subhead">Let's make your life happier</span>
-        <h1 class="display-4">Healthy Living</h1>
-        <a href="http://localhost:8000/BeSce/login" class="btn btn-primary">Let's Shop</a>
-      </div>
-    </div>
-  </div>
+	<!-- Main navbar -->
+	
+	<!-- /main navbar -->
 
 
-  <div class="bg-light">
-    <div class="page-section py-3 mt-md-n5 custom-index">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-md-4 py-3 py-md-0">
-            <div class="card-service wow fadeInUp">
-              <div class="circle-shape bg-secondary text-white">
-                <span class="mai-chatbubbles-outline"></span>
-              </div>
-              <p><span>24/7</span> with you</p>
-            </div>
-          </div>
-          <div class="col-md-4 py-3 py-md-0">
-            <div class="card-service wow fadeInUp">
-              <div class="circle-shape bg-primary text-white">
-                <span class="mai-shield-checkmark"></span>
-              </div>
-              <p><span>Be</span>Sce Protection</p>
-            </div>
-          </div>
-          <div class="col-md-4 py-3 py-md-0">
-            <div class="card-service wow fadeInUp">
-              <div class="circle-shape bg-accent text-white">
-                <span class="mai-basket"></span>
-              </div>
-              <p><span>Be</span>Sce Pharmacy</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> <!-- .page-section -->
+	<!-- Page content -->
+	<div class="page-content">
 
-    <div id="aboutpage" class="page-section pb-0">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-lg-6 py-3 wow fadeInUp">
-            <h1>Welcome to Your Pharma <br> Center</h1>
-            <p class="text-grey mb-4">BeSce allows you to buy drugs online from our application directly to our pharmacy in a few clicks. We have a wide choice of pharmaceutical products carefully chosen to preserve your health.</p>
-          </div>
-          <div class="col-lg-6 wow fadeInRight" data-wow-delay="400ms">
-            <div class="img-place custom-img-1">
-              <img src="{% static 'assets/img/bg-doctor.png' %}" alt="">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> <!-- .bg-light -->
-  </div> <!-- .bg-light -->
+		<!-- Main sidebar -->
+		
+		<!-- /main sidebar -->
 
-  <div id="doctorpage" class="page-section">
-    <div class="container">
-      <h1 class="text-center mb-5 wow fadeInUp">Our Doctors</h1>
 
-      <div class="owl-carousel wow fadeInUp" id="doctorSlideshow">
-        <div class="item">
-          <div class="card-doctor">
-            <div class="header">
-              <img src="{% static 'assets/img/doctors/doctor1.jpg' %}" alt="">
-              <div class="meta">
-                <a href="#"><span class="mai-call"></span></a>
-                <a href="#"><span class="mai-logo-whatsapp"></span></a>
-              </div>
-            </div>
-            <div class="body">
-              <p class="text-xl mb-0">Dr. Himbert Liron</p>
-              <span class="text-sm text-grey">Cardiology</span>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="card-doctor">
-            <div class="header">
-              <img src="{% static 'assets/img/doctors/doctor2.jpg' %}" alt="">
-              <div class="meta">
-                <a href="#"><span class="mai-call"></span></a>
-                <a href="#"><span class="mai-logo-whatsapp"></span></a>
-              </div>
-            </div>
-            <div class="body">
-              <p class="text-xl mb-0">Dr. Ohayon Almog</p>
-              <span class="text-sm text-grey">Dental</span>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="card-doctor">
-            <div class="header">
-              <img src="{% static 'assets/img/doctors/doctor3.jpg' %}" alt="">
-              <div class="meta">
-                <a href="#"><span class="mai-call"></span></a>
-                <a href="#"><span class="mai-logo-whatsapp"></span></a>
-              </div>
-            </div>
-            <div class="body">
-              <p class="text-xl mb-0">Dr. Dina</p>
-              <span class="text-sm text-grey">General Health</span>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="card-doctor">
-            <div class="header">
-              <img src="{% static 'assets/img/doctors/doctor4.jpg' %}" alt="">
-              <div class="meta">
-                <a href="#"><span class="mai-call"></span></a>
-                <a href="#"><span class="mai-logo-whatsapp"></span></a>
-              </div>
-            </div>
-            <div class="body">
-              <p class="text-xl mb-0">Dr. Uri</p>
-              <span class="text-sm text-grey">Urologue</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+		<!-- Main content -->
+		<div class="content-wrapper">
 
-  <div id="latestpage" class="page-section bg-light">
-    <div class="container">
-      <h1 class="text-center wow fadeInUp">Latest Products</h1>
-      <div class="row mt-5">
-        <div class="col-lg-4 py-2 wow zoomIn">
-          <div class="card-blog">
-            <div class="header">
-              <div class="post-category">
-                <a href="#">New</a>
-              </div>
-              <a href="#" class="post-thumb">
-                <img src="{% static 'assets/img/blog/blog1.jpg' %}" alt="">
-              </a>
-            </div>
-            <div class="body">
-              <h5 class="post-title"><a href="#">Retaline: for increase the concentration </a></h5>
-              <div class="site-info">
-                <div class="avatar mr-2">
-                  <div class="avatar-img">
-                    <img src="{% static 'assets/img/person/person_1.jpg' %}" alt="">
-                  </div>
-                  <span>Roger Adams</span>
+			<!-- Inner content -->
+			<div class="content-inner">
+
+				<!-- Page header -->
+				<div class="rounded-top border-top border-left border-right p-1">
+                    <div class="navbar navbar-dark navbar-expand-xl rounded">
+                        <div class="navbar-brand wmin-0 mr-5">
+                            <a href="index.html" class="d-inline-block">
+                                <img src="{% static 'assets/images/logo_light.png' %}" alt="">
+                            </a>
+                        </div>
+
+                        <div class="d-xl-none">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-demo3-mobile">
+                                <i class="icon-grid3"></i>
+                            </button>
+                        </div>
+
+                        <div class="navbar-collapse collapse" id="navbar-demo3-mobile">
+                            <ul class="navbar-nav">
+                                <li class="nav-item"><a href="#" class="navbar-nav-link">BeSce Shop</a></li>
+                            </ul>
+
+                            <span class="navbar-text ml-xl-3">
+                                <span class="badge badge-success align-top">Active</span>
+                            </span>
+
+                            <ul class="navbar-nav ml-xl-auto">
+                                <li class="nav-item">
+                                    <a href="#" class="navbar-nav-link">
+                                        <i class="icon-bell2"></i>
+                                        <span class="d-xl-none ml-2">Notifications</span>
+                                        <span class="badge badge-warning badge-pill ml-auto ml-xl-0">0</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item dropdown dropdown">
+                                    <a href="#" class="navbar-nav-link align-items-center dropdown-toggle" data-toggle="dropdown">
+                                        <i class="icon-cart-add mr-2"></i>
+                                        <span class="d-xl-none ml-2">My Order</span>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+										{% for or in cl1order %}
+											{% for prd in prdlist %}
+												{% if prd.id == or.pid %}
+                                        		<p>{{prd.name}} | {{or.quantity}}</p>
+											
+												{% endif %}
+											{% endfor %}
+										{% endfor %}
+										<form action="/myorder" method="POST" id="users-form" autocomplete="off" role="main">
+											{% csrf_token %}
+											<input name="id" type="hidden" value="{{cl.id}}">
+                                        	<button class="btn" type="submit"><a class="dropdown-item">My Actual Order</a></button>
+											</form>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown dropdown-user">
+                                    <a href="#" class="navbar-nav-link d-flex align-items-center dropdown-toggle" data-toggle="dropdown">
+                                        <img src="{% static 'assets/images/demo/users/facenone.png' %}" class="rounded-circle mr-2" height="34" alt="">
+                                        <span>{{cl.fname}}</span>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <form action="/nav_profil" method="POST" id="users-form" autocomplete="off" role="main">
+                                        {% csrf_token %}
+                                        <input name="id" type="hidden" value="{{cl.id}}">
+                                        <button class="btn" type="submit"><a class="dropdown-item">My Profil</a></button>
+                                        </form>
+                                        <a href="#" class="dropdown-item">My Orders</a>
+                                        <a href="/login" class="dropdown-item">Logout</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <span class="mai-time"></span> 1 week ago
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 py-2 wow zoomIn">
-          <div class="card-blog">
-            <div class="header">
-              <div class="post-category">
-                <a href="#">New</a>
-              </div>
-              <a href="#" class="post-thumb">
-                <img src="{% static 'assets/img/blog/blog2.jpg' %}" alt="">
-              </a>
-            </div>
-            <div class="body">
-              <h5 class="post-title"><a href="#">Decsamol: With 500 mg of paracetamol</a></h5>
-              <div class="site-info">
-                <div class="avatar mr-2">
-                  <div class="avatar-img">
-                    <img src="{% static 'assets/img/person/person_1.jpg' %}" alt="">
-                  </div>
-                  <span>Roger Adams</span>
-                </div>
-                <span class="mai-time"></span> 4 weeks ago
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 py-2 wow zoomIn">
-          <div class="card-blog">
-            <div class="header">
-              <div class="post-category">
-                <a href="#">New</a>
-              </div>
-              <a href="#" class="post-thumb">
-                <img src="{% static 'assets/img/blog/blog3.jpg' %}" alt="">
-              </a>
-            </div>
-            <div class="body">
-              <h5 class="post-title"><a href="#">Epidiolex: With cannabinol use against some ...</a></h5>
-              <div class="site-info">
-                <div class="avatar mr-2">
-                  <div class="avatar-img">
-                    <img src="{% static 'assets/img/person/person_2.jpg' %}" alt="">
-                  </div>
-                  <span>Diego Simmons</span>
-                </div>
-                <span class="mai-time"></span> 2 months ago
-              </div>
-            </div>
-          </div>
-        </div>
+				<!-- /page header -->
 
-      </div>
-    </div>
-  </div> <!-- .page-section -->
 
-  <div id="contactpage" class="page-section">
-    <div class="container">
-      <h1 class="text-center wow fadeInUp">Make an Appointment</h1>
+				<!-- Content area -->
+				<div class="content">
 
-      <form class="main-form">
-        <div class="row mt-5 ">
-          <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
-            <input type="text" class="form-control" placeholder="Full name" required>
-          </div>
-          <div class="col-12 col-sm-6 py-2 wow fadeInRight">
-            <input type="text" class="form-control" placeholder="Email address.." required>
-          </div>
-          <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
-            <input type="date" class="form-control">
-          </div>
-          <div class="col-12 col-sm-6 py-2 wow fadeInRight" data-wow-delay="300ms">
-            <select name="departement" id="departement" class="custom-select">
-              <option value="general">General Health</option>
-              <option value="cardiology">Cardiology</option>
-              <option value="dental">Dental</option>
-              <option value="neurology">Neurology</option>
-              <option value="orthopaedics">Orthopaedics</option>
-              <option value="orthopaedics">Administration</option>
-            </select>
-          </div>
-          <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
-            <input type="text" class="form-control" placeholder="Phone Number" required>
-          </div>
-          <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
-            <textarea name="message" id="message" class="form-control" rows="6" placeholder="Enter your message.."></textarea>
-          </div>
-        </div>
+					<!-- List -->
+					{% for p in prdlist %}
+					<form action="/addtoorder" method="POST" id="users-del" autocomplete="off" role="main">
+						{% csrf_token %}
+					<div class="card card-body">
+						
+						<div class="media align-items-center align-items-lg-start text-center text-lg-left flex-column flex-lg-row">
+							<div class="mr-lg-3 mb-3 mb-lg-0">
+								<a href="static/assets/images/products/{{p.id}}.jpg" data-popup="lightbox">
+									<img src="static/assets/images/products/{{p.id}}.jpg" width="96" alt="">
+								</a>
+							</div>
 
-        <button type="submit" class="btn btn-primary mt-3 wow zoomIn">Submit Request</button>
-      </form>
-    </div>
-  </div> <!-- .page-section -->
+							<div class="media-body">
+								<h6 class="media-title font-weight-semibold">
+									<a href="#">{{p.name}}</a>
+								</h6>
 
-  <div class="page-section banner-home bg-image" style="background-image: url(../assets/img/banner-pattern.svg);">
-    <div class="container py-5 py-lg-0">
-      <div class="row align-items-center">
-        <div class="col-lg-4 wow zoomIn">
-          <div class="img-banner d-none d-lg-block">
-            <img src="{% static 'assets/img/mobile_app.png' %}" alt="">
-          </div>
-        </div>
-        <div class="col-lg-8 wow fadeInRight">
-          <h1 class="font-weight-normal mb-3">Get easy access of all features using BeSce Application</h1>
-          <a href="#"><img src="{% static 'assets/img/google_play.svg' %}" alt=""></a>
-          <a href="#" class="ml-2"><img src="{% static 'assets/img/app_store.svg' %}" alt=""></a>
-        </div>
-      </div>
-    </div>
-  </div> <!-- .banner-home -->
+								<ul class="list-inline list-inline-dotted mb-3 mb-lg-2">
+									<li class="list-inline-item"><a class="text-muted">{{p.type}}</a></li>
+									<li class="list-inline-item"><a class="text-muted">Prescription : {{p.prescription}}</a></li>
+								</ul>
 
-  <footer class="page-footer">
-    <div class="container">
-      <div class="row px-md-3">
-        <div class="col-sm-6 col-lg-3 py-3">
-          <h5>Company</h5>
-          <ul class="footer-menu">
-            <li><a href="#aboutpage">About Us</a></li>
-            <li><a href="#doctorpage">Career</a></li>
-            <li><a href="#">Editorial Team</a></li>
-            <li><a href="#">Protection</a></li>
-          </ul>
-        </div>
-        <div class="col-sm-6 col-lg-3 py-3">
-          <h5>More</h5>
-          <ul class="footer-menu">
-            <li><a href="#">Terms & Condition</a></li>
-            <li><a href="#">Privacy</a></li>
-            <li><a href="#">Advertise</a></li>
-            <li><a href="#contactpage">Join as Doctors</a></li>
-          </ul>
-        </div>
-        <div class="col-sm-6 col-lg-3 py-3">
-          <h5>Our partner</h5>
-          <ul class="footer-menu">
-            <li><a href="#">BeFitness</a></li>
-            <li><a href="#">BeDrugs</a></li>
-            <li><a href="#">BeLives</a></li>
-          </ul>
-        </div>
-        <div class="col-sm-6 col-lg-3 py-3">
-          <h5>Contact</h5>
-          <p class="footer-link mt-2">56 Bialik Beersheva, B7 156456</p>
-          <a href="#" class="footer-link">+972 7999 9999</a>
-          <a href="#" class="footer-link">contact@BeSce.com</a>
+								<p class="mb-3">{{p.supplier}}</p>
 
-          <h5 class="mt-3">Social Media</h5>
-          <div class="footer-sosmed mt-3">
-            <a href="#" target="_blank"><span class="mai-logo-facebook-f"></span></a>
-            <a href="#" target="_blank"><span class="mai-logo-twitter"></span></a>
-            <a href="#" target="_blank"><span class="mai-logo-google-plus-g"></span></a>
-            <a href="#" target="_blank"><span class="mai-logo-instagram"></span></a>
-            <a href="#" target="_blank"><span class="mai-logo-linkedin"></span></a>
-          </div>
-        </div>
-      </div>
+								<ul class="list-inline list-inline-dotted mb-0">
+									<li class="list-inline-item">Stock :<a>{{p.stock}}</a></li>
+								</ul>
+							</div>
 
-      <hr>
+							<div class="mt-3 mt-lg-0 ml-lg-3 text-center">
+								<h3 class="mb-0 font-weight-semibold">₪{{p.price}}</h3>
 
-      <p id="copyright">Copyright &copy; 2022 <a href="#" target="_blank">BeSce Format</a>. All right reserved</p>
-    </div>
-  </footer>
+								<div>
+									<i class="icon-star-full2 font-size-base text-warning"></i>
+									<i class="icon-star-full2 font-size-base text-warning"></i>
+									<i class="icon-star-full2 font-size-base text-warning"></i>
+									<i class="icon-star-full2 font-size-base text-warning"></i>
+									<i class="icon-star-full2 font-size-base text-warning"></i>
+								</div>
+								{% if p.stock <= 0 %}
+								<div class="text-danger">Empty stock</div>
+								<a class="btn-teal mt-3"><i class="icon-cart-add mr-2" disabled></i> Disabled</a>
+								{% else %}
+								<div class="text-success">In stock</div>
+								
+									<input name="id" type="hidden" value="{{cl.id}}" />	
+									<input name="did" type="hidden" value="{{p.id}}" />
+									<button type="submit" class="btn-teal mt-3"><i class="icon-cart-add mr-2"></i> Add to cart</button>
+								</form>
+								{% endif %}
 
-  <script src="{% static 'assets/js/jquery-3.5.1.min.js' %}"></script>
+								
+							</div>
+						</div>
+						
+					</div>
+					{% endfor %}
+					<!-- /list -->
 
-  <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
 
-  <script src="{% static 'assets/vendor/owl-carousel/js/owl.carousel.min.js' %}"></script>
+					<!-- Pagination -->
+					<div class="d-flex justify-content-center pt-3 mb-3">
+						<ul class="pagination shadow-1">
+							<li class="page-item disabled"><a href="#" class="page-link page-link-white"><i class="icon-arrow-left8"></i></a></li>
+							<li class="page-item active"><a href="#" class="page-link page-link-white">1</a></li>
+							<li class="page-item"><a href="#" class="page-link page-link-white">2</a></li>
+							<li class="page-item"><a href="#" class="page-link page-link-white">3</a></li>
+							<li class="page-item"><a href="#" class="page-link page-link-white">4</a></li>
+							<li class="page-item"><a href="#" class="page-link page-link-white">5</a></li>
+							<li class="page-item"><a href="#" class="page-link page-link-white"><i class="icon-arrow-right8"></i></a></li>
+						</ul>
+					</div>
+					<!-- /pagination -->
 
-  <script src="{% static 'assets/vendor/wow/wow.min.js' %}"></script>
+				</div>
+				<!-- /content area -->
 
-  <script src="{% static 'assets/js/theme.js' %}"></script>
+
+				<!-- Footer -->
+				<div class="navbar navbar-expand-lg navbar-light">
+					<div class="text-center d-lg-none w-100">
+						<button type="button" class="navbar-toggler dropdown-toggle" data-toggle="collapse" data-target="#navbar-footer">
+							<i class="icon-unfold mr-2"></i>
+							Footer
+						</button>
+					</div>
+
+					<div class="navbar-collapse collapse" id="navbar-footer">
+						<span class="navbar-text">
+							&copy; 2022. <a href="#">BeSce Dashboard</a>
+						</span>
+					</div>
+				</div>
+				<!-- /footer -->
+
+			</div>
+			<!-- /inner content -->
+
+		</div>
+		<!-- /main content -->
+
+
+		<!-- Right sidebar -->
+		<div class="sidebar sidebar-light sidebar-right sidebar-expand-lg">
+
+			<!-- Expand button -->
+			<button type="button" class="btn btn-sidebar-expand sidebar-control sidebar-right-toggle">
+				<i class="icon-arrow-right13"></i>
+			</button>
+			<!-- /expand button -->
+
+
+			<!-- Sidebar content -->
+			<div class="sidebar-content">
+
+				<!-- Header -->
+				<div class="sidebar-section sidebar-section-body d-flex align-items-center pb-2">
+					<h5 class="mb-0">Filters</h5>
+					<div class="ml-auto">
+						<button type="button" class="btn btn-outline-dark border-transparent btn-icon rounded-pill btn-sm sidebar-control sidebar-right-toggle d-none d-lg-inline-flex">
+							<i class="icon-transmission"></i>
+						</button>
+
+						<button type="button" class="btn btn-outline-dark border-transparent btn-icon rounded-pill btn-sm sidebar-mobile-right-toggle d-lg-none">
+							<i class="icon-cross2"></i>
+						</button>
+					</div>
+				</div>
+				<!-- /header -->
+
+
+				<!-- Categories -->
+				<div class="sidebar-section">
+					<div class="sidebar-section-header">
+						<span class="font-weight-semibold">Research By</span>
+					</div>
+
+					<div class="sidebar-section-body">
+						<div class="form-group-feedback form-group-feedback-right">
+							<input type="search" class="form-control" placeholder="Search">
+							<div class="form-control-feedback">
+								<i class="icon-search4 font-size-base text-muted"></i>
+							</div>
+						</div>
+					</div>
+
+					<ul class="nav nav-sidebar">
+						<li class="nav-item nav-item-submenu pt-0">
+							<a href="#" class="nav-link">By Price <span class="text-muted ml-auto font-weight-normal">0</span></a>
+							<ul class="nav nav-group-sub">
+								<li class="nav-item"><a href="#" class="nav-link">0 - 5</a></li>
+								<li class="nav-item"><a href="#" class="nav-link">6 - 10</a></li>
+								<li class="nav-item"><a href="#" class="nav-link">11 - 15</a></li>
+								<li class="nav-item"><a href="#" class="nav-link">16 - 20</a></li>
+								<li class="nav-item"><a href="#" class="nav-link">21 - 25</a></li>
+								<li class="nav-item"><a href="#" class="nav-link">26 - 30</a></li>
+								<li class="nav-item"><a href="#" class="nav-link">31 - more</a></li>
+							</ul>
+						</li>
+						<li class="nav-item nav-item-submenu">
+							<a href="#" class="nav-link">By Type <span class="text-muted ml-auto font-weight-normal">0</span></a>
+							<ul class="nav nav-group-sub">
+								<li class="nav-item"><a href="#" class="nav-link">General medicine</a></li>
+								<li class="nav-item"><a href="#" class="nav-link">Biosimilar medicine</a></li>
+								<li class="nav-item"><a href="#" class="nav-link">Orphan drug</a></li>
+								<li class="nav-item"><a href="#" class="nav-link">Biologic drug</a></li>
+								<li class="nav-item"><a href="#" class="nav-link">Herbal medicine</a></li>
+								<li class="nav-item"><a href="#" class="nav-link">Essential drug</a></li>
+								<li class="nav-item"><a href="#" class="nav-link">Narcotic drug</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<!-- /categories -->
+
+
+				<!-- Brands -->
+				<div class="sidebar-section">
+					<div class="sidebar-section-header">
+						<span class="font-weight-semibold">Categories</span>
+					</div>
+
+					<div class="sidebar-section-body">
+						<div class="form-group form-group-feedback form-group-feedback-left">
+							<input type="search" class="form-control" placeholder="Search brand">
+							<div class="form-control-feedback">
+								<i class="icon-search4 font-size-base text-muted"></i>
+							</div>
+						</div>
+
+						<div class="overflow-auto" style="max-height: 181px;">
+							<label class="custom-control custom-checkbox mb-2">
+								<input type="checkbox" class="custom-control-input">
+								<span class="custom-control-label">General medicine</span>
+							</label>
+
+							<label class="custom-control custom-checkbox mb-2">
+								<input type="checkbox" class="custom-control-input">
+								<span class="custom-control-label">Biosimilar medicine</span>
+							</label>
+
+							<label class="custom-control custom-checkbox mb-2">
+								<input type="checkbox" class="custom-control-input">
+								<span class="custom-control-label">Orphan drug</span>
+							</label>
+
+							<label class="custom-control custom-checkbox mb-2">
+								<input type="checkbox" class="custom-control-input">
+								<span class="custom-control-label">Biologic drug</span>
+							</label>
+							<label class="custom-control custom-checkbox mb-2">
+								<input type="checkbox" class="custom-control-input">
+								<span class="custom-control-label">Herbal medicine</span>
+							</label>
+
+							<label class="custom-control custom-checkbox mb-2">
+								<input type="checkbox" class="custom-control-input">
+								<span class="custom-control-label">Essential drug</span>
+							</label>
+
+							<label class="custom-control custom-checkbox mb-2">
+								<input type="checkbox" class="custom-control-input">
+								<span class="custom-control-label">Narcotic drug</span>
+							</label>
+						</div>
+					</div>
+				</div>
+				<!-- /brands -->
+
+
+				<!-- Products for -->
+				<div class="sidebar-section">
+					<div class="sidebar-section-header">
+						<span class="font-weight-semibold">Products for</span>
+					</div>
+
+					<div class="sidebar-section-body">
+						<label class="custom-control custom-checkbox mb-2">
+							<input type="checkbox" class="custom-control-input">
+							<span class="custom-control-label d-flex">Men <span class="text-muted ml-auto">0</span></span>
+						</label>
+
+						<label class="custom-control custom-checkbox mb-2">
+							<input type="checkbox" class="custom-control-input">
+							<span class="custom-control-label d-flex">Women <span class="text-muted ml-auto">0</span></span>
+						</label>
+
+						<label class="custom-control custom-checkbox mb-2">
+							<input type="checkbox" class="custom-control-input">
+							<span class="custom-control-label d-flex">Kids <span class="text-muted ml-auto">0</span></span>
+						</label>
+
+						<label class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input">
+							<span class="custom-control-label d-flex">Unisex <span class="text-muted ml-auto">0</span></span>
+						</label>
+					</div>
+				</div>
+				<!-- /products for -->
+			</div>
+			<!-- /sidebar content -->
+
+		</div>
+		<!-- /right sidebar -->
+		<!-- /main content -->
+
+	</div>
+	<!-- /page content -->
+
+</body>
+</html>
+{% endfor %}
+
+
+<style>
+	.btn{
+		background-color: transparent;
+		border: none;
+		text-align: left;
+	}
+</style>

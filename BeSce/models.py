@@ -10,52 +10,100 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 
-class Client(models.Model):
+# ============== USERS MODELS ============== #
+
+class Admin(models.Model):
     id = models.IntegerField(db_column='id',primary_key=True)
-    idnumber = models.CharField(db_column='idnumber', max_length=9)
+    idnumber = models.CharField(db_column='idnumber',max_length=11)
+    password = models.TextField(db_column='password')
     fname = models.TextField(db_column='fname')
     lname = models.TextField(db_column='lname')
-    bday = models.DateField(db_column='bday')
-    type = models.TextField(db_column='type')
-    address = models.TextField(db_column='address')
-    city = models.TextField(db_column='city')
-    country = models.TextField(db_column='country')
-    phone = models.CharField(db_column='phone', max_length=11)
+
+    class Meta:
+        managed = False
+        db_table = 'admin'
+
+
+class Client(models.Model):
+    id = models.IntegerField(db_column='id',primary_key=True)
+    idnumber = models.CharField(db_column='idnumber',max_length=11)
+    email = models.TextField(db_column='email')
+    password = models.TextField(db_column='password')
+    fname = models.TextField(db_column='fname',blank=True, null=True)
+    lname = models.TextField(db_column='lname',blank=True, null=True)
+    bday = models.DateField(db_column='bday',blank=True, null=True)
+    gender = models.TextField(db_column='gender',blank=True, null=True)
+    address = models.TextField(db_column='address',blank=True, null=True)
+    city = models.TextField(db_column='city',blank=True, null=True)
+    country = models.TextField(db_column='country',blank=True, null=True)
+    phone = models.CharField(db_column='phone',max_length=11, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'client'
 
 
-class Director(models.Model):
+class Worker(models.Model):
     id = models.IntegerField(db_column='id',primary_key=True)
-    idnumber = models.CharField(db_column='idnumber', max_length=9)
+    idnumber = models.CharField(db_column='idnumber',max_length=11)
+    password = models.TextField(db_column='password')
     fname = models.TextField(db_column='fname')
     lname = models.TextField(db_column='lname')
 
     class Meta:
         managed = False
-        db_table = 'director'
+        db_table = 'worker'
 
+# ============== USERS MODELS ============== #
 
-class Pharmacian(models.Model):
+class Product(models.Model):
     id = models.IntegerField(db_column='id',primary_key=True)
-    idnumber = models.CharField(db_column='idnumber', max_length=9)
-    fname = models.TextField(db_column='fname')
-    lname = models.TextField(db_column='lname')
+    name = models.TextField(db_column='name',)
+    supplier = models.TextField(db_column='supplier',)
+    type = models.TextField(db_column='type',)
+    price = models.IntegerField(db_column='price')
+    stock = models.IntegerField(db_column='stock')
+    prescription = models.TextField(db_column='prescription')
 
     class Meta:
         managed = False
-        db_table = 'pharmacian'
+        db_table = 'product'
 
 
-class User(models.Model):
+class Ordershop(models.Model):
     id = models.IntegerField(db_column='id',primary_key=True)
-    idnumber = models.CharField(db_column='idnumber', max_length=9)
-    password = models.TextField(db_column='password', max_length=24)
-    email = models.TextField(db_column='email')
-    rank = models.TextField(db_column='rank')
+    cid = models.IntegerField(db_column='cid')
+    pid = models.IntegerField(db_column='pid')
+    quantity = models.IntegerField(db_column='quantity')
 
     class Meta:
         managed = False
-        db_table = 'user'
+        db_table = 'ordershop'
+
+
+class Ordered(models.Model):
+    id = models.IntegerField(db_column='id',primary_key=True)
+    cid = models.IntegerField(db_column='cid')
+    pid = models.TextField(db_column='pid')
+    quantity = models.TextField(db_column='quantity')
+    wid = models.IntegerField(db_column='wid', blank=True, null=True)
+    total = models.DecimalField(db_column='total', max_digits=10, decimal_places=2)
+    status = models.TextField(db_column='status')
+
+    class Meta:
+        managed = False
+        db_table = 'ordered'
+
+
+class Prescription(models.Model):
+    id = models.IntegerField(db_column='id',primary_key=True)
+    cid = models.IntegerField(db_column='cid', blank=True, null=True)
+    pid = models.IntegerField(db_column='pid')
+    informations = models.TextField(db_column='informations')
+
+
+    class Meta:
+        managed = False
+        db_table = 'prescription'
+
+
