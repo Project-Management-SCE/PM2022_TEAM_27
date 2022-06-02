@@ -62,12 +62,12 @@ class adminstest(unittest.TestCase):
         cursor = db_connection.cursor()
         cursor.execute("SELECT fname FROM admin")
         result = cursor.fetchall()
-        wfnames =  ["Liron",
+        afnames =  ["Liron",
                 "Kevyn",
                 "Udi",
                 ]   
-        for i in range(len(wfnames)):
-            self.assertEqual(wfnames[i],result[i][0])
+        for i in range(len(afnames)):
+            self.assertEqual(afnames[i],result[i][0])
         cursor.close()
 
     def test_adminslug(self):
@@ -112,3 +112,66 @@ class registertest(unittest.TestCase):
        self.assertNotEquals(item.email, '123456')
 
 
+class productsstest(unittest.TestCase):
+
+    def products_exist(self):
+        db_connection = mysql.connector.connect(
+        host="database-1.c4joaqwcqrpg.eu-central-1.rds.amazonaws.com",
+        user="admin",
+        password="okoklol123",
+        database="db_besce")
+        cursor = db_connection.cursor()
+        cursor.execute("SELECT name FROM product")
+        result = cursor.fetchall()
+        names =  ["Acamol",
+                "Loratadine Tablets",
+                "Ritalin",
+                ]   
+        for i in range(len(names)):
+            self.assertEqual(names[i],result[i][0])
+        cursor.close()
+
+class orderedsstest(unittest.TestCase):
+   def status_exist(self):
+        db_connection = mysql.connector.connect(
+        host="database-1.c4joaqwcqrpg.eu-central-1.rds.amazonaws.com",
+        user="admin",
+        password="okoklol123",
+        database="db_besce")
+        cursor = db_connection.cursor()
+        cursor.execute("SELECT status FROM ordered")
+        result = cursor.fetchall()
+        status =  ["Waiting",
+                "Completed",
+                ]   
+        for i in range(len(status)):
+            self.assertEqual(status[i],result[i][0])
+        cursor.close()
+
+class prescriptionsstest(unittest.TestCase):
+   def status_exist(self):
+        db_connection = mysql.connector.connect(
+        host="database-1.c4joaqwcqrpg.eu-central-1.rds.amazonaws.com",
+        user="admin",
+        password="okoklol123",
+        database="db_besce")
+        cursor = db_connection.cursor()
+        cursor.execute("SELECT pid FROM prescription")
+        result = cursor.fetchall()
+        pid =  [3
+                ]   
+        for i in range(len(pid)):
+            self.assertEqual(pid[i],result[i][0])
+        cursor.close()
+'''
+class PrescriptionTest(TestCase):
+
+   def test_prescription(self):
+        item=Prescription()
+        item.id=11
+        item.cid=5
+        item.informations="okok"
+        item.save()
+        record=Prescription.objects.get()
+        self.assertEqual(record,item)
+        '''

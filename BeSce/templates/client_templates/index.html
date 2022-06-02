@@ -5,10 +5,14 @@
 
 <!-- Mirrored from demo.interface.club/limitless/demo/Template/layout_1/LTR/material/full/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 28 Mar 2022 17:09:01 GMT -->
 <head>
+	{% if messages %}
+	{% for message in messages %}<script>alert("{% for message in messages %}{{ message }}\n{% endfor %}");</script>
+	{% endfor %}
+	{% endif %}
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>BeSce - AdminDashboard</title>
+	<title>BeSce - Shop Index</title>
 
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
@@ -104,9 +108,12 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
 										{% for or in cl1order %}
-
-                                        		<p>{{or.pid}} | {{or.quantity}}</p>
-												
+											{% for prd in prdlist %}
+												{% if prd.id == or.pid %}
+                                        		<p>{{prd.name}} | {{or.quantity}}</p>
+											
+												{% endif %}
+											{% endfor %}
 										{% endfor %}
 										<form action="/myorder" method="POST" id="users-form" autocomplete="off" role="main">
 											{% csrf_token %}
@@ -182,7 +189,7 @@
 								</div>
 								{% if p.stock <= 0 %}
 								<div class="text-danger">Empty stock</div>
-								<button class="btn-teal mt-3"><i class="icon-cart-add mr-2" disabled></i> Disabled</button>
+								<a class="btn-teal mt-3"><i class="icon-cart-add mr-2" disabled></i> Disabled</a>
 								{% else %}
 								<div class="text-success">In stock</div>
 								

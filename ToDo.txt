@@ -1,1 +1,2 @@
-- Add column product name in ordershop
+- Stock variation went confirm order
+- if stock >0 then message that not possible

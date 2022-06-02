@@ -5,10 +5,14 @@
 
 <!-- Mirrored from demo.interface.club/limitless/demo/Template/layout_1/LTR/material/full/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 28 Mar 2022 17:09:01 GMT -->
 <head>
+	{% if messages %}
+	{% for message in messages %}<script>alert("{% for message in messages %}{{ message }}\n{% endfor %}");</script>
+	{% endfor %}
+	{% endif %}
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>BeSce - AdminDashboard</title>
+	<title>BeSce - MyOrder</title>
 
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
@@ -300,7 +304,7 @@
 									<tr class="table-active">
 										<td colspan="7" class="font-weight-semibold">My Actual Order</td>
 										<td class="text-right">
-											<span class="badge badge-secondary badge-pill">0</span>
+											<span class="badge badge-secondary badge-pill">Not payed</span>
 										</td>
 									</tr>
                                     {% for or in cl1order %}
@@ -312,7 +316,11 @@
 											</a>
 										</td>
 										<td>
-											<a href="#" class="font-weight-semibold">{{or.pid}}</a>
+											{% for p in prdlist %}
+											{% if p.id ==  or.pid %}
+											<a href="#" class="font-weight-semibold">{{p.name}}</a>
+											{% endif %}
+											{% endfor %}
 											<div class="text-muted font-size-sm">
 												<span class="badge badge-mark bg-secondary border-dark mr-1"></span>
 												Processing
@@ -330,7 +338,7 @@
 														<form action="/deltoorder" method="POST" id="users-form" autocomplete="off" role="main">
 															{% csrf_token %}
 															<input name="id" type="hidden" value="{{cl.id}}">
-															<input name="did" type="hidden" value="{{cl.pid}}">
+															<input name="did" type="hidden" value="{{or.pid}}">
 															<button class="dropdown-item"><i class="icon-warning2"></i> Delete</button>
 														</form>
 													</div>
@@ -351,7 +359,7 @@
 							<form action="/payment" method="POST" id="users-form" autocomplete="off" role="main">
 								{% csrf_token %}
 								<input name="id" type="hidden" value="{{cl.id}}">
-								<button class="btn" type="submit"><li class="nav-item"><a class="nav-link">Payment</a></li></button>
+								<button type="submit" class="btn-teal mt-3"><i class="icon-cart-add mr-2"></i>Payment</button>
 								</form>
 						</div>
 					</div>
